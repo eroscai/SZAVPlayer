@@ -7,17 +7,34 @@
 //
 
 import UIKit
+import SnapKit
 
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
+
+        view.backgroundColor = .white
+
+        let audioVCBtn = UIButton()
+        audioVCBtn.backgroundColor = .black
+        audioVCBtn.setTitle("Audio Example", for: .normal)
+        audioVCBtn.setTitleColor(.white, for: .normal)
+        audioVCBtn.addTarget(self, action: #selector(handleAudioVCBtnClick), for: .touchUpInside)
+        view.addSubview(audioVCBtn)
+        audioVCBtn.snp.makeConstraints { (make) in
+            make.width.equalTo(200)
+            make.height.equalTo(50)
+            make.centerX.equalTo(view)
+            make.centerY.equalTo(view).offset(-100)
+        }
+
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    @objc func handleAudioVCBtnClick() {
+        let vc = AudioViewController()
+        navigationController?.pushViewController(vc, animated: true)
     }
 
 }

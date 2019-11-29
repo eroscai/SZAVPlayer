@@ -1,0 +1,34 @@
+{
+  "name": "SZAVPlayer",
+  "version": "0.1.0",
+  "summary": "A short description of SZAVPlayer.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/eroscai/SZAVPlayer",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "eroscai": "csz0102@gmail.com"
+  },
+  "source": {
+    "git": "https://github.com/eroscai/SZAVPlayer.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "swift_versions": "5.0",
+  "source_files": "SZAVPlayer/Classes/**/*",
+  "frameworks": [
+    "UIKit",
+    "CoreServices",
+    "AVFoundation"
+  ],
+  "dependencies": {
+    "SQLite.swift": [
+      "~> 0.12.0"
+    ]
+  },
+  "swift_version": "5.0"
+}

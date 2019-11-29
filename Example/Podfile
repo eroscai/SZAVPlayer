@@ -1,11 +1,15 @@
 use_frameworks!
 
+install! 'cocoapods', :disable_input_output_paths => true
+
 target 'SZAVPlayer_Example' do
   pod 'SZAVPlayer', :path => '../'
 
+  pod 'SnapKit'
+
   target 'SZAVPlayer_Tests' do
     inherit! :search_paths
-
+    
     
   end
 end

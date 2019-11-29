@@ -1,0 +1,6 @@
+framework module SZAVPlayer {
+  umbrella header "SZAVPlayer-umbrella.h"
+
+  export *
+  module * { export * }
+}
