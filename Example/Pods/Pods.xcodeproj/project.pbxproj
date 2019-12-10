@@ -8,38 +8,49 @@
 
 /* Begin PBXBuildFile section */
 		01C550A53C9E2047C83F8E85BBB558E6 /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6FA80382FD948B247E5D96943894EABE /* ConstraintLayoutSupportDSL.swift */; };
+		01C7C6C34C1F425F26558AD39C8C9FB8 /* SZAVPlayerContentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1673CECF8CD35985DD04D0C8BBDAB5D6 /* SZAVPlayerContentInfo.swift */; };
+		02547AD9B1861C24C779B01F50B8A28B /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2035D79CB0336D22F05763AA15C758E0 /* UIKit.framework */; };
 		039EAFE7935113805F3FC21BF1B7C9D5 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F8BE84992BD2479A7B6E52E5D827C8A /* LayoutConstraint.swift */; };
 		03F6349BC7F1C0F3BDFD63082CCE32DB /* FTS4.swift in Sources */ = {isa = PBXBuildFile; fileRef = FC4A5004BE6B04B915E7B67ED6AB71BC /* FTS4.swift */; };
+		0425321FA210AF258F5708A35493F4A5 /* SZAVPlayerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05921F559F0FE0B63A7D9A2FFEC116E8 /* SZAVPlayerCache.swift */; };
 		04543980C4A7CE442330B0F1BC4A9A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6D2EC3C55E279E033A244660BE7A0 /* Foundation.framework */; };
-		08C20B244D49738B32AA24796221D8B8 /* SZAVPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1891DB4C92BCE3BD34074158C39EF2D9 /* SZAVPlayerItem.swift */; };
+		0547D2D66172EBE3132C79FDAF9333C8 /* SZAVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD652A538F04B09DCE80C96899C17020 /* SZAVPlayer.swift */; };
 		0C70B9D07EF7BBE50FB0725032689FC0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6D2EC3C55E279E033A244660BE7A0 /* Foundation.framework */; };
 		11DB5CBA403ECEF29BBD24C02FA8E473 /* Pods-SZAVPlayer_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7652F395BB927CA0B81D656A5C7008 /* Pods-SZAVPlayer_Tests-dummy.m */; };
 		13DC37325FD7C005D5757A7A24879CFB /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A68ABB5C58AFDF8EBB6F1CF4C6D99F9 /* Expression.swift */; };
-		13F2ADACCDFEF78453C330CE2707A0CB /* SZAVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFA87B36554388819B35DDD6E63AAA9 /* SZAVPlayer.swift */; };
 		16E32D96D226F5CA5ECE9021B4448A2C /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC37782E298A3A5B4073677200203F62 /* Connection.swift */; };
+		178048AE239A3BA900B43639 /* SZAVPlayerDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178048AD239A3BA900B43639 /* SZAVPlayerDataLoader.swift */; };
+		178048B0239A492300B43639 /* SZAVPlayerRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178048AF239A492300B43639 /* SZAVPlayerRequestOperation.swift */; };
+		178048B2239A60FE00B43639 /* SZAVPlayerLocalFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 178048B1239A60FE00B43639 /* SZAVPlayerLocalFileInfo.swift */; };
+		17BA9A9F239F457D00524AF9 /* SZAVPlayerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17BA9A9E239F457D00524AF9 /* SZAVPlayerError.swift */; };
 		18808F9C139BA0E9059E72980F0BF908 /* SQLite.swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C269F347C3960B9A6466B3E2021585C1 /* SQLite.swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		188E0D4F7200FED3C7A1245F9F913072 /* Coding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668DE53B794971EE276429F598F7E52 /* Coding.swift */; };
 		1956E392D500F3CD899D39A5F805736D /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45A2F24D5D6452A86C8E5D44DCF18585 /* Typealiases.swift */; };
+		19FCD81EE04374BC824B7E25C477AF8F /* SZAVPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 05F16FC0582E2F7D4E87024520CBBD38 /* SZAVPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1AFB1E9136716C0B61D6C700FF1E60FD /* ConstraintLayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FE5866B4384D8DF5877F718318ED6D /* ConstraintLayoutGuide+Extensions.swift */; };
 		1B13B36FAC4CB8F57794A2B328FDA679 /* CoreFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7667DDC1A18D3626CF2CCFBB6180CA88 /* CoreFunctions.swift */; };
 		21AB1101BBE4D28D74ED4EDF0D59025A /* ConstraintInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED7BB022B426ED37E13FFDEFC49042FB /* ConstraintInsets.swift */; };
+		21E96697A71252B4A53F98087F69B1DD /* SZAVPlayerDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = A50301894A360D4E7CFE6EC2F89F6B43 /* SZAVPlayerDatabase.swift */; };
 		232B2F922E972D9F43D2EE15ACECE734 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25A4DDE05840E7ABADD1D35218CB327C /* ConstraintPriority.swift */; };
 		2A1BBBC87AC2367BD14610A9D10D285E /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = F666DF9BD4DF0D47BAEFB7A242374EED /* ConstraintAttributes.swift */; };
-		2A556037363F245304EABD1B29A4FB73 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6D2EC3C55E279E033A244660BE7A0 /* Foundation.framework */; };
 		2B4449F52A64006C681E3CFFAF6CFB19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6D2EC3C55E279E033A244660BE7A0 /* Foundation.framework */; };
 		2C06F2E972444D359754D21AC46BFFE2 /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 097D37E922A9D39FA8FD7DE1D2E2CB86 /* ConstraintInsetTarget.swift */; };
 		2C4F38367FEF4F7C72224D9EB87B7F71 /* Blob.swift in Sources */ = {isa = PBXBuildFile; fileRef = E9123C9930FBAC8EF32D5151BC8DBD41 /* Blob.swift */; };
-		2E7DB226729CFA4D4AE063E61AC87184 /* SZAVPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 2162591B54E53E64267FDBF0428111A9 /* SZAVPlayer-dummy.m */; };
 		31AAD13A75FA67A504E265924E542827 /* Statement.swift in Sources */ = {isa = PBXBuildFile; fileRef = B3A0A9F30D28BA66BFB8BF4A0CF1871B /* Statement.swift */; };
 		348B481DC980D7B5252368E2A54CFBF9 /* Foundation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48B3B1477136CD6EBC2128B6CDF1AE38 /* Foundation.swift */; };
 		34AAA7582072F0483C416CCBA5435E10 /* Pods-SZAVPlayer_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C8BF3C2CE423463C00A2648FB4B73A2 /* Pods-SZAVPlayer_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		3600A3523D7008E982530C8F0888FE6D /* SZAVPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5CE9D8D145B6C160D97A1A8D53229F29 /* SZAVPlayer-dummy.m */; };
 		3BFC243AB9BD579969F0D5756560BCAA /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8B73703733D8CDFAE5B478202A24C51 /* Constraint.swift */; };
 		3E5285F4F36EAD77ECABBFB7F36BB1BB /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 15247838CAE85EAFDD4818BE51DE7271 /* ConstraintView+Extensions.swift */; };
+		3E6E421E56C4D59EDE84C3BBF1640270 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34AD4386909975E77DB15E1110B84A7 /* AVFoundation.framework */; };
+		44339602C8A36561A88FF333090A145F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6D2EC3C55E279E033A244660BE7A0 /* Foundation.framework */; };
 		444D048C8F52A4002F068AE6198AA5B7 /* Query.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEF33B5F458FD3390470B847E294E023 /* Query.swift */; };
+		4721E80077C7BBA9BE3EA613C8AB876B /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276CA581AA1A75877F9B3BE10DFD0111 /* CoreServices.framework */; };
 		4A50D35274D871E14260F93489F87E32 /* SQLiteObjc.m in Sources */ = {isa = PBXBuildFile; fileRef = CB2992D5B0B81BAE47D9DC4F0BDF3D3B /* SQLiteObjc.m */; };
 		4C7A676DAE95EEAC3787A75349F0862D /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = BEC0389BA062191501E87E1D96C9F1D0 /* SnapKit-dummy.m */; };
 		4E3EDCB1C27B3725FD8AEFD7E61B9E17 /* RTree.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95EC296C11E26A7B779F662DD3182DB /* RTree.swift */; };
 		51CD5887014967E77E58F5A163996454 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = A74C3C8995895A697D16B87DD9DA33EB /* ConstraintMaker.swift */; };
+		53EDB35462859405B56B30FE6B15AE35 /* SZAVPlayerItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA71E705580557C8652BB38B444369E5 /* SZAVPlayerItem.swift */; };
 		57B1876F2BE4168E5BFDB63D8CC849A0 /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 818034D55522DFB01700852398F0BD17 /* ConstraintLayoutSupport.swift */; };
 		5854DF509E8A016B6235793D04083035 /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = D43A9389AF349A4E4D1EA1353A089C87 /* ConstraintConstantTarget.swift */; };
 		5AB7AA2D47C8BD4ED779FB58ADD2EB19 /* Operators.swift in Sources */ = {isa = PBXBuildFile; fileRef = E0F5E26733CE9EC693ADB238E34C15F8 /* Operators.swift */; };
@@ -47,14 +58,13 @@
 		5D1D42009E941070E4EDDE947A881181 /* Errors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3C5063AC4111B3E7CA247ACF780B972C /* Errors.swift */; };
 		5F75157A5075DECD1D4512F9A6744CA6 /* fts3_tokenizer.h in Headers */ = {isa = PBXBuildFile; fileRef = AC426B4BA27C2928B574E79DFFCE937F /* fts3_tokenizer.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		67F339D752FFF174485AB6F96EC6FA7E /* SQLite.swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 83A739D72B59500D8127206E85EBBB5B /* SQLite.swift-dummy.m */; };
+		68195C51D0A9D705486A9D80B1232BEF /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E776BC142DA9FE97996263CC5BA6A1D6 /* SQLite.framework */; };
 		69CCBEEDFCA6D743D80026568D961919 /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD4FCAAE9FE9C7066719531C875CE999 /* ConstraintMakerExtendable.swift */; };
 		69E3A06BBDFDC7D06A9D4BDC4E895E73 /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = EB7B376AB819DD489EBD9A77B1A1E4F4 /* ConstraintRelatableTarget.swift */; };
 		6E0EB9E7FAAEDBB7A73ECF3095F69C4A /* UILayoutSupport+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40A8783DB386E2FDDE5F3802C40172E2 /* UILayoutSupport+Extensions.swift */; };
-		701ADC512B32CBF4FDC90B7077CA82A3 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 276CA581AA1A75877F9B3BE10DFD0111 /* CoreServices.framework */; };
 		71DE9DC2FA583526AB4D1FD7F00C099C /* ConstraintDirectionalInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4ECE40EBA694BE8DD753BABBCFAFCC /* ConstraintDirectionalInsetTarget.swift */; };
 		75E146C12D1287228A0B493E87CDE31F /* ConstraintMakerRelatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 086D85895B86BF5581AD98DCF14E73D4 /* ConstraintMakerRelatable.swift */; };
 		77C9889055A3B32EA13A9616824DB0ED /* ConstraintLayoutGuideDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37FD39B097FB2DB384755324094CF018 /* ConstraintLayoutGuideDSL.swift */; };
-		7945DDF91F559A30E5DD312846D9F347 /* SZAVPlayerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5EB74E9E15806C2E92C821DCD7076599 /* SZAVPlayerCache.swift */; };
 		79E43357E56514CD6FE8A6F4B1D28C2E /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FD5A0846D195D032F2DCF49A75178B5 /* Helpers.swift */; };
 		7C1702076F3A31D8D2D45A4A9F09B266 /* ConstraintMakerEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C813689F67237DE2C2F1D28740E058 /* ConstraintMakerEditable.swift */; };
 		8277256ADEC3C4DCF79957D1CA681A9A /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B5CA618DBD591F370BDA16E5EFC85F6 /* ConstraintDSL.swift */; };
@@ -66,23 +76,21 @@
 		A42659683986F68D9D4F244F1DB71C2F /* FTS5.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F7149DB6165D86FA6CA949B479C42A1 /* FTS5.swift */; };
 		A66ED57B365A35434C5BAF4B990819B7 /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D3101664A12561DA11084229622A1EB /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A966409E4EB7EB56CBE6C9DFA0FC5B94 /* DateAndTimeFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50318F4C52A637A50C5FC482C0F7FBE5 /* DateAndTimeFunctions.swift */; };
-		ABF2864C1A12B397060F0B99B5ABE73A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2035D79CB0336D22F05763AA15C758E0 /* UIKit.framework */; };
 		AC35C9341C4BB156BB26FDD237EE3721 /* ConstraintDirectionalInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A8C94DFCE1429E57D0F22EBD35BA841 /* ConstraintDirectionalInsets.swift */; };
 		B1D89872AC365C78155FF44EE9F28FEF /* SQLite.h in Headers */ = {isa = PBXBuildFile; fileRef = 47FAAEADC8F08A35D77E781C2CDE8215 /* SQLite.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B436DC18E1331FED95CE186578227E88 /* SZLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 306B021EB82F8601BD4B5C6D8C211DFC /* SZLog.swift */; };
 		B599696DFEF6B2A5ECF528F4E5BB1846 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3E7C7DF4AC1A1956E318B47D5C7F49 /* ConstraintDescription.swift */; };
 		B780B272106411CBE258BB60FFC45410 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = B2CE26DD57E6BD7C54008437B1EFF7B9 /* Debugging.swift */; };
-		BE678E9C4F36158A914CB7810690367D /* SZAVPlayerDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D993E4DD3641C68F6EF0D0F72F06859 /* SZAVPlayerDatabase.swift */; };
 		BECA67DFB5E0984DFAEFCB775C31972E /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAE8992BDA487E4C1F8D3CF8F443DBE /* ConstraintView.swift */; };
 		C412F27D75AFC0DF0F0289DBB270931C /* ConstraintMakerFinalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FFEA9FA15BDB2A845F59DC7BCD95FE2 /* ConstraintMakerFinalizable.swift */; };
 		C64E97D5FC0802B08D7CA36AEC74A422 /* CustomFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F63AC6B88177ED41C3E81FFB875EC38 /* CustomFunctions.swift */; };
-		C8DAEB50751BD83A5BFD6F2D20986234 /* SZAVPlayerFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFDB818130D9E1F358A348650EFE4E09 /* SZAVPlayerFileSystem.swift */; };
-		CB7A901DF5F4E4648C8FAFDF29FC23AE /* SZAVPlayerMIMEType.swift in Sources */ = {isa = PBXBuildFile; fileRef = FB714C4E30C2B32194663068A4E7D9A2 /* SZAVPlayerMIMEType.swift */; };
+		CC60C6F5E57311DDA05675430B9159A5 /* SZAVPlayerFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1FD03814C621CDFC9AE0CF5A97CC81BC /* SZAVPlayerFileSystem.swift */; };
 		CE62FEABA57B2B53EABF8C7DCCC6B2C4 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 459E2F3DE7028BF5FA6E21F99821FACB /* ConstraintRelation.swift */; };
 		D4697DC40F3B059E4A0867838CA1814E /* ConstraintMultiplierTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC558069A1B388680193400E261DBF6 /* ConstraintMultiplierTarget.swift */; };
 		D6D9058D572A8B0E3E88CEA4B4B951DD /* Pods-SZAVPlayer_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B356CAA07D5D4E6BBEA43DEB9F0FC8 /* Pods-SZAVPlayer_Example-dummy.m */; };
 		D6E6E2AA38E0E6B0B7D1E0891F4FD12D /* Setter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134F66A2D0F0509A7C7EF254C2533F5 /* Setter.swift */; };
-		DBC4386F2F19E0CCE9852CE905453726 /* SQLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E776BC142DA9FE97996263CC5BA6A1D6 /* SQLite.framework */; };
 		DD44A17C7665842E6AE218DC4B0572A5 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CB6D2EC3C55E279E033A244660BE7A0 /* Foundation.framework */; };
+		E836A66D8871650552006B2B8A49467D /* SZAVPlayerItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = EF7968520B28D4FC13B48EF100B322D0 /* SZAVPlayerItemRequest.swift */; };
 		E8F2429683B3015CBD39CE883770BCA7 /* ConstraintPriorityTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC57CCD93BADAABAC0A0930F43550870 /* ConstraintPriorityTarget.swift */; };
 		E9A970BC24EA15832F248EA020072746 /* LayoutConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 73BE30DDC1BE0C7652190BC3BD5B2661 /* LayoutConstraintItem.swift */; };
 		EA5DA126E8AB3A2BD40DE6E08DBD77F0 /* Pods-SZAVPlayer_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33523CD50AB0879FF2514218D2116097 /* Pods-SZAVPlayer_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -91,9 +99,6 @@
 		EE966B1A61C1960A3BBC22A783C27272 /* Collation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DFEE63AC3DAC8C938FE0AB23A3AE944 /* Collation.swift */; };
 		EF5E32C13CFA779B953F8F81AE3C67D6 /* SQLiteObjc.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAB5F139DBA465949FB0DB23FE9691D /* SQLiteObjc.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		F6BB6C198A2522FF0633261964EB2A24 /* Schema.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7B4C2F36DB37CED3D378C927E7FABE3E /* Schema.swift */; };
-		F7C74311C3B9D3D84C69B38752988620 /* SZLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFE3239164F5B579EF458B1C15EC64D0 /* SZLog.swift */; };
-		FCBDA26669F123ADC7045B0EA2E72FF5 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A34AD4386909975E77DB15E1110B84A7 /* AVFoundation.framework */; };
-		FF7A4F46B69A172B36D3259259AB107A /* SZAVPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = E4512B29BD6D33C2CF2812ADBD8659A8 /* SZAVPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -105,13 +110,6 @@
 			remoteInfo = SnapKit;
 		};
 		4378F7104FDB71DD541FACE5B261622C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 3F2C1776D90B62B156DB52C41A5C419C;
-			remoteInfo = SQLite.swift;
-		};
-		43F3563A7500C038D38B31EBFFBEB453 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
@@ -132,42 +130,51 @@
 			remoteGlobalIDString = A5C5D460E3C23BEBE1092F9F91FD9B89;
 			remoteInfo = SZAVPlayer;
 		};
+		AA58CC6546C289681879ADBB8659C5A9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 3F2C1776D90B62B156DB52C41A5C419C;
+			remoteInfo = SQLite.swift;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		009AE037CC6107FE801A16F92D2274B3 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		02F4EA058D617853E22AFE1E8C0CFB86 /* Pods-SZAVPlayer_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SZAVPlayer_Tests-Info.plist"; sourceTree = "<group>"; };
 		03D9EF015302E8E58B87E9748473B7CD /* SQLite.swift-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SQLite.swift-Info.plist"; sourceTree = "<group>"; };
 		04B356CAA07D5D4E6BBEA43DEB9F0FC8 /* Pods-SZAVPlayer_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SZAVPlayer_Example-dummy.m"; sourceTree = "<group>"; };
+		05921F559F0FE0B63A7D9A2FFEC116E8 /* SZAVPlayerCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerCache.swift; sourceTree = "<group>"; };
+		05F16FC0582E2F7D4E87024520CBBD38 /* SZAVPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZAVPlayer-umbrella.h"; sourceTree = "<group>"; };
 		06F1F0927499B90B101184891747CD54 /* Pods-SZAVPlayer_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SZAVPlayer_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		07506BCFCAA0AA8FA0428C3AAF99AC27 /* SnapKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SnapKit-Info.plist"; sourceTree = "<group>"; };
 		086D85895B86BF5581AD98DCF14E73D4 /* ConstraintMakerRelatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerRelatable.swift; path = Source/ConstraintMakerRelatable.swift; sourceTree = "<group>"; };
 		096A412AFDF13E45F69119F021DC65B5 /* Pods-SZAVPlayer_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SZAVPlayer_Example-frameworks.sh"; sourceTree = "<group>"; };
 		097D37E922A9D39FA8FD7DE1D2E2CB86 /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Source/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
-		0DDE7B222FB65F77027653396F05C382 /* SZAVPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SZAVPlayer.modulemap; sourceTree = "<group>"; };
 		0DFEE63AC3DAC8C938FE0AB23A3AE944 /* Collation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Collation.swift; path = Sources/SQLite/Typed/Collation.swift; sourceTree = "<group>"; };
 		0F8BE84992BD2479A7B6E52E5D827C8A /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Source/LayoutConstraint.swift; sourceTree = "<group>"; };
 		0FD5A0846D195D032F2DCF49A75178B5 /* Helpers.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Helpers.swift; path = Sources/SQLite/Helpers.swift; sourceTree = "<group>"; };
 		0FFEA9FA15BDB2A845F59DC7BCD95FE2 /* ConstraintMakerFinalizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerFinalizable.swift; path = Source/ConstraintMakerFinalizable.swift; sourceTree = "<group>"; };
 		104481C36A4206CF7DECE0BAD040C61E /* SQLite.swift.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SQLite.swift.modulemap; sourceTree = "<group>"; };
-		12CBCEFB8C63C5504042C3F59225EBFC /* SZAVPlayer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = SZAVPlayer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		15247838CAE85EAFDD4818BE51DE7271 /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "Source/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
-		1891DB4C92BCE3BD34074158C39EF2D9 /* SZAVPlayerItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayerItem.swift; path = SZAVPlayer/Classes/SZAVPlayerItem.swift; sourceTree = "<group>"; };
+		1673CECF8CD35985DD04D0C8BBDAB5D6 /* SZAVPlayerContentInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerContentInfo.swift; sourceTree = "<group>"; };
+		178048AD239A3BA900B43639 /* SZAVPlayerDataLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZAVPlayerDataLoader.swift; sourceTree = "<group>"; };
+		178048AF239A492300B43639 /* SZAVPlayerRequestOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SZAVPlayerRequestOperation.swift; sourceTree = "<group>"; };
+		178048B1239A60FE00B43639 /* SZAVPlayerLocalFileInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZAVPlayerLocalFileInfo.swift; sourceTree = "<group>"; };
+		17BA9A9E239F457D00524AF9 /* SZAVPlayerError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SZAVPlayerError.swift; sourceTree = "<group>"; };
 		1B5CA618DBD591F370BDA16E5EFC85F6 /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
-		1BFA87B36554388819B35DDD6E63AAA9 /* SZAVPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayer.swift; path = SZAVPlayer/Classes/SZAVPlayer.swift; sourceTree = "<group>"; };
 		1D1D665AE264C332913CCE9042E2F34F /* SnapKit.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.xcconfig; sourceTree = "<group>"; };
-		1D80C647B5E41B9E307BE3A5498E501A /* Pods_SZAVPlayer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SZAVPlayer_Tests.framework; path = "Pods-SZAVPlayer_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D993E4DD3641C68F6EF0D0F72F06859 /* SZAVPlayerDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayerDatabase.swift; path = SZAVPlayer/Classes/SZAVPlayerDatabase.swift; sourceTree = "<group>"; };
+		1D80C647B5E41B9E307BE3A5498E501A /* Pods_SZAVPlayer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SZAVPlayer_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1F00B5E3B78C71A3FF4AB5719D056B44 /* Pods-SZAVPlayer_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SZAVPlayer_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		1F8F4254E003C3D80845794A5686F1BB /* Pods-SZAVPlayer_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SZAVPlayer_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		1FD03814C621CDFC9AE0CF5A97CC81BC /* SZAVPlayerFileSystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerFileSystem.swift; sourceTree = "<group>"; };
 		2035D79CB0336D22F05763AA15C758E0 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
-		2162591B54E53E64267FDBF0428111A9 /* SZAVPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SZAVPlayer-dummy.m"; sourceTree = "<group>"; };
 		25A4DDE05840E7ABADD1D35218CB327C /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Source/ConstraintPriority.swift; sourceTree = "<group>"; };
 		270BF102A3BFC6A4C2FD58B2EA2F03E8 /* Value.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Value.swift; path = Sources/SQLite/Core/Value.swift; sourceTree = "<group>"; };
 		276CA581AA1A75877F9B3BE10DFD0111 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
 		2A8C94DFCE1429E57D0F22EBD35BA841 /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsets.swift; path = Source/ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
 		2C8BF3C2CE423463C00A2648FB4B73A2 /* Pods-SZAVPlayer_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SZAVPlayer_Tests-umbrella.h"; sourceTree = "<group>"; };
 		2CF958EB15B46103A5E80A3F179BF8F0 /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Source/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
+		306B021EB82F8601BD4B5C6D8C211DFC /* SZLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZLog.swift; sourceTree = "<group>"; };
 		33523CD50AB0879FF2514218D2116097 /* Pods-SZAVPlayer_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SZAVPlayer_Example-umbrella.h"; sourceTree = "<group>"; };
 		37FD39B097FB2DB384755324094CF018 /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		3A350BB424864DE1A9C3A61D5955AA23 /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Source/ConstraintConfig.swift; sourceTree = "<group>"; };
@@ -184,19 +191,19 @@
 		48B3B1477136CD6EBC2128B6CDF1AE38 /* Foundation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Foundation.swift; path = Sources/SQLite/Foundation.swift; sourceTree = "<group>"; };
 		4DA2DAD6575DC30C3A60478A1C0A21DC /* Pods-SZAVPlayer_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SZAVPlayer_Tests.modulemap"; sourceTree = "<group>"; };
 		50318F4C52A637A50C5FC482C0F7FBE5 /* DateAndTimeFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = DateAndTimeFunctions.swift; path = Sources/SQLite/Typed/DateAndTimeFunctions.swift; sourceTree = "<group>"; };
-		551F13A25B2AB47DFCA2633DBB58D87B /* SZAVPlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SZAVPlayer.xcconfig; sourceTree = "<group>"; };
 		5A4A467CA147B1AFE465E7B7D8AAF128 /* ConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintItem.swift; path = Source/ConstraintItem.swift; sourceTree = "<group>"; };
+		5CD4CA466B0525872AA4C144A94EE959 /* SZAVPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SZAVPlayer.modulemap; sourceTree = "<group>"; };
+		5CE9D8D145B6C160D97A1A8D53229F29 /* SZAVPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SZAVPlayer-dummy.m"; sourceTree = "<group>"; };
 		5D3101664A12561DA11084229622A1EB /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
 		5D832D3F68729293D5D2E474D0D8811E /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
-		5EB74E9E15806C2E92C821DCD7076599 /* SZAVPlayerCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayerCache.swift; path = SZAVPlayer/Classes/SZAVPlayerCache.swift; sourceTree = "<group>"; };
 		5F63AC6B88177ED41C3E81FFB875EC38 /* CustomFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CustomFunctions.swift; path = Sources/SQLite/Typed/CustomFunctions.swift; sourceTree = "<group>"; };
 		6CB6D2EC3C55E279E033A244660BE7A0 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		6DCBC8B2A90464C172FF4C28703A6E5C /* SZAVPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZAVPlayer-prefix.pch"; sourceTree = "<group>"; };
 		6FA80382FD948B247E5D96943894EABE /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 		7064E863E79D228732C3FA17FB79264E /* Pods-SZAVPlayer_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SZAVPlayer_Example-Info.plist"; sourceTree = "<group>"; };
-		718B6132EB2B5FC7EAC4F6E64246A33F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		735A80400BB7DAAFA678B1F59888B462 /* Pods-SZAVPlayer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SZAVPlayer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		73BE30DDC1BE0C7652190BC3BD5B2661 /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
-		765EE512BFDA3721770840E2451DA03B /* Pods_SZAVPlayer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SZAVPlayer_Example.framework; path = "Pods-SZAVPlayer_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		765EE512BFDA3721770840E2451DA03B /* Pods_SZAVPlayer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SZAVPlayer_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7667DDC1A18D3626CF2CCFBB6180CA88 /* CoreFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = CoreFunctions.swift; path = Sources/SQLite/Typed/CoreFunctions.swift; sourceTree = "<group>"; };
 		7B4C2F36DB37CED3D378C927E7FABE3E /* Schema.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Schema.swift; path = Sources/SQLite/Typed/Schema.swift; sourceTree = "<group>"; };
 		7D4ECE40EBA694BE8DD753BABBCFAFCC /* ConstraintDirectionalInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsetTarget.swift; path = Source/ConstraintDirectionalInsetTarget.swift; sourceTree = "<group>"; };
@@ -205,17 +212,21 @@
 		8134F66A2D0F0509A7C7EF254C2533F5 /* Setter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Setter.swift; path = Sources/SQLite/Typed/Setter.swift; sourceTree = "<group>"; };
 		818034D55522DFB01700852398F0BD17 /* ConstraintLayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupport.swift; path = Source/ConstraintLayoutSupport.swift; sourceTree = "<group>"; };
 		83A739D72B59500D8127206E85EBBB5B /* SQLite.swift-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SQLite.swift-dummy.m"; sourceTree = "<group>"; };
+		842C0D2E442E7E1895FEACAF1B234CBC /* SZAVPlayer.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SZAVPlayer.xcconfig; sourceTree = "<group>"; };
+		8C7CC87B497CF78C9A266E599660F71A /* SZAVPlayer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = SZAVPlayer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		90612576E851256945E88C7B3BF1495E /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
-		9154E7119AA0D27DB2F81260C317DF56 /* SZAVPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SZAVPlayer.framework; path = SZAVPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9154E7119AA0D27DB2F81260C317DF56 /* SZAVPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SZAVPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		92846D00390970CCC819E1D267320820 /* Pods-SZAVPlayer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SZAVPlayer_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		964505C31038ECF731377EB29EAB39B6 /* ConstraintMakerPriortizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPriortizable.swift; path = Source/ConstraintMakerPriortizable.swift; sourceTree = "<group>"; };
-		979486118B3E90C08386079D57962701 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		979486118B3E90C08386079D57962701 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9AAB5F139DBA465949FB0DB23FE9691D /* SQLiteObjc.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = SQLiteObjc.h; path = Sources/SQLiteObjc/include/SQLiteObjc.h; sourceTree = "<group>"; };
 		9AAE8992BDA487E4C1F8D3CF8F443DBE /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Source/ConstraintView.swift; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9EB894D400F28A3ECF282F6CBB23925B /* SZAVPlayer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SZAVPlayer-Info.plist"; sourceTree = "<group>"; };
 		9F7149DB6165D86FA6CA949B479C42A1 /* FTS5.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FTS5.swift; path = Sources/SQLite/Extensions/FTS5.swift; sourceTree = "<group>"; };
 		A1FE5866B4384D8DF5877F718318ED6D /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintLayoutGuide+Extensions.swift"; path = "Source/ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
 		A34AD4386909975E77DB15E1110B84A7 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		A50301894A360D4E7CFE6EC2F89F6B43 /* SZAVPlayerDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerDatabase.swift; sourceTree = "<group>"; };
 		A74C3C8995895A697D16B87DD9DA33EB /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Source/ConstraintMaker.swift; sourceTree = "<group>"; };
 		AC37782E298A3A5B4073677200203F62 /* Connection.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Connection.swift; path = Sources/SQLite/Core/Connection.swift; sourceTree = "<group>"; };
 		AC426B4BA27C2928B574E79DFFCE937F /* fts3_tokenizer.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = fts3_tokenizer.h; path = Sources/SQLiteObjc/fts3_tokenizer.h; sourceTree = "<group>"; };
@@ -224,7 +235,6 @@
 		B2CE26DD57E6BD7C54008437B1EFF7B9 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
 		B3A0A9F30D28BA66BFB8BF4A0CF1871B /* Statement.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Statement.swift; path = Sources/SQLite/Core/Statement.swift; sourceTree = "<group>"; };
 		B8E7BFB449B77B3EA4B08AFFE4CEF6B3 /* AggregateFunctions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AggregateFunctions.swift; path = Sources/SQLite/Typed/AggregateFunctions.swift; sourceTree = "<group>"; };
-		BC686A665318620E4B4C55D1A5157DD5 /* SZAVPlayer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SZAVPlayer-Info.plist"; sourceTree = "<group>"; };
 		BD4FCAAE9FE9C7066719531C875CE999 /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
 		BEC0389BA062191501E87E1D96C9F1D0 /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		C269F347C3960B9A6466B3E2021585C1 /* SQLite.swift-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SQLite.swift-umbrella.h"; sourceTree = "<group>"; };
@@ -232,26 +242,26 @@
 		C8B73703733D8CDFAE5B478202A24C51 /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
 		CB2992D5B0B81BAE47D9DC4F0BDF3D3B /* SQLiteObjc.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SQLiteObjc.m; path = Sources/SQLiteObjc/SQLiteObjc.m; sourceTree = "<group>"; };
 		CB7652F395BB927CA0B81D656A5C7008 /* Pods-SZAVPlayer_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SZAVPlayer_Tests-dummy.m"; sourceTree = "<group>"; };
-		CFDB818130D9E1F358A348650EFE4E09 /* SZAVPlayerFileSystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayerFileSystem.swift; path = SZAVPlayer/Classes/SZAVPlayerFileSystem.swift; sourceTree = "<group>"; };
-		D0E1D364D17801A558477474F0FE6B63 /* SZAVPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZAVPlayer-prefix.pch"; sourceTree = "<group>"; };
 		D43A9389AF349A4E4D1EA1353A089C87 /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = Source/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
 		D95EC296C11E26A7B779F662DD3182DB /* RTree.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RTree.swift; path = Sources/SQLite/Extensions/RTree.swift; sourceTree = "<group>"; };
 		D9A74461B2CFCCD65B7E525C7A52144C /* Pods-SZAVPlayer_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SZAVPlayer_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		DE1F581D8218AF7442366034158FA0CF /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DFC558069A1B388680193400E261DBF6 /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMultiplierTarget.swift; path = Source/ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
 		E0F5E26733CE9EC693ADB238E34C15F8 /* Operators.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Operators.swift; path = Sources/SQLite/Typed/Operators.swift; sourceTree = "<group>"; };
 		E44A1B771C5C0465E91E2585D9FAF025 /* Pods-SZAVPlayer_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SZAVPlayer_Example.modulemap"; sourceTree = "<group>"; };
-		E4512B29BD6D33C2CF2812ADBD8659A8 /* SZAVPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZAVPlayer-umbrella.h"; sourceTree = "<group>"; };
 		E776BC142DA9FE97996263CC5BA6A1D6 /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E9123C9930FBAC8EF32D5151BC8DBD41 /* Blob.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Blob.swift; path = Sources/SQLite/Core/Blob.swift; sourceTree = "<group>"; };
+		EA71E705580557C8652BB38B444369E5 /* SZAVPlayerItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayerItem.swift; path = SZAVPlayer/Classes/SZAVPlayerItem.swift; sourceTree = "<group>"; };
 		EB7B376AB819DD489EBD9A77B1A1E4F4 /* ConstraintRelatableTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelatableTarget.swift; path = Source/ConstraintRelatableTarget.swift; sourceTree = "<group>"; };
 		ED7BB022B426ED37E13FFDEFC49042FB /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Source/ConstraintInsets.swift; sourceTree = "<group>"; };
 		EDF6FA7940EAC67483B71A943DEA36D3 /* SQLite.swift-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SQLite.swift-prefix.pch"; sourceTree = "<group>"; };
-		F5FA45A44C42CC2CA3A324A3E914CE19 /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SQLite.framework; path = SQLite.swift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EF7968520B28D4FC13B48EF100B322D0 /* SZAVPlayerItemRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerItemRequest.swift; sourceTree = "<group>"; };
+		F5FA45A44C42CC2CA3A324A3E914CE19 /* SQLite.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SQLite.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F666DF9BD4DF0D47BAEFB7A242374EED /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
 		F7ACA11BDF694AD539445D3522D7F120 /* SQLite.swift.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SQLite.swift.xcconfig; sourceTree = "<group>"; };
-		FB714C4E30C2B32194663068A4E7D9A2 /* SZAVPlayerMIMEType.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayerMIMEType.swift; path = SZAVPlayer/Classes/SZAVPlayerMIMEType.swift; sourceTree = "<group>"; };
+		F81855794D8099EF8061F360B80B283C /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		FC4A5004BE6B04B915E7B67ED6AB71BC /* FTS4.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = FTS4.swift; path = Sources/SQLite/Extensions/FTS4.swift; sourceTree = "<group>"; };
-		FFE3239164F5B579EF458B1C15EC64D0 /* SZLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZLog.swift; path = SZAVPlayer/Classes/SZLog.swift; sourceTree = "<group>"; };
+		FD652A538F04B09DCE80C96899C17020 /* SZAVPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayer.swift; path = SZAVPlayer/Classes/SZAVPlayer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,23 +273,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		77DCB835E5A9AF0F407F7FD5146AFE89 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FCBDA26669F123ADC7045B0EA2E72FF5 /* AVFoundation.framework in Frameworks */,
-				701ADC512B32CBF4FDC90B7077CA82A3 /* CoreServices.framework in Frameworks */,
-				2A556037363F245304EABD1B29A4FB73 /* Foundation.framework in Frameworks */,
-				DBC4386F2F19E0CCE9852CE905453726 /* SQLite.framework in Frameworks */,
-				ABF2864C1A12B397060F0B99B5ABE73A /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		A1DC26BE8ED6BB3E57EC282209CB9866 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				DD44A17C7665842E6AE218DC4B0572A5 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		BB1D7B744AD7554D1EA18EB0BA6BAE7C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3E6E421E56C4D59EDE84C3BBF1640270 /* AVFoundation.framework in Frameworks */,
+				4721E80077C7BBA9BE3EA613C8AB876B /* CoreServices.framework in Frameworks */,
+				44339602C8A36561A88FF333090A145F /* Foundation.framework in Frameworks */,
+				68195C51D0A9D705486A9D80B1232BEF /* SQLite.framework in Frameworks */,
+				02547AD9B1861C24C779B01F50B8A28B /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -308,8 +318,18 @@
 				31CAB3D87C6FD682B9BECD83F10B53FD /* standard */,
 				3A5E124E3C6DEE78F891AF38B2FD79F3 /* Support Files */,
 			);
-			name = SQLite.swift;
 			path = SQLite.swift;
+			sourceTree = "<group>";
+		};
+		0C3A27DD46280E357D607BD02D756B4E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				1673CECF8CD35985DD04D0C8BBDAB5D6 /* SZAVPlayerContentInfo.swift */,
+				178048B1239A60FE00B43639 /* SZAVPlayerLocalFileInfo.swift */,
+				17BA9A9E239F457D00524AF9 /* SZAVPlayerError.swift */,
+			);
+			name = Model;
+			path = SZAVPlayer/Classes/Model;
 			sourceTree = "<group>";
 		};
 		1E6F5830D846EC25F30AAF285B5F1176 /* Frameworks */ = {
@@ -319,14 +339,6 @@
 				5931EBB9AFBFFCCF9926E8391EC4309D /* iOS */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2C0AE01C58CACFBFA2031A8048F33DCB /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				9B3F8DC8E47088FD44CB14AF0AFAC6D8 /* SZAVPlayer */,
-			);
-			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		31CAB3D87C6FD682B9BECD83F10B53FD /* standard */ = {
@@ -361,6 +373,17 @@
 			name = standard;
 			sourceTree = "<group>";
 		};
+		3A017B53B15C1EFAE3BE59E6B3DDC28E /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				178048AD239A3BA900B43639 /* SZAVPlayerDataLoader.swift */,
+				178048AF239A492300B43639 /* SZAVPlayerRequestOperation.swift */,
+				EF7968520B28D4FC13B48EF100B322D0 /* SZAVPlayerItemRequest.swift */,
+			);
+			name = Request;
+			path = SZAVPlayer/Classes/Request;
+			sourceTree = "<group>";
+		};
 		3A5E124E3C6DEE78F891AF38B2FD79F3 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
@@ -387,6 +410,16 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		3D30AF6A5A121AD783A0E6FEF98A1637 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				F81855794D8099EF8061F360B80B283C /* LICENSE */,
+				DE1F581D8218AF7442366034158FA0CF /* README.md */,
+				8C7CC87B497CF78C9A266E599660F71A /* SZAVPlayer.podspec */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
 		4697119E1C587FBD8ED4E5BFF46D9ADF /* Pods-SZAVPlayer_Tests */ = {
 			isa = PBXGroup;
 			children = (
@@ -401,6 +434,17 @@
 			);
 			name = "Pods-SZAVPlayer_Tests";
 			path = "Target Support Files/Pods-SZAVPlayer_Tests";
+			sourceTree = "<group>";
+		};
+		51DE84BD07A5ED96FD251D74216C8960 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				05921F559F0FE0B63A7D9A2FFEC116E8 /* SZAVPlayerCache.swift */,
+				A50301894A360D4E7CFE6EC2F89F6B43 /* SZAVPlayerDatabase.swift */,
+				1FD03814C621CDFC9AE0CF5A97CC81BC /* SZAVPlayerFileSystem.swift */,
+			);
+			name = Storage;
+			path = SZAVPlayer/Classes/Storage;
 			sourceTree = "<group>";
 		};
 		5931EBB9AFBFFCCF9926E8391EC4309D /* iOS */ = {
@@ -455,18 +499,29 @@
 				40A8783DB386E2FDDE5F3802C40172E2 /* UILayoutSupport+Extensions.swift */,
 				9B337C7203B59B6A699D65A6EC142DA0 /* Support Files */,
 			);
-			name = SnapKit;
 			path = SnapKit;
 			sourceTree = "<group>";
 		};
-		78794A8A392D8AA8C0127F72AECC12B7 /* Pod */ = {
+		5F96290CFADB9BF85780564C06A408D7 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				718B6132EB2B5FC7EAC4F6E64246A33F /* LICENSE */,
-				009AE037CC6107FE801A16F92D2274B3 /* README.md */,
-				12CBCEFB8C63C5504042C3F59225EBFC /* SZAVPlayer.podspec */,
+				306B021EB82F8601BD4B5C6D8C211DFC /* SZLog.swift */,
 			);
-			name = Pod;
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		75DD7590279F1A37C049FB118E9D83CE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				5CD4CA466B0525872AA4C144A94EE959 /* SZAVPlayer.modulemap */,
+				842C0D2E442E7E1895FEACAF1B234CBC /* SZAVPlayer.xcconfig */,
+				5CE9D8D145B6C160D97A1A8D53229F29 /* SZAVPlayer-dummy.m */,
+				9EB894D400F28A3ECF282F6CBB23925B /* SZAVPlayer-Info.plist */,
+				6DCBC8B2A90464C172FF4C28703A6E5C /* SZAVPlayer-prefix.pch */,
+				05F16FC0582E2F7D4E87024520CBBD38 /* SZAVPlayer-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/SZAVPlayer";
 			sourceTree = "<group>";
 		};
 		8899702000D3723E15E67AB848D303D0 /* Targets Support Files */ = {
@@ -476,20 +531,6 @@
 				4697119E1C587FBD8ED4E5BFF46D9ADF /* Pods-SZAVPlayer_Tests */,
 			);
 			name = "Targets Support Files";
-			sourceTree = "<group>";
-		};
-		8D62103363236536DFDCD5DC60447E62 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				0DDE7B222FB65F77027653396F05C382 /* SZAVPlayer.modulemap */,
-				551F13A25B2AB47DFCA2633DBB58D87B /* SZAVPlayer.xcconfig */,
-				2162591B54E53E64267FDBF0428111A9 /* SZAVPlayer-dummy.m */,
-				BC686A665318620E4B4C55D1A5157DD5 /* SZAVPlayer-Info.plist */,
-				D0E1D364D17801A558477474F0FE6B63 /* SZAVPlayer-prefix.pch */,
-				E4512B29BD6D33C2CF2812ADBD8659A8 /* SZAVPlayer-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/SZAVPlayer";
 			sourceTree = "<group>";
 		};
 		9B337C7203B59B6A699D65A6EC142DA0 /* Support Files */ = {
@@ -506,33 +547,40 @@
 			path = "../Target Support Files/SnapKit";
 			sourceTree = "<group>";
 		};
-		9B3F8DC8E47088FD44CB14AF0AFAC6D8 /* SZAVPlayer */ = {
+		A3F41BEC4304FC97877868DA688A9D5E /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				1BFA87B36554388819B35DDD6E63AAA9 /* SZAVPlayer.swift */,
-				5EB74E9E15806C2E92C821DCD7076599 /* SZAVPlayerCache.swift */,
-				1D993E4DD3641C68F6EF0D0F72F06859 /* SZAVPlayerDatabase.swift */,
-				CFDB818130D9E1F358A348650EFE4E09 /* SZAVPlayerFileSystem.swift */,
-				1891DB4C92BCE3BD34074158C39EF2D9 /* SZAVPlayerItem.swift */,
-				FB714C4E30C2B32194663068A4E7D9A2 /* SZAVPlayerMIMEType.swift */,
-				FFE3239164F5B579EF458B1C15EC64D0 /* SZLog.swift */,
-				78794A8A392D8AA8C0127F72AECC12B7 /* Pod */,
-				8D62103363236536DFDCD5DC60447E62 /* Support Files */,
+				DF4C4D1D93708483E81B29AA244CF91C /* SZAVPlayer */,
 			);
-			name = SZAVPlayer;
-			path = ../..;
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
 			isa = PBXGroup;
 			children = (
 				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
-				2C0AE01C58CACFBFA2031A8048F33DCB /* Development Pods */,
+				A3F41BEC4304FC97877868DA688A9D5E /* Development Pods */,
 				1E6F5830D846EC25F30AAF285B5F1176 /* Frameworks */,
 				FEA5D3A59DEDF933245D4D17BAF2B2AD /* Pods */,
 				3BEC332CFD0ADE8C8DCF693EFBE8ABCC /* Products */,
 				8899702000D3723E15E67AB848D303D0 /* Targets Support Files */,
 			);
+			sourceTree = "<group>";
+		};
+		DF4C4D1D93708483E81B29AA244CF91C /* SZAVPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				FD652A538F04B09DCE80C96899C17020 /* SZAVPlayer.swift */,
+				EA71E705580557C8652BB38B444369E5 /* SZAVPlayerItem.swift */,
+				0C3A27DD46280E357D607BD02D756B4E /* Model */,
+				3A017B53B15C1EFAE3BE59E6B3DDC28E /* Request */,
+				51DE84BD07A5ED96FD251D74216C8960 /* Storage */,
+				5F96290CFADB9BF85780564C06A408D7 /* Utils */,
+				75DD7590279F1A37C049FB118E9D83CE /* Support Files */,
+				3D30AF6A5A121AD783A0E6FEF98A1637 /* Pod */,
+			);
+			name = SZAVPlayer;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		FEA5D3A59DEDF933245D4D17BAF2B2AD /* Pods */ = {
@@ -580,6 +628,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		860E57163FDF70B069D612D5B8A938FF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				19FCD81EE04374BC824B7E25C477AF8F /* SZAVPlayer-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		96E96E7F98796026C6760BA3D13C69C9 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
@@ -588,14 +644,6 @@
 				B1D89872AC365C78155FF44EE9F28FEF /* SQLite.h in Headers */,
 				18808F9C139BA0E9059E72980F0BF908 /* SQLite.swift-umbrella.h in Headers */,
 				EF5E32C13CFA779B953F8F81AE3C67D6 /* SQLiteObjc.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		DE41B194E552585AB528E383E045ED7A /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				FF7A4F46B69A172B36D3259259AB107A /* SZAVPlayer-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -688,17 +736,17 @@
 		};
 		A5C5D460E3C23BEBE1092F9F91FD9B89 /* SZAVPlayer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 6A3582CBD5691BA3815188814DBE0022 /* Build configuration list for PBXNativeTarget "SZAVPlayer" */;
+			buildConfigurationList = 1C0782B1127595D328A2098669E68FBD /* Build configuration list for PBXNativeTarget "SZAVPlayer" */;
 			buildPhases = (
-				DE41B194E552585AB528E383E045ED7A /* Headers */,
-				F1B178DE35A6B3D292DBB1F02536FE3F /* Sources */,
-				77DCB835E5A9AF0F407F7FD5146AFE89 /* Frameworks */,
-				27D18104BFDD7113C50DB8AAC74CCFB4 /* Resources */,
+				860E57163FDF70B069D612D5B8A938FF /* Headers */,
+				5BC06A738B3CF44BD314ECEAC06EF9F2 /* Sources */,
+				BB1D7B744AD7554D1EA18EB0BA6BAE7C /* Frameworks */,
+				24C03A7CD7ED1729CCC986E8BE74C824 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				29A3B4D51F2833AF8BA507E7303C995A /* PBXTargetDependency */,
+				A84FFC6C4FF1AC018556119B90900457 /* PBXTargetDependency */,
 			);
 			name = SZAVPlayer;
 			productName = SZAVPlayer;
@@ -736,7 +784,7 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		27D18104BFDD7113C50DB8AAC74CCFB4 /* Resources */ = {
+		24C03A7CD7ED1729CCC986E8BE74C824 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -787,6 +835,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				D6D9058D572A8B0E3E88CEA4B4B951DD /* Pods-SZAVPlayer_Example-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5BC06A738B3CF44BD314ECEAC06EF9F2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3600A3523D7008E982530C8F0888FE6D /* SZAVPlayer-dummy.m in Sources */,
+				0547D2D66172EBE3132C79FDAF9333C8 /* SZAVPlayer.swift in Sources */,
+				178048AE239A3BA900B43639 /* SZAVPlayerDataLoader.swift in Sources */,
+				0425321FA210AF258F5708A35493F4A5 /* SZAVPlayerCache.swift in Sources */,
+				01C7C6C34C1F425F26558AD39C8C9FB8 /* SZAVPlayerContentInfo.swift in Sources */,
+				21E96697A71252B4A53F98087F69B1DD /* SZAVPlayerDatabase.swift in Sources */,
+				17BA9A9F239F457D00524AF9 /* SZAVPlayerError.swift in Sources */,
+				CC60C6F5E57311DDA05675430B9159A5 /* SZAVPlayerFileSystem.swift in Sources */,
+				53EDB35462859405B56B30FE6B15AE35 /* SZAVPlayerItem.swift in Sources */,
+				178048B0239A492300B43639 /* SZAVPlayerRequestOperation.swift in Sources */,
+				E836A66D8871650552006B2B8A49467D /* SZAVPlayerItemRequest.swift in Sources */,
+				B436DC18E1331FED95CE186578227E88 /* SZLog.swift in Sources */,
+				178048B2239A60FE00B43639 /* SZAVPlayerLocalFileInfo.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -864,30 +932,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		F1B178DE35A6B3D292DBB1F02536FE3F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				2E7DB226729CFA4D4AE063E61AC87184 /* SZAVPlayer-dummy.m in Sources */,
-				13F2ADACCDFEF78453C330CE2707A0CB /* SZAVPlayer.swift in Sources */,
-				7945DDF91F559A30E5DD312846D9F347 /* SZAVPlayerCache.swift in Sources */,
-				BE678E9C4F36158A914CB7810690367D /* SZAVPlayerDatabase.swift in Sources */,
-				C8DAEB50751BD83A5BFD6F2D20986234 /* SZAVPlayerFileSystem.swift in Sources */,
-				08C20B244D49738B32AA24796221D8B8 /* SZAVPlayerItem.swift in Sources */,
-				CB7A901DF5F4E4648C8FAFDF29FC23AE /* SZAVPlayerMIMEType.swift in Sources */,
-				F7C74311C3B9D3D84C69B38752988620 /* SZLog.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		29A3B4D51F2833AF8BA507E7303C995A /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SQLite.swift;
-			target = 3F2C1776D90B62B156DB52C41A5C419C /* SQLite.swift */;
-			targetProxy = 43F3563A7500C038D38B31EBFFBEB453 /* PBXContainerItemProxy */;
-		};
 		34C9FFBBC57D4C7305F1A68030111581 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-SZAVPlayer_Example";
@@ -899,6 +946,12 @@
 			name = SZAVPlayer;
 			target = A5C5D460E3C23BEBE1092F9F91FD9B89 /* SZAVPlayer */;
 			targetProxy = 85B25F04581CC817830DB2773A7E48DB /* PBXContainerItemProxy */;
+		};
+		A84FFC6C4FF1AC018556119B90900457 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SQLite.swift;
+			target = 3F2C1776D90B62B156DB52C41A5C419C /* SQLite.swift */;
+			targetProxy = AA58CC6546C289681879ADBB8659C5A9 /* PBXContainerItemProxy */;
 		};
 		E11E1D6885A8E961E3D2009969DB0BE3 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1012,38 +1065,6 @@
 			};
 			name = Debug;
 		};
-		26B3263C1392C25752F5D17EA3F02D7F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 551F13A25B2AB47DFCA2633DBB58D87B /* SZAVPlayer.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SZAVPlayer/SZAVPlayer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer.modulemap";
-				PRODUCT_MODULE_NAME = SZAVPlayer;
-				PRODUCT_NAME = SZAVPlayer;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
 		2A19DCC1B276D69486665841A5132F83 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 735A80400BB7DAAFA678B1F59888B462 /* Pods-SZAVPlayer_Tests.debug.xcconfig */;
@@ -1109,6 +1130,39 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
+		};
+		4102E68E807AD1FD22DD8859073FD5C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 842C0D2E442E7E1895FEACAF1B234CBC /* SZAVPlayer.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SZAVPlayer/SZAVPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer.modulemap";
+				PRODUCT_MODULE_NAME = SZAVPlayer;
+				PRODUCT_NAME = SZAVPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
 		};
 		549650D3DDEC0930B1F11C838613C314 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -1212,39 +1266,6 @@
 			};
 			name = Release;
 		};
-		839B363FDFCE94F5A43C00DD99F5AF34 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 551F13A25B2AB47DFCA2633DBB58D87B /* SZAVPlayer.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SZAVPlayer/SZAVPlayer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer.modulemap";
-				PRODUCT_MODULE_NAME = SZAVPlayer;
-				PRODUCT_NAME = SZAVPlayer;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
 		98F50CA1506075795757257E30BF4067 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D9A74461B2CFCCD65B7E525C7A52144C /* Pods-SZAVPlayer_Example.debug.xcconfig */;
@@ -1332,8 +1353,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -1370,9 +1390,50 @@
 			};
 			name = Debug;
 		};
+		DBA5F76551E4D8D2A18F898BBBFB445E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 842C0D2E442E7E1895FEACAF1B234CBC /* SZAVPlayer.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SZAVPlayer/SZAVPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer.modulemap";
+				PRODUCT_MODULE_NAME = SZAVPlayer;
+				PRODUCT_NAME = SZAVPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		1C0782B1127595D328A2098669E68FBD /* Build configuration list for PBXNativeTarget "SZAVPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBA5F76551E4D8D2A18F898BBBFB445E /* Debug */,
+				4102E68E807AD1FD22DD8859073FD5C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -1387,15 +1448,6 @@
 			buildConfigurations = (
 				B657FFA1E47F56D3C8E57979CA30544F /* Debug */,
 				6957D7F3826F9B061FA690D6549842C9 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		6A3582CBD5691BA3815188814DBE0022 /* Build configuration list for PBXNativeTarget "SZAVPlayer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				26B3263C1392C25752F5D17EA3F02D7F /* Debug */,
-				839B363FDFCE94F5A43C00DD99F5AF34 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

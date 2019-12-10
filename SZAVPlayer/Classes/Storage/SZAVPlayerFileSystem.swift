@@ -50,15 +50,18 @@ extension SZAVPlayerFileSystem {
     }
 
     @discardableResult
-    static func read(url: URL) -> Data? {
+    static func read(url: URL, range: SZAVPlayerRange) -> Data? {
         guard isExist(url: url) else {
             return nil
         }
 
         do {
             let data = try Data(contentsOf: url, options: [])
+            if data.count >= range.upperBound {
+                return data.subdata(in: Int(range.lowerBound)..<Int(range.upperBound))
+            }
 
-            return data
+            return nil
         } catch {
             SZLogError(String(describing: error))
 
@@ -82,6 +85,10 @@ extension SZAVPlayerFileSystem {
 
             return false
         }
+    }
+
+    static func localFilePath(fileName: String) -> URL {
+        return cacheDirectory.appendingPathComponent(fileName)
     }
 
 }

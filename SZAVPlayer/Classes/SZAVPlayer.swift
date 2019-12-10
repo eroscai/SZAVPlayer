@@ -183,15 +183,12 @@ extension SZAVPlayer {
         handlePlayerStatus(status: .loading)
 
         playerItem = createPlayerItem(url: url, uniqueID: uniqueID)
-        if let playerItem = playerItem {
-            if playerItem.isLocalData {
+        if let playerItem = playerItem,
+            let urlAsset = playerItem.urlAsset
+        {
+            urlAsset.loadValuesAsynchronously(forKeys: ["playable"]) {
                 player.replaceCurrentItem(with: playerItem)
                 self.addPlayerItemObserver(playerItem: playerItem)
-            } else if let urlAsset = playerItem.urlAsset {
-                urlAsset.loadValuesAsynchronously(forKeys: ["playable"]) {
-                    player.replaceCurrentItem(with: playerItem)
-                    self.addPlayerItemObserver(playerItem: playerItem)
-                }
             }
         }
     }
@@ -427,16 +424,12 @@ extension SZAVPlayer {
 
 extension SZAVPlayer: SZAVPlayerItemDelegate {
 
-    public func playerItem(_ playerItem: SZAVPlayerItem, didFinishDownloading data: Data, fullyDownloaded: Bool) {
-        SZLogInfo("did finish downloading：\(data.count)")
-
-        if fullyDownloaded {
-            SZAVPlayerCache.shared.save(data: data, uniqueID: playerItem.uniqueID)
-        }
+    public func playerItemDidFinishDownloading(_ playerItem: SZAVPlayerItem) {
+        SZLogInfo("did finish downloading")
     }
 
-    public func playerItem(_ playerItem: SZAVPlayerItem, didDownload bytes: Int64, expectedToReceive: Int64) {
-        SZLogInfo("did download \(bytes)/\(expectedToReceive)")
+    public func playerItem(_ playerItem: SZAVPlayerItem, didDownload bytes: Int64) {
+//        SZLogInfo("did download \(bytes)/\(expectedToReceive)")
     }
 
     public func playerItem(_ playerItem: SZAVPlayerItem, downloadingFailed error: Error) {
@@ -466,20 +459,8 @@ extension SZAVPlayer {
     }
 
     private func createPlayerItem(url: URL, uniqueID: String?) -> SZAVPlayerItem {
-        var item: SZAVPlayerItem
+        let item: SZAVPlayerItem = SZAVPlayerItem(url: url)
         let finalUniqueID = uniqueID ?? SZAVPlayerFileSystem.uniqueID(url: url)
-        let isLocalURL = url.isFileURL || url.scheme == nil
-        if isLocalURL, let data = try? Data(contentsOf: url) {
-            item = SZAVPlayerItem(data: data, mimeType: "audio/mpeg", isAudio: true)
-        } else {
-            if let mimeType = SZAVPlayerDatabase.shared.mimeType(uniqueID: finalUniqueID),
-                let data = SZAVPlayerCache.data(uniqueID: finalUniqueID)
-            {
-                item = SZAVPlayerItem(data: data, mimeType: mimeType, isAudio: true)
-            } else {
-                item = SZAVPlayerItem(url: url)
-            }
-        }
         item.uniqueID = finalUniqueID
         item.delegate = self
 

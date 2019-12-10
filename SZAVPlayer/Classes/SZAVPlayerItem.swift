@@ -11,8 +11,8 @@ import CoreServices
 private let SZAVPlayerItemScheme = "SZAVPlayerItemScheme"
 
 public protocol SZAVPlayerItemDelegate: AnyObject {
-    func playerItem(_ playerItem: SZAVPlayerItem, didFinishDownloading data: Data, fullyDownloaded: Bool)
-    func playerItem(_ playerItem: SZAVPlayerItem, didDownload bytes: Int64, expectedToReceive: Int64)
+    func playerItemDidFinishDownloading(_ playerItem: SZAVPlayerItem)
+    func playerItem(_ playerItem: SZAVPlayerItem, didDownload bytes: Int64)
     func playerItem(_ playerItem: SZAVPlayerItem, downloadingFailed error: Error)
 }
 
@@ -23,15 +23,16 @@ public class SZAVPlayerItem: AVPlayerItem {
     public var urlAsset: AVURLAsset?
     public var uniqueID: String = "defaultUniqueID"
     public var isObserverAdded: Bool = false
-    private(set) public var isLocalData = false
 
-    private var localDataMimeType: String?
-    private var session: URLSession?
-    private var mediaData: Data?
-    private var response: URLResponse?
-    private var resourceLoadingRequests: Set<AVAssetResourceLoadingRequest> = []
     private let recursiveLock = NSRecursiveLock()
-    private var dataRequestStartOffset: Int64 = 0
+    private let loaderQueue = DispatchQueue(label: "com.SZAVPlayer.loaderQueue")
+    private var currentRequest: SZAVPlayerRequest? {
+        didSet {
+            oldValue?.cancel()
+        }
+    }
+    private var isCancelled: Bool = false
+    private var loadedLength: Int64 = 0
 
     init(url: URL) {
         self.url = url
@@ -45,21 +46,7 @@ public class SZAVPlayerItem: AVPlayerItem {
 
         super.init(asset: asset, automaticallyLoadedAssetKeys: nil)
 
-        asset.resourceLoader.setDelegate(self, queue: DispatchQueue.global(qos: .userInteractive))
-        urlAsset = asset
-    }
-
-    init(data: Data, mimeType: String, isAudio: Bool) {
-        url = SZAVPlayerItem.fakeURL(isAudio: isAudio)
-
-        mediaData = data
-        isLocalData = true
-        localDataMimeType = mimeType
-
-        let asset = AVURLAsset(url: url)
-        super.init(asset: asset, automaticallyLoadedAssetKeys: nil)
-
-        asset.resourceLoader.setDelegate(self, queue: DispatchQueue.global(qos: .userInteractive))
+        asset.resourceLoader.setDelegate(self, queue: loaderQueue)
         urlAsset = asset
     }
 
@@ -83,142 +70,146 @@ extension SZAVPlayerItem {
             recursiveLock.unlock()
         }
 
-        mediaData = nil
-        session?.invalidateAndCancel()
-        session = nil
-        resourceLoadingRequests.forEach { $0.finishLoading(with: nil) }
-        resourceLoadingRequests.removeAll()
-        dataRequestStartOffset = 0
+        loadedLength = 0
     }
 
-    private func handleResourceLoadingRequest(_ loadingRequest: AVAssetResourceLoadingRequest) {
-        if #available(iOS 13, *) {
-            if let dataRequest = loadingRequest.dataRequest,
-                dataRequest.requestedOffset > 0
-            {
-                cleanup()
-                dataRequestStartOffset = dataRequest.currentOffset
-                let upperBound = Int(dataRequest.requestedOffset) + dataRequest.requestedLength
-                let range: ClosedRange = Int(dataRequestStartOffset)...upperBound
-                startDataRequest(url: url, range: range)
-            } else {
-                let shouldIntializeSession = !isLocalData && session == nil
-                if shouldIntializeSession {
-                    startDataRequest(url: url)
-                }
-            }
-        } else {
-            // iOS12系统下发现表现不一样，暂时使用全量加载
-            let shouldIntializeSession = !isLocalData && session == nil
-            if shouldIntializeSession {
-                startDataRequest(url: url)
-            }
-        }
-    }
-
-    private func processResourceLoadingRequests() {
-        recursiveLock.lock()
-        defer {
-            recursiveLock.unlock()
+    private func handleContentInfoRequest(loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
+        guard let infoRequest = loadingRequest.contentInformationRequest else {
+            return false
         }
 
-        resourceLoadingRequests.compactMap {
-            if let infoRequest = $0.contentInformationRequest {
-                fillInContentInfoRequest(infoRequest)
-            }
-
-            if let dataRequest = $0.dataRequest {
-                respondDataRequest(dataRequest)
-
-                if shouldFinishDataRequest(dataRequest) {
-                    $0.finishLoading()
-                    return $0
-                }
-            }
-
-            return nil
-        }.forEach {
-            resourceLoadingRequests.remove($0)
-        }
-    }
-
-    private func fillInContentInfoRequest(_ request: AVAssetResourceLoadingContentInformationRequest) {
-        if isLocalData {
-            fillInWithLocalData(request)
-        } else {
-            fillInWithRemoteResponse(request)
-        }
-    }
-
-    private func fillInWithLocalData(_ request: AVAssetResourceLoadingContentInformationRequest) {
-        if let mimeType = localDataMimeType,
-            let contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, mimeType as CFString, nil)
+        // use cached info first
+        if let contentInfo = SZAVPlayerDatabase.shared.contentInfo(uniqueID: self.uniqueID),
+            SZAVPlayerContentInfo.isNotExpired(updated: contentInfo.updated)
         {
+            self.fillInWithLocalData(infoRequest, contentInfo: contentInfo)
+            loadingRequest.finishLoading()
+
+            return true
+        }
+
+        let request = contentInfoRequest(loadingRequest: loadingRequest)
+        let configuration = URLSessionConfiguration.default
+        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
+        let session = URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
+        let task = session.downloadTask(with: request) { (_, response, error) in
+            self.handleContentInfoResponse(loadingRequest: loadingRequest,
+                                           infoRequest: infoRequest,
+                                           response: response,
+                                           error: error)
+        }
+
+        self.currentRequest = SZAVPlayerContentInfoRequest(
+            resourceUrl: url,
+            loadingRequest: loadingRequest,
+            infoRequest: infoRequest,
+            task: task
+        )
+
+        task.resume()
+
+        return true
+    }
+
+    private func handleContentInfoResponse(loadingRequest: AVAssetResourceLoadingRequest,
+                                           infoRequest: AVAssetResourceLoadingContentInformationRequest,
+                                           response: URLResponse?,
+                                           error: Error?)
+    {
+        self.loaderQueue.async {
+            guard !loadingRequest.isCancelled else {
+                return
+            }
+
+            guard let request = self.currentRequest as? SZAVPlayerContentInfoRequest,
+                loadingRequest === request.loadingRequest else
+            {
+                return
+            }
+
+            if let error = error {
+                let nsError = error as NSError
+                if SZAVPlayerItem.isNetworkError(code: nsError.code),
+                    let contentInfo = SZAVPlayerDatabase.shared.contentInfo(uniqueID: self.uniqueID)
+                {
+                    self.fillInWithLocalData(infoRequest, contentInfo: contentInfo)
+                    loadingRequest.finishLoading()
+                } else {
+                    SZLogError("Failed with error: \(String(describing: error))")
+                    loadingRequest.finishLoading(with: error)
+                }
+
+                return
+            }
+
+            if let response = response {
+                if let mimeType = response.mimeType {
+                    let info = SZAVPlayerContentInfo(uniqueID: self.uniqueID,
+                                                     mimeType: mimeType,
+                                                     contentLength: response.sz_expectedContentLength)
+                    SZAVPlayerDatabase.shared.update(contentInfo: info)
+                }
+                self.fillInWithRemoteResponse(infoRequest, response: response)
+                loadingRequest.finishLoading()
+            }
+
+            if self.currentRequest === request {
+                self.currentRequest = nil
+            }
+        }
+    }
+
+    private func handleDataRequest(loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
+        guard let avDataRequest = loadingRequest.dataRequest else {
+            return false
+        }
+
+        if let lastRequest = currentRequest {
+            lastRequest.cancel()
+        }
+
+        let lowerBound = avDataRequest.requestedOffset
+        let length = Int64(avDataRequest.requestedLength)
+        let upperBound = lowerBound + length
+        let loader = SZAVPlayerDataLoader(uniqueID: uniqueID,
+                                          url: url,
+                                          range: lowerBound..<upperBound,
+                                          callbackQueue: loaderQueue)
+        loader.delegate = self
+        let dataRequest: SZAVPlayerDataRequest = {
+            return SZAVPlayerDataRequest(
+                resourceUrl: url,
+                loadingRequest: loadingRequest,
+                dataRequest: avDataRequest,
+                loader: loader
+            )
+        }()
+
+        self.currentRequest = dataRequest
+        loader.start()
+
+        return true
+    }
+
+    private func fillInWithLocalData(_ request: AVAssetResourceLoadingContentInformationRequest, contentInfo: SZAVPlayerContentInfo) {
+        if let contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, contentInfo.mimeType as CFString, nil) {
             request.contentType = contentType.takeRetainedValue() as String
         }
 
-        if let mediaData = mediaData {
-            request.contentLength = Int64(mediaData.count)
-        }
-
+        request.contentLength = contentInfo.contentLength
+        // TODO
         request.isByteRangeAccessSupported = true
     }
 
-    private func fillInWithRemoteResponse(_ request: AVAssetResourceLoadingContentInformationRequest) {
-        guard let response = response else { return }
-
+    private func fillInWithRemoteResponse(_ request: AVAssetResourceLoadingContentInformationRequest, response: URLResponse) {
         if let mimeType = response.mimeType,
             let contentType = UTTypeCreatePreferredIdentifierForTag(kUTTagClassMIMEType, mimeType as CFString, nil)
         {
             request.contentType = contentType.takeRetainedValue() as String
         }
-        request.contentLength = response.expectedContentLength
+        request.contentLength = response.sz_expectedContentLength
+        // TODO
         request.isByteRangeAccessSupported = true
-    }
-
-    private func respondDataRequest(_ dataRequest: AVAssetResourceLoadingDataRequest) {
-        guard let mediaData = mediaData else { return }
-
-        let currentOffset = Int(dataRequest.currentOffset)
-        let dataOffset = mediaData.count + Int(dataRequestStartOffset)
-        if dataOffset <= currentOffset {
-            return
-        }
-
-        let requestedLength = dataRequest.requestedLength
-        let bytesToRespond = min(dataOffset - currentOffset, requestedLength)
-        let currentOffsetInData = currentOffset - Int(dataRequestStartOffset)
-        let dataToRespond = mediaData.subdata(in: Range(uncheckedBounds: (currentOffsetInData, currentOffsetInData + bytesToRespond)))
-        dataRequest.respond(with: dataToRespond)
-    }
-
-    private func shouldFinishDataRequest(_ dataRequest: AVAssetResourceLoadingDataRequest) -> Bool {
-        guard let mediaData = mediaData else {
-            return false
-        }
-
-        let requestedOffset = Int(dataRequest.requestedOffset)
-        let requestedLength = dataRequest.requestedLength
-
-        return mediaData.count >= requestedLength + requestedOffset
-    }
-
-}
-
-// MARK: - Requests
-
-extension SZAVPlayerItem {
-
-    private func startDataRequest(url: URL, range: ClosedRange<Int>? = nil) {
-        let configuration = URLSessionConfiguration.default
-        configuration.requestCachePolicy = .reloadIgnoringLocalCacheData
-        var request = URLRequest(url: url)
-        if let range = range {
-            let rangeHeader = "bytes=\(range.lowerBound)-\(range.upperBound - 1)"
-            request.setValue(rangeHeader, forHTTPHeaderField: "Range")
-        }
-        session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
-        session?.dataTask(with: request).resume()
     }
 
 }
@@ -233,11 +224,13 @@ extension SZAVPlayerItem: AVAssetResourceLoaderDelegate {
             recursiveLock.unlock()
         }
 
-        handleResourceLoadingRequest(loadingRequest)
-        resourceLoadingRequests.insert(loadingRequest)
-        processResourceLoadingRequests()
-
-        return true
+        if let _ = loadingRequest.contentInformationRequest {
+            return handleContentInfoRequest(loadingRequest: loadingRequest)
+        } else if let _ = loadingRequest.dataRequest {
+            return handleDataRequest(loadingRequest: loadingRequest)
+        } else {
+            return false
+        }
     }
 
     public func resourceLoader(_ resourceLoader: AVAssetResourceLoader, didCancel loadingRequest: AVAssetResourceLoadingRequest) {
@@ -246,58 +239,41 @@ extension SZAVPlayerItem: AVAssetResourceLoaderDelegate {
             recursiveLock.unlock()
         }
 
-        resourceLoadingRequests.remove(loadingRequest)
+        currentRequest?.cancel()
     }
 
 }
 
-// MARK: - URLSessionDelegate
+// MARK: - SZAVPlayerDataLoaderDelegate
 
-extension SZAVPlayerItem: URLSessionDelegate, URLSessionDataDelegate, URLSessionTaskDelegate {
+extension SZAVPlayerItem: SZAVPlayerDataLoaderDelegate {
 
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
-        mediaData?.append(data)
-        guard let mediaData = mediaData else { return }
+    func dataLoader(_ loader: SZAVPlayerDataLoader, didReceive data: Data) {
+        if let dataRequest = currentRequest?.loadingRequest.dataRequest {
+            dataRequest.respond(with: data)
+        }
 
-        delegate?.playerItem(self, didDownload: Int64(mediaData.count), expectedToReceive: dataTask.countOfBytesExpectedToReceive)
-
-        processResourceLoadingRequests()
+        loadedLength = loadedLength + Int64(data.count)
+        delegate?.playerItem(self, didDownload: loadedLength)
     }
 
-    public func urlSession(_ session: URLSession,
-                           dataTask: URLSessionDataTask,
-                           didReceive response: URLResponse,
-                           completionHandler: @escaping (URLSession.ResponseDisposition) -> Void)
-    {
-        completionHandler(.allow)
+    func dataLoaderDidFinish(_ loader: SZAVPlayerDataLoader) {
+        currentRequest?.loadingRequest.finishLoading()
+        currentRequest = nil
 
-        mediaData = Data()
-        self.response = response
-        if let mimeType = response.mimeType {
-            SZAVPlayerDatabase.shared.update(mimeType: mimeType, uniqueID: uniqueID)
-        }
-
-        processResourceLoadingRequests()
+        delegate?.playerItemDidFinishDownloading(self)
     }
 
-    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-        if let error = error {
-            delegate?.playerItem(self, downloadingFailed: error)
+    func dataLoader(_ loader: SZAVPlayerDataLoader, didFailWithError error: Error) {
+        currentRequest?.loadingRequest.finishLoading(with: error)
+        currentRequest = nil
 
-            return
-        }
-
-        if let mediaData = mediaData {
-            let fullyDownloaded = dataRequestStartOffset > 0 ? false : true
-            delegate?.playerItem(self, didFinishDownloading: mediaData, fullyDownloaded: fullyDownloaded)
-        }
-
-        processResourceLoadingRequests()
+        delegate?.playerItem(self, downloadingFailed: error)
     }
 
 }
 
-// MARK: - URL
+// MARK: - Extensions
 
 fileprivate extension URL {
 
@@ -308,6 +284,25 @@ fileprivate extension URL {
 
         components.scheme = scheme
         return components.url
+    }
+
+}
+
+fileprivate extension URLResponse {
+
+    var sz_expectedContentLength: Int64 {
+        guard let response = self as? HTTPURLResponse else {
+            return expectedContentLength
+        }
+
+        if let rangeString = response.allHeaderFields["Content-Range"] as? String,
+            let bytesString = rangeString.split(separator: "/").map({String($0)}).last,
+            let bytes = Int64(bytesString)
+        {
+            return bytes
+        } else {
+            return expectedContentLength
+        }
     }
 
 }
@@ -323,6 +318,28 @@ extension SZAVPlayerItem {
         }
 
         return url
+    }
+
+    private static func isNetworkError(code: Int) -> Bool {
+        let errorCodes = [
+            NSURLErrorNotConnectedToInternet,
+            NSURLErrorNetworkConnectionLost,
+            NSURLErrorTimedOut,
+        ]
+
+        return errorCodes.contains(code)
+    }
+
+    private func contentInfoRequest(loadingRequest: AVAssetResourceLoadingRequest) -> URLRequest {
+        var request = URLRequest(url: url)
+        if let dataRequest = loadingRequest.dataRequest {
+            let lowerBound = Int(dataRequest.requestedOffset)
+            let upperBound = lowerBound + Int(dataRequest.requestedLength) - 1
+            let rangeHeader = "bytes=\(lowerBound)-\(upperBound)"
+            request.setValue(rangeHeader, forHTTPHeaderField: "Range")
+        }
+
+        return request
     }
 
 }

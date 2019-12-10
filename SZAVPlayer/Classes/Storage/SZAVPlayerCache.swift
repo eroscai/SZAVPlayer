@@ -24,7 +24,6 @@ class SZAVPlayerCache: NSObject {
     }
 
     public func save(data: Data, uniqueID: String) {
-        return
         trimCache()
 
         SZAVPlayerFileSystem.write(data: data, url: SZAVPlayerCache.fileURL(uniqueID: uniqueID))
@@ -61,20 +60,6 @@ extension SZAVPlayerCache {
 
     public static func dataExist(uniqueID: String) -> Bool {
         return SZAVPlayerFileSystem.isExist(url: fileURL(uniqueID: uniqueID))
-    }
-
-    public static func data(uniqueID: String) -> Data? {
-        return SZAVPlayerFileSystem.read(url: fileURL(uniqueID: uniqueID))
-    }
-    
-    public static func isLocalCached(uniqueID: String) -> Bool {
-        if let _ = SZAVPlayerDatabase.shared.mimeType(uniqueID: uniqueID),
-            dataExist(uniqueID: uniqueID)
-        {
-            return true
-        }
-
-        return false
     }
 
     private static func fileURL(uniqueID: String) -> URL {

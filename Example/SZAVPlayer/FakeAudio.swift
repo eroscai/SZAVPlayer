@@ -24,7 +24,7 @@ class FakeAudio: NSObject {
         return false
     }
 
-    static func fake() -> FakeAudio {
+    static func fake1() -> FakeAudio {
         let audio = FakeAudio()
         audio.cover = "http://p2.music.126.net/nEtbaHINgXyGz3mLOELUhg==/6637751697108298.jpg?param=400y400"
         audio.title = "Where'd You Go"
