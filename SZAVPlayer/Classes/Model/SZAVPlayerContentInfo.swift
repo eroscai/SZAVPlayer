@@ -6,19 +6,15 @@
 //
 
 import UIKit
-import SQLite
 
-public struct SZAVPlayerContentInfo {
+public struct SZAVPlayerContentInfo: SZBaseModel {
+
+    static let tableName: String = "SZAVPlayerContentInfo"
 
     var uniqueID: String
     var mimeType: String
     var contentLength: Int64
     var updated: Int64 = 0
-
-    static let uniqueID = Expression<String>("uniqueID")
-    static let mimeType = Expression<String>("mimeType")
-    static let contentLength = Expression<Int64>("contentLength")
-    static let updated = Expression<Int64>("updated")
 
     static func isNotExpired(updated: Int64) -> Bool {
         let expiredTimeInterval = 3600

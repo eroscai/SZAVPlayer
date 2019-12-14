@@ -25,10 +25,5 @@
     "CoreServices",
     "AVFoundation"
   ],
-  "dependencies": {
-    "SQLite.swift": [
-      "~> 0.12.0"
-    ]
-  },
   "swift_version": "5.0"
 }

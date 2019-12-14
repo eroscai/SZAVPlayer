@@ -1,10 +1,6 @@
 PODS:
   - SnapKit (5.0.1)
-  - SQLite.swift (0.12.2):
-    - SQLite.swift/standard (= 0.12.2)
-  - SQLite.swift/standard (0.12.2)
-  - SZAVPlayer (0.1.0):
-    - SQLite.swift (~> 0.12.0)
+  - SZAVPlayer (0.1.0)
 
 DEPENDENCIES:
   - SnapKit
@@ -13,7 +9,6 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - SnapKit
-    - SQLite.swift
 
 EXTERNAL SOURCES:
   SZAVPlayer:
@@ -21,8 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SQLite.swift: d2b4642190917051ce6bd1d49aab565fe794eea3
-  SZAVPlayer: e07a7a29d196ec739720a6058286bdf08f9781a2
+  SZAVPlayer: 60fad65be951a6f6d19e05563253fbaa9678cbaa
 
 PODFILE CHECKSUM: 474ca31b1fd0446e12cf70da2d54e0b4622e3259
 

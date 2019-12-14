@@ -6,32 +6,25 @@
 //
 
 import UIKit
-import SQLite
 
 public class SZAVPlayerDatabase: NSObject {
 
     public static let shared = SZAVPlayerDatabase()
-    private let contentInfoTable = Table("contentInfo")
-    private let localFileInfoTable = Table("localFileInfo")
-    private let id = Expression<Int64>("id")
 
+    private let dbQueue = SZDatabase()
     private let dbFileName = SZAVPlayerFileSystem.documentsDirectory.appendingPathComponent("SZAVPlayer.sqlite").absoluteString
-    private lazy var db: Connection = createDB()
 
     override init() {
         super.init()
+
+        guard dbQueue.open(dbPath: dbFileName) else { return }
 
         createMIMETypesTable()
         createLocalFileInfoTable()
     }
 
-    private func delete(table: Table, key: Expression<String>, uniqueID: String) {
-        do {
-            let query = table.filter(key == uniqueID).delete()
-            try db.run(query)
-        } catch {
-            SZLogError("\(error)")
-        }
+    deinit {
+        dbQueue.closeDB()
     }
 
 }
@@ -41,52 +34,58 @@ public class SZAVPlayerDatabase: NSObject {
 extension SZAVPlayerDatabase {
 
     public func contentInfo(uniqueID: String) -> SZAVPlayerContentInfo? {
-        do {
-            let query = contentInfoTable.filter(SZAVPlayerContentInfo.uniqueID == uniqueID)
-            if let row = try db.pluck(query) {
-                let info = SZAVPlayerContentInfo(uniqueID: row[SZAVPlayerContentInfo.uniqueID],
-                                                 mimeType: row[SZAVPlayerContentInfo.mimeType],
-                                                 contentLength: row[SZAVPlayerContentInfo.contentLength],
-                                                 updated: row[SZAVPlayerContentInfo.updated])
-                return info
+        var info: SZAVPlayerContentInfo?
+        dbQueue.inQueue { (db) in
+            let sql = "SELECT * FROM \(SZAVPlayerContentInfo.tableName) WHERE uniqueID = ?"
+            let infos = db.query(sql: sql, params: [uniqueID])
+            if let infoDict = infos.first,
+                let tmpInfo = SZAVPlayerContentInfo.deserialize(data: infoDict)
+            {
+                info = tmpInfo
             }
-        } catch {
-            SZLogError("\(error)")
         }
 
-        return nil
+        return info
     }
 
     public func update(contentInfo: SZAVPlayerContentInfo) {
-        do {
+        dbQueue.inQueue { (db) in
+            let sql = "INSERT OR REPLACE INTO \(SZAVPlayerContentInfo.tableName) " +
+            "(uniqueID, mimeType, contentLength, updated) " +
+            "values(?, ?, ?, ?)"
             let updated = Int64(Date().timeIntervalSince1970)
-            let query = contentInfoTable.insert(or: .replace,
-                                                SZAVPlayerContentInfo.uniqueID <- contentInfo.uniqueID,
-                                                SZAVPlayerContentInfo.mimeType <- contentInfo.mimeType,
-                                                SZAVPlayerContentInfo.contentLength <- contentInfo.contentLength,
-                                                SZAVPlayerContentInfo.updated <- updated)
-            try db.run(query)
-        } catch {
-            SZLogError("\(error)")
+            let params: [Any] = [contentInfo.uniqueID, contentInfo.mimeType, contentInfo.contentLength, updated]
+            db.execute(sql: sql, params: params)
         }
     }
 
     public func deleteMIMEType(uniqueID: String) {
-        delete(table: contentInfoTable, key: SZAVPlayerContentInfo.uniqueID, uniqueID: uniqueID)
+        dbQueue.inQueue { (db) in
+            let sql = "DELETE FROM \(SZAVPlayerContentInfo.tableName) WHERE uniqueID = ?"
+            let params = [
+                uniqueID
+            ]
+            db.execute(sql: sql, params: params)
+        }
     }
 
     private func createMIMETypesTable() {
-        do {
-            try db.run(contentInfoTable.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: .autoincrement)
-                t.column(SZAVPlayerContentInfo.uniqueID, unique: true)
-                t.column(SZAVPlayerContentInfo.mimeType)
-                t.column(SZAVPlayerContentInfo.contentLength)
-                t.column(SZAVPlayerContentInfo.updated)
-            })
-        } catch {
-            SZLogError("\(error)")
-        }
+        let tableName = SZAVPlayerContentInfo.tableName
+        let sqlQuerys = [
+            "CREATE TABLE IF NOT EXISTS \(tableName) (" +
+            "id INTEGER PRIMARY KEY ASC, " +
+            "uniqueID TEXT, " +
+            "mimeType TEXT, " +
+            "contentLength INTEGER, " +
+            "updated INTEGER" +
+            ");\n",
+            "CREATE UNIQUE INDEX IF NOT EXISTS \(tableName)_uniqueID " +
+            "ON \(tableName)(" +
+            "uniqueID" +
+            ");\n",
+        ]
+
+        createTable(sqlQuerys: sqlQuerys)
     }
 
 }
@@ -96,74 +95,84 @@ extension SZAVPlayerDatabase {
 extension SZAVPlayerDatabase {
 
     public func localFileInfos(uniqueID: String) -> [SZAVPlayerLocalFileInfo] {
-        do {
-            var infos: [SZAVPlayerLocalFileInfo] = []
-            let query = localFileInfoTable
-                .filter(SZAVPlayerLocalFileInfo.uniqueID == uniqueID && SZAVPlayerLocalFileInfo.loadedByteLength > 0)
-                .order(SZAVPlayerLocalFileInfo.startOffset.asc)
-            for info in try db.prepare(query) {
-                let fileInfo = SZAVPlayerLocalFileInfo(uniqueID: info[SZAVPlayerLocalFileInfo.uniqueID],
-                                                       startOffset: info[SZAVPlayerLocalFileInfo.startOffset],
-                                                       loadedByteLength: info[SZAVPlayerLocalFileInfo.loadedByteLength],
-                                                       localFileName: info[SZAVPlayerLocalFileInfo.localFileName],
-                                                       updated: info[SZAVPlayerLocalFileInfo.updated])
-                infos.append(fileInfo)
+        var fileInfos: [SZAVPlayerLocalFileInfo] = []
+        dbQueue.inQueue { (db) in
+            let sql = "SELECT * FROM \(SZAVPlayerLocalFileInfo.tableName) WHERE uniqueID = ? AND loadedByteLength > 0 ORDER BY startOffset ASC"
+            let params = [
+                uniqueID
+            ]
+            let infos = db.query(sql: sql, params: params)
+            infos.forEach { (info) in
+                if let fileInfo = SZAVPlayerLocalFileInfo.deserialize(data: info) {
+                    fileInfos.append(fileInfo)
+                }
             }
-
-            return infos
-        } catch {
-            SZLogError("\(error)")
         }
 
-        return []
+        return fileInfos
     }
 
     public func update(fileInfo: SZAVPlayerLocalFileInfo) {
-        do {
+        dbQueue.inQueue { (db) in
+            let sql = "INSERT OR REPLACE INTO \(SZAVPlayerLocalFileInfo.tableName) " +
+            "(uniqueID, startOffset, loadedByteLength, localFileName, updated) " +
+            "values(?, ?, ?, ?, ?)"
             let updated = Int64(Date().timeIntervalSince1970)
-            let query = localFileInfoTable.insert(or: .replace,
-                                                  SZAVPlayerLocalFileInfo.uniqueID <- fileInfo.uniqueID,
-                                                  SZAVPlayerLocalFileInfo.startOffset <- fileInfo.startOffset,
-                                                  SZAVPlayerLocalFileInfo.loadedByteLength <- fileInfo.loadedByteLength,
-                                                  SZAVPlayerLocalFileInfo.localFileName <- fileInfo.localFileName,
-                                                  SZAVPlayerLocalFileInfo.updated <- updated)
-            try db.run(query)
-        } catch {
-            SZLogError("\(error)")
+            let params: [Any] = [
+                fileInfo.uniqueID,
+                fileInfo.startOffset,
+                fileInfo.loadedByteLength,
+                fileInfo.localFileName,
+                updated
+            ]
+            db.execute(sql: sql, params: params)
         }
     }
 
     public func deleteLocalFileInfo(uniqueID: String) {
-        delete(table: localFileInfoTable, key: SZAVPlayerLocalFileInfo.uniqueID, uniqueID: uniqueID)
+        dbQueue.inQueue { (db) in
+            let sql = "DELETE FROM \(SZAVPlayerLocalFileInfo.tableName) WHERE uniqueID = ?"
+            let params = [
+                uniqueID
+            ]
+            db.execute(sql: sql, params: params)
+        }
     }
 
     private func createLocalFileInfoTable() {
-        do {
-            try db.run(localFileInfoTable.create(ifNotExists: true) { t in
-                t.column(id, primaryKey: .autoincrement)
-                t.column(SZAVPlayerLocalFileInfo.uniqueID)
-                t.column(SZAVPlayerLocalFileInfo.startOffset)
-                t.column(SZAVPlayerLocalFileInfo.loadedByteLength)
-                t.column(SZAVPlayerLocalFileInfo.localFileName)
-                t.column(SZAVPlayerLocalFileInfo.updated)
-                t.unique(SZAVPlayerLocalFileInfo.uniqueID, SZAVPlayerLocalFileInfo.startOffset)
-            })
-        } catch {
-            SZLogError("\(error)")
-        }
+        let tableName = SZAVPlayerLocalFileInfo.tableName
+        let sqlQuerys = [
+            "CREATE TABLE IF NOT EXISTS \(tableName) (" +
+            "id INTEGER PRIMARY KEY ASC, " +
+            "uniqueID TEXT, " +
+            "startOffset INTEGER, " +
+            "loadedByteLength INTEGER, " +
+            "localFileName TEXT, " +
+            "updated INTEGER" +
+            ");\n",
+            "CREATE UNIQUE INDEX IF NOT EXISTS \(tableName)_uniqueID_startOffset " +
+            "ON \(tableName)(" +
+            "uniqueID, startOffset" +
+            ");\n",
+        ]
+
+        createTable(sqlQuerys: sqlQuerys)
     }
 
 }
 
-// MARK: - Getter
+// MARK: - Private
 
-extension SZAVPlayerDatabase {
+private extension SZAVPlayerDatabase {
 
-    private func createDB() -> Connection {
-        do {
-            return try Connection(dbFileName)
-        } catch {
-            fatalError("\(error)")
+    func createTable(sqlQuerys: [String]) {
+        dbQueue.inTransaction { (db, rollback) in
+            for sql in sqlQuerys {
+                if db.execute(sql: sql) == SQLITE_RESULT_FAILED {
+                    rollback = true
+                    break
+                }
+            }
         }
     }
 
