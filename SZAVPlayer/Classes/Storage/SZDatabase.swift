@@ -15,14 +15,10 @@ class SZDatabase: NSObject {
 
 	private var queue = DispatchQueue(label: "com.SZDatabase.queue")
 	private var db: OpaquePointer? = nil
-	private let fmt = DateFormatter()
+    private lazy var fmt: DateFormatter = createDateFormatter()
 
 	override init() {
 		super.init()
-
-        fmt.locale = Locale(identifier:"en_US_POSIX")
-        fmt.timeZone = TimeZone(secondsFromGMT:0)
-        fmt.dateFormat = "yyyy-MM-dd HH:mm:ss"
 	}
 	
 	deinit {
@@ -424,6 +420,21 @@ private extension SZDatabase {
         if let stmt = prepare(sql:sql) {
             _ = execute(stmt:stmt, sql:sql)
         }
+    }
+
+}
+
+// MARK: - Getter
+
+extension SZDatabase {
+
+    private func createDateFormatter() -> DateFormatter {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier:"en_US_POSIX")
+        formatter.timeZone = TimeZone(secondsFromGMT:0)
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+
+        return formatter
     }
 
 }

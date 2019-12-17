@@ -19,7 +19,7 @@ protocol SZAVPlayerRequest: AnyObject {
 }
 
 class SZAVPlayerContentInfoRequest: SZAVPlayerRequest {
-    
+
     let resourceUrl: URL
     let loadingRequest: AVAssetResourceLoadingRequest
     let infoRequest: AVAssetResourceLoadingContentInformationRequest
@@ -42,7 +42,7 @@ class SZAVPlayerContentInfoRequest: SZAVPlayerRequest {
             loadingRequest.finishLoading()
         }
     }
-    
+
 }
 
 class SZAVPlayerDataRequest: SZAVPlayerRequest {
@@ -51,16 +51,19 @@ class SZAVPlayerDataRequest: SZAVPlayerRequest {
     let loadingRequest: AVAssetResourceLoadingRequest
     let dataRequest: AVAssetResourceLoadingDataRequest
     let loader: SZAVPlayerDataLoader
+    let range: SZAVPlayerRange
     
     init(resourceUrl: URL,
          loadingRequest: AVAssetResourceLoadingRequest,
          dataRequest: AVAssetResourceLoadingDataRequest,
-         loader: SZAVPlayerDataLoader)
+         loader: SZAVPlayerDataLoader,
+         range: SZAVPlayerRange)
     {
         self.resourceUrl = resourceUrl
         self.loadingRequest = loadingRequest
         self.dataRequest = dataRequest
         self.loader = loader
+        self.range = range
     }
     
     func cancel() {

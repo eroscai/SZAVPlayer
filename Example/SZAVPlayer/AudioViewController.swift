@@ -79,11 +79,40 @@ extension AudioViewController {
     }
 
     @objc func handleNextBtnClick() {
-
+        if let currentAudio = currentAudio,
+            let audio = findAudio(currentAudio: currentAudio, findNext: true)
+        {
+            self.currentAudio = audio
+            audioPlayer.setupPlayer(urlStr: audio.url, uniqueID: nil)
+        } else {
+            SZLogError("No audio!")
+        }
     }
 
     @objc func handlePreviousBtnClick() {
+        if let currentAudio = currentAudio,
+            let audio = findAudio(currentAudio: currentAudio, findNext: false)
+        {
+            self.currentAudio = audio
+            audioPlayer.setupPlayer(urlStr: audio.url, uniqueID: nil)
+        } else {
+            SZLogError("No audio!")
+        }
+    }
 
+    private func findAudio(currentAudio: FakeAudio, findNext: Bool) -> FakeAudio? {
+        let playlist = audios
+        let audios = findNext ? playlist : playlist.reversed()
+        var currentAudioDetected: Bool = false
+        for audio in audios {
+            if currentAudioDetected {
+                return audio
+            } else if audio == currentAudio {
+                currentAudioDetected = true
+            }
+        }
+
+        return nil
     }
 
 }

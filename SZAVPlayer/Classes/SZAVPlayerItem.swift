@@ -164,16 +164,21 @@ extension SZAVPlayerItem {
             return false
         }
 
-        if let lastRequest = currentRequest {
-            lastRequest.cancel()
-        }
-
         let lowerBound = avDataRequest.requestedOffset
         let length = Int64(avDataRequest.requestedLength)
         let upperBound = lowerBound + length
+        let requestedRange = lowerBound..<upperBound
+        if let lastRequest = currentRequest as? SZAVPlayerDataRequest {
+            if lastRequest.range == requestedRange {
+                return true
+            } else {
+                lastRequest.cancel()
+            }
+        }
+
         let loader = SZAVPlayerDataLoader(uniqueID: uniqueID,
                                           url: url,
-                                          range: lowerBound..<upperBound,
+                                          range: requestedRange,
                                           callbackQueue: loaderQueue)
         loader.delegate = self
         let dataRequest: SZAVPlayerDataRequest = {
@@ -181,7 +186,8 @@ extension SZAVPlayerItem {
                 resourceUrl: url,
                 loadingRequest: loadingRequest,
                 dataRequest: avDataRequest,
-                loader: loader
+                loader: loader,
+                range: requestedRange
             )
         }()
 
@@ -295,7 +301,21 @@ fileprivate extension URLResponse {
             return expectedContentLength
         }
 
-        if let rangeString = response.allHeaderFields["Content-Range"] as? String,
+        let contentRangeKeys: [String] = [
+            "Content-Range",
+            "content-range",
+            "Content-range",
+            "content-Range",
+        ]
+        var rangeString: String?
+        for key in contentRangeKeys {
+            if let value = response.allHeaderFields[key] as? String {
+                rangeString = value
+                break
+            }
+        }
+
+        if let rangeString = rangeString,
             let bytesString = rangeString.split(separator: "/").map({String($0)}).last,
             let bytes = Int64(bytesString)
         {

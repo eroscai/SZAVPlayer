@@ -19,7 +19,7 @@ public enum SZAVPlayerStatus: Int {
     case loadingFailed
     case readyToPlay
     case playEnd
-    case playFailed
+    case playbackStalled
     case bufferBegin
     case bufferEnd
 }
@@ -145,7 +145,18 @@ extension SZAVPlayer {
     }
 
     public func seekPlayerToTime(time: Float64, autoPlay: Bool = true, completion: (() -> Void)?) {
-        guard let player = player else { return }
+        guard let player = player, let playerItem = playerItem else { return }
+
+        let total = CMTimeGetSeconds(playerItem.duration)
+        let didReachEnd = time >= total || abs(time - total) <= 0.5
+        if didReachEnd {
+            if let completion = completion {
+                completion()
+            }
+
+            handlePlayerStatus(status: .playEnd)
+            return
+        }
 
         pause()
         isSeeking = true
@@ -239,7 +250,7 @@ extension SZAVPlayer {
             let item = notification.object as? AVPlayerItem,
             playerItem == item
         {
-            handlePlayerStatus(status: .playFailed)
+            handlePlayerStatus(status: .playbackStalled)
         }
     }
 
@@ -336,7 +347,7 @@ extension SZAVPlayer {
 
 extension SZAVPlayer {
 
-    static func activeAudioSession() {
+    public static func activeAudioSession() {
         do {
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.playback)
@@ -346,7 +357,7 @@ extension SZAVPlayer {
         }
     }
 
-    static func deactiveAudioSession() {
+    public static func deactiveAudioSession() {
         do {
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.ambient)

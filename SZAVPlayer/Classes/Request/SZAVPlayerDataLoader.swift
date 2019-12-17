@@ -55,7 +55,7 @@ class SZAVPlayerDataLoader: NSObject {
         var startOffset = requestedRange.lowerBound
         let endOffset = requestedRange.upperBound
         for fileInfo in localFileInfos {
-            if isOutOfRange(startOffset: startOffset, endOffset: endOffset, fileInfo: fileInfo) {
+            if SZAVPlayerDataLoader.isOutOfRange(startOffset: startOffset, endOffset: endOffset, fileInfo: fileInfo) {
                 break
             }
 
@@ -77,6 +77,17 @@ class SZAVPlayerDataLoader: NSObject {
     public func cancel() {
         cancelled = true
         operationQueue.cancelAllOperations()
+    }
+
+    public static func isOutOfRange(startOffset: Int64, endOffset: Int64, fileInfo: SZAVPlayerLocalFileInfo) -> Bool {
+        let localFileStartOffset = fileInfo.startOffset
+        let localFileEndOffset = fileInfo.startOffset + fileInfo.loadedByteLength
+        let remainRange = startOffset..<endOffset
+
+        let isIntersectionWithRange = remainRange.contains(localFileStartOffset) || remainRange.contains(localFileEndOffset - 1)
+        let isContainsRange = localFileStartOffset <= startOffset && localFileEndOffset >= endOffset
+
+        return !(isIntersectionWithRange || isContainsRange)
     }
 
 }
@@ -157,17 +168,6 @@ extension SZAVPlayerDataLoader: SZAVPlayerRequestOperationDelegate {
 // MARK: - Private
 
 private extension SZAVPlayerDataLoader {
-
-    func isOutOfRange(startOffset: Int64, endOffset: Int64, fileInfo: SZAVPlayerLocalFileInfo) -> Bool {
-        let localFileStartOffset = fileInfo.startOffset
-        let localFileEndOffset = fileInfo.startOffset + fileInfo.loadedByteLength
-        let remainRange = startOffset..<endOffset
-        
-        let isIntersectionWithRange = remainRange.contains(localFileStartOffset) || remainRange.contains(localFileEndOffset - 1)
-        let isContainsRange = localFileStartOffset <= startOffset && localFileEndOffset >= endOffset
-
-        return !(isIntersectionWithRange || isContainsRange)
-    }
 
     func addLocalFileRequest(startOffset: inout Int64, endOffset: Int64, fileInfo: SZAVPlayerLocalFileInfo) {
         let requestedLength = endOffset - startOffset
