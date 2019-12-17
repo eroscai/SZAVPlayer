@@ -71,6 +71,8 @@ extension SZAVPlayerItem {
         }
 
         loadedLength = 0
+        isCancelled = true
+        currentRequest?.cancel()
     }
 
     private func handleContentInfoRequest(loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
@@ -117,7 +119,7 @@ extension SZAVPlayerItem {
                                            error: Error?)
     {
         self.loaderQueue.async {
-            guard !loadingRequest.isCancelled else {
+            if self.isCancelled || loadingRequest.isCancelled {
                 return
             }
 
@@ -160,6 +162,10 @@ extension SZAVPlayerItem {
     }
 
     private func handleDataRequest(loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
+        if self.isCancelled || loadingRequest.isCancelled {
+            return false
+        }
+
         guard let avDataRequest = loadingRequest.dataRequest else {
             return false
         }

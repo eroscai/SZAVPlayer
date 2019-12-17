@@ -43,6 +43,10 @@ class SZAVPlayerDataLoader: NSObject {
         super.init()
     }
 
+    deinit {
+        SZLogInfo("deinit")
+    }
+
     public func start() {
         guard !cancelled && !failed else { return }
 
@@ -56,7 +60,7 @@ class SZAVPlayerDataLoader: NSObject {
         let endOffset = requestedRange.upperBound
         for fileInfo in localFileInfos {
             if SZAVPlayerDataLoader.isOutOfRange(startOffset: startOffset, endOffset: endOffset, fileInfo: fileInfo) {
-                break
+                continue
             }
 
             let localFileStartOffset = fileInfo.startOffset
@@ -142,15 +146,17 @@ extension SZAVPlayerDataLoader: SZAVPlayerRequestOperationDelegate {
     }
 
     func requestOperation(_ operation: SZAVPlayerRequestOperation, didCompleteWithError error: Error?) {
+        var shouldSaveData = false
         callbackQueue.sync {
             if let error = error {
                 delegate?.dataLoader(self, didFailWithError: error)
             } else {
                 delegate?.dataLoaderDidFinish(self)
+                shouldSaveData = true
             }
         }
 
-        if let mediaData = mediaData, mediaData.count > 0 {
+        if shouldSaveData, let mediaData = mediaData, mediaData.count > 0 {
             let newFileName = SZAVPlayerLocalFileInfo.newFileName(uniqueID: uniqueID)
             let localFilePath = SZAVPlayerFileSystem.localFilePath(fileName: newFileName)
             if SZAVPlayerFileSystem.write(data: mediaData, url: localFilePath) {
@@ -160,6 +166,8 @@ extension SZAVPlayerDataLoader: SZAVPlayerRequestOperationDelegate {
                                                        localFileName: newFileName)
                 SZAVPlayerDatabase.shared.update(fileInfo: fileInfo)
             }
+
+            self.mediaData = nil
         }
     }
 
