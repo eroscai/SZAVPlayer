@@ -27,6 +27,35 @@ public class SZAVPlayerDatabase: NSObject {
         dbQueue.closeDB()
     }
 
+    public func cleanData() {
+        dbQueue.inTransaction { (db, rollback) in
+            let needDeleteTableNames: [String] = [
+                SZAVPlayerContentInfo.tableName,
+                SZAVPlayerLocalFileInfo.tableName,
+            ]
+            needDeleteTableNames.forEach { (tableName) in
+                let sql = "DELETE FROM \(tableName)"
+                db.execute(sql: sql)
+            }
+        }
+    }
+
+    public func trimData() {
+        DispatchQueue.global(qos: .background).async {
+            let infos = self.expiredContentInfos()
+            for info in infos {
+                self.deleteMIMEType(uniqueID: info.uniqueID)
+
+                let fileInfos = self.localFileInfos(uniqueID: info.uniqueID)
+                for fileInfo in fileInfos {
+                    let fileURL = SZAVPlayerFileSystem.localFilePath(fileName: fileInfo.localFileName)
+                    SZAVPlayerFileSystem.delete(url: fileURL)
+                }
+                self.deleteLocalFileInfo(uniqueID: info.uniqueID)
+            }
+        }
+    }
+
 }
 
 // MARK: - ContentInfo
@@ -67,6 +96,21 @@ extension SZAVPlayerDatabase {
             ]
             db.execute(sql: sql, params: params)
         }
+    }
+
+    private func expiredContentInfos() -> [SZAVPlayerContentInfo] {
+        var expiredInfos: [SZAVPlayerContentInfo] = []
+        dbQueue.inQueue { (db) in
+            let sql = "SELECT * FROM \(SZAVPlayerContentInfo.tableName) ORDER BY updated ASC LIMIT 5"
+            let infos = db.query(sql: sql)
+            if let infoDict = infos.first,
+                let tmpInfo = SZAVPlayerContentInfo.deserialize(data: infoDict)
+            {
+                expiredInfos.append(tmpInfo)
+            }
+        }
+
+        return expiredInfos
     }
 
     private func createMIMETypesTable() {

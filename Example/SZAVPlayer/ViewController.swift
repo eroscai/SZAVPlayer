@@ -8,6 +8,7 @@
 
 import UIKit
 import SnapKit
+import SZAVPlayer
 
 class ViewController: UIViewController {
 

@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		17A1850523910EA9003E7DE4 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A1850423910EA9003E7DE4 /* AudioViewController.swift */; };
-		17A18507239111AF003E7DE4 /* FakeAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17A18506239111AF003E7DE4 /* FakeAudio.swift */; };
+		17F731D823AC613A000E5367 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F731D423AC613A000E5367 /* AudioViewController.swift */; };
+		17F731D923AC613A000E5367 /* FakeAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F731D523AC613A000E5367 /* FakeAudio.swift */; };
+		17F731DD23AC6188000E5367 /* AudioPlayerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F731DB23AC6188000E5367 /* AudioPlayerSlider.swift */; };
+		17F731DE23AC6188000E5367 /* AudioPlayerProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F731DC23AC6188000E5367 /* AudioPlayerProgressView.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -31,8 +33,10 @@
 
 /* Begin PBXFileReference section */
 		034F419971C2847E98BC6A94 /* Pods-SZAVPlayer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SZAVPlayer_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SZAVPlayer_Tests/Pods-SZAVPlayer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		17A1850423910EA9003E7DE4 /* AudioViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
-		17A18506239111AF003E7DE4 /* FakeAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAudio.swift; sourceTree = "<group>"; };
+		17F731D423AC613A000E5367 /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
+		17F731D523AC613A000E5367 /* FakeAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAudio.swift; sourceTree = "<group>"; };
+		17F731DB23AC6188000E5367 /* AudioPlayerSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerSlider.swift; sourceTree = "<group>"; };
+		17F731DC23AC6188000E5367 /* AudioPlayerProgressView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerProgressView.swift; sourceTree = "<group>"; };
 		20C1434C795B9F60C3AD278D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		34B05052BC7FD594E835B624 /* SZAVPlayer.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = SZAVPlayer.podspec; path = ../SZAVPlayer.podspec; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* SZAVPlayer_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SZAVPlayer_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +77,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		17F731D223AC613A000E5367 /* AudioView */ = {
+			isa = PBXGroup;
+			children = (
+				17F731D423AC613A000E5367 /* AudioViewController.swift */,
+				17F731DC23AC6188000E5367 /* AudioPlayerProgressView.swift */,
+				17F731DB23AC6188000E5367 /* AudioPlayerSlider.swift */,
+				17F731D523AC613A000E5367 /* FakeAudio.swift */,
+			);
+			path = AudioView;
+			sourceTree = "<group>";
+		};
 		28738189DF60E746D43A3373 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -108,8 +123,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				17A1850423910EA9003E7DE4 /* AudioViewController.swift */,
-				17A18506239111AF003E7DE4 /* FakeAudio.swift */,
+				17F731D223AC613A000E5367 /* AudioView */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -337,10 +351,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				17F731DD23AC6188000E5367 /* AudioPlayerSlider.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				17F731D923AC613A000E5367 /* FakeAudio.swift in Sources */,
+				17F731DE23AC6188000E5367 /* AudioPlayerProgressView.swift in Sources */,
+				17F731D823AC613A000E5367 /* AudioViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
-				17A1850523910EA9003E7DE4 /* AudioViewController.swift in Sources */,
-				17A18507239111AF003E7DE4 /* FakeAudio.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

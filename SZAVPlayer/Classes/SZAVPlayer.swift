@@ -75,7 +75,7 @@ public class SZAVPlayer: UIView {
         super.init(frame: frame)
 
         backgroundColor = .clear
-        SZAVPlayerCache.shared.setup(maxCacheCount: 0)
+        SZAVPlayerCache.shared.setup(maxCacheSize: 100)
         setupRemoteTransportControls()
     }
 

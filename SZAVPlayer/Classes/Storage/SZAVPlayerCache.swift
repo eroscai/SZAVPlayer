@@ -10,22 +10,39 @@ public class SZAVPlayerCache: NSObject {
 
     public static let shared: SZAVPlayerCache = SZAVPlayerCache()
 
-    public var maxCacheCount: Int = 10
+    private var maxCacheSize: Int64 = 0
 
     override init() {
         super.init()
 
-        setup()
+        setup(maxCacheSize: 100)
+        trimCache()
     }
 
-    public func setup(maxCacheCount: Int = 10) {
-        self.maxCacheCount = maxCacheCount
+    /// Setup
+    /// - Parameter maxCacheSize: Unit: MB
+    public func setup(maxCacheSize: Int64) {
+        self.maxCacheSize = maxCacheSize
         SZAVPlayerFileSystem.createCacheDirectory()
     }
 
+    public func save(uniqueID: String, mediaData: Data, startOffset: Int64) {
+        let newFileName = SZAVPlayerLocalFileInfo.newFileName(uniqueID: uniqueID)
+        let localFilePath = SZAVPlayerFileSystem.localFilePath(fileName: newFileName)
+        if SZAVPlayerFileSystem.write(data: mediaData, url: localFilePath) {
+            let fileInfo = SZAVPlayerLocalFileInfo(uniqueID: uniqueID,
+                                                   startOffset: startOffset,
+                                                   loadedByteLength: Int64(mediaData.count),
+                                                   localFileName: newFileName)
+            SZAVPlayerDatabase.shared.update(fileInfo: fileInfo)
+        }
+
+        trimCache()
+    }
+
     public func cleanCache() {
-        // clean local cache
-        // clean mime type
+        SZAVPlayerDatabase.shared.cleanData()
+        SZAVPlayerFileSystem.cleanCachedFiles()
     }
 
     public func isFullyCached(uniqueID: String) -> Bool {
@@ -60,14 +77,20 @@ public class SZAVPlayerCache: NSObject {
 
     public func trimCache() {
         DispatchQueue.global(qos: .background).async {
-            let allFiles: [URL] = SZAVPlayerFileSystem.allFiles(path: SZAVPlayerFileSystem.cacheDirectory)
-            guard allFiles.count > self.maxCacheCount else { return }
+            let directory = SZAVPlayerFileSystem.cacheDirectory
+            let allFiles: [URL] = SZAVPlayerFileSystem.allFiles(path: directory)
+            var totalFileSize: Int64 = 0
+            for file in allFiles {
+                if let attributes = SZAVPlayerFileSystem.attributes(url: file.path),
+                    let fileSize = attributes[FileAttributeKey.size] as? Int64
+                {
+                    totalFileSize += fileSize
+                }
+            }
 
-            let needTrimLength: Int = allFiles.count - self.maxCacheCount
-            let needTrimFiles: [URL] = Array(allFiles[0..<needTrimLength])
-
-            for url in needTrimFiles {
-                SZAVPlayerFileSystem.delete(url: url)
+            totalFileSize /= 1024 * 1024
+            if totalFileSize >= self.maxCacheSize {
+                SZAVPlayerDatabase.shared.trimData()
             }
         }
     }

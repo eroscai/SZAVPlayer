@@ -157,16 +157,7 @@ extension SZAVPlayerDataLoader: SZAVPlayerRequestOperationDelegate {
         }
 
         if shouldSaveData, let mediaData = mediaData, mediaData.count > 0 {
-            let newFileName = SZAVPlayerLocalFileInfo.newFileName(uniqueID: uniqueID)
-            let localFilePath = SZAVPlayerFileSystem.localFilePath(fileName: newFileName)
-            if SZAVPlayerFileSystem.write(data: mediaData, url: localFilePath) {
-                let fileInfo = SZAVPlayerLocalFileInfo(uniqueID: uniqueID,
-                                                       startOffset: operation.startOffset,
-                                                       loadedByteLength: Int64(mediaData.count),
-                                                       localFileName: newFileName)
-                SZAVPlayerDatabase.shared.update(fileInfo: fileInfo)
-            }
-
+            SZAVPlayerCache.shared.save(uniqueID: uniqueID, mediaData: mediaData, startOffset: operation.startOffset)
             self.mediaData = nil
         }
     }

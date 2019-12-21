@@ -91,6 +91,13 @@ extension SZAVPlayerFileSystem {
         return cacheDirectory.appendingPathComponent(fileName)
     }
 
+    static func cleanCachedFiles() {
+        let allCachedFiles = allFiles(path: SZAVPlayerFileSystem.cacheDirectory)
+        for file in allCachedFiles {
+            delete(url: file)
+        }
+    }
+
 }
 
 // MARK: - Getter
