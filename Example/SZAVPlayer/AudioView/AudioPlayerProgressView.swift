@@ -36,7 +36,7 @@ class AudioPlayerProgressView: UIView {
 
 extension AudioPlayerProgressView {
 
-    public func update(currentTime: Float64, loadedTime: Float64, totalTime: Float64) {
+    public func update(currentTime: Float64, totalTime: Float64) {
         guard currentTime >= 0 && totalTime >= 0 && totalTime >= currentTime else { return }
 
         if isDraggingSlider {

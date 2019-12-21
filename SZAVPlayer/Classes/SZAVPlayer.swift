@@ -32,7 +32,7 @@ public enum SZAVPlayerRemoteCommand {
 }
 
 public protocol SZAVPlayerDelegate: AnyObject {
-    func avplayer(_ avplayer: SZAVPlayer, refreshed currentTime: Float64, loadedTime: Float64, totalTime: Float64)
+    func avplayer(_ avplayer: SZAVPlayer, refreshed currentTime: Float64, totalTime: Float64)
     func avplayer(_ avplayer: SZAVPlayer, didChanged status: SZAVPlayerStatus)
     func avplayer(_ avplayer: SZAVPlayer, didReceived remoteCommand: SZAVPlayerRemoteCommand) -> Bool
 }
@@ -45,7 +45,6 @@ public class SZAVPlayer: UIView {
     private(set) public var playerLayer: AVPlayerLayer?
     private(set) public var player: AVPlayer?
     private(set) public var playerItem: SZAVPlayerItem?
-    private(set) public var loadedTime: Float64 = 0
     private(set) public var currentURLStr: String?
 
     private var urlAsset: AVURLAsset?
@@ -139,7 +138,7 @@ extension SZAVPlayer {
 
             if let playerItem = weakSelf.player?.currentItem {
                 let total = CMTimeGetSeconds(playerItem.duration)
-                weakSelf.delegate?.avplayer(weakSelf, refreshed: 0, loadedTime: 0, totalTime: total)
+                weakSelf.delegate?.avplayer(weakSelf, refreshed: 0, totalTime: total)
             }
         }
     }
@@ -229,11 +228,7 @@ extension SZAVPlayer {
     }
 
     private func handleLoadedTimeRanges(playerItem: AVPlayerItem) {
-        guard let firstRange = playerItem.loadedTimeRanges.first else { return }
-
-        let start = CMTimeGetSeconds(firstRange.timeRangeValue.start)
-        let duration = CMTimeGetSeconds(firstRange.timeRangeValue.duration)
-        loadedTime = start + duration
+        // TODO
     }
 
     @objc func handlePlayToEnd(_ notification: Notification) {
@@ -272,7 +267,7 @@ extension SZAVPlayer {
 
             let current = CMTimeGetSeconds(time)
             let total = CMTimeGetSeconds(playerItem.duration)
-            weakSelf.delegate?.avplayer(weakSelf, refreshed: current, loadedTime: weakSelf.loadedTime, totalTime: total)
+            weakSelf.delegate?.avplayer(weakSelf, refreshed: current, totalTime: total)
         })
     }
 

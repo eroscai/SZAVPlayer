@@ -237,8 +237,8 @@ extension AudioViewController: AudioPlayerProgressViewDelegate {
 
 extension AudioViewController: SZAVPlayerDelegate {
 
-    func avplayer(_ avplayer: SZAVPlayer, refreshed currentTime: Float64, loadedTime: Float64, totalTime: Float64) {
-        progressView.update(currentTime: currentTime, loadedTime: loadedTime, totalTime: totalTime)
+    func avplayer(_ avplayer: SZAVPlayer, refreshed currentTime: Float64, totalTime: Float64) {
+        progressView.update(currentTime: currentTime, totalTime: totalTime)
     }
 
     func avplayer(_ avplayer: SZAVPlayer, didChanged status: SZAVPlayerStatus) {
