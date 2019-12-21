@@ -5,11 +5,24 @@
 [![License](https://img.shields.io/cocoapods/l/SZAVPlayer.svg?style=flat)](https://cocoapods.org/pods/SZAVPlayer)
 [![Platform](https://img.shields.io/cocoapods/p/SZAVPlayer.svg?style=flat)](https://cocoapods.org/pods/SZAVPlayer)
 
+SZAVPlayer is a lightweight audio player library, based on `AVPlayer`, pure-Swift. Video playing will be supported later.
+
+## Features
+
+- [x] Encapsulate the state changes of `AVPlayer` and `AVPlayerItem` and output them uniformly, greatly reducing the implementation cost of audio play.
+- [x] Achieved full control of `AVPlayer` data loading, based on `AVAssetResourceLoaderDelegate`. Through the Range request and corresponding cache, it can respond to player's requests ASAP. It also can play the cached audio normally in the weak network and no network enviroment.
+- [x] Support cache total size setting and munually cleaning method.
+
 ## Example
+
+The Example project has implemented a complete play example, including play/pause/previous/next/seekToTime/cleanCache, etc. 
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
 ## Requirements
+
+- iOS 10.0+
+- Swift 5.0+
 
 ## Installation
 
