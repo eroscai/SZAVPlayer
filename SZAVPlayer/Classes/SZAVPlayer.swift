@@ -9,11 +9,13 @@ import AVFoundation
 import CoreAudio
 import MediaPlayer
 
+/// AVPlayer observer keys
 private let SZPlayerItemStatus = "status"
 private let SZPlayerLoadedTimeRanges = "loadedTimeRanges"
 private let SZPlayerPlaybackBufferEmpty = "playbackBufferEmpty"
 private let SZPlayerPlaybackLikelyToKeepUp = "playbackLikelyToKeepUp"
 
+/// AVPlayer status. You can implement SZAVPlayerDelegate to receive state changes.
 public enum SZAVPlayerStatus: Int {
     case loading = 0
     case loadingFailed
@@ -24,6 +26,8 @@ public enum SZAVPlayerStatus: Int {
     case bufferEnd
 }
 
+/// AVPlayer remote command, for example, playback related operations from the lock screen. You can
+/// implement SZAVPlayerDelegate to receive state changes.
 public enum SZAVPlayerRemoteCommand {
     case play
     case pause
@@ -32,8 +36,21 @@ public enum SZAVPlayerRemoteCommand {
 }
 
 public protocol SZAVPlayerDelegate: AnyObject {
+
+    /// Playing time delegate.
+    /// - Parameters:
+    ///   - currentTime: Current item playing time.
+    ///   - totalTime: Current item total duration.
     func avplayer(_ avplayer: SZAVPlayer, refreshed currentTime: Float64, totalTime: Float64)
+
+    /// Player status changing delegate.
+    /// - Parameters:
+    ///   - status: Refer to SZAVPlayerStatus.
     func avplayer(_ avplayer: SZAVPlayer, didChanged status: SZAVPlayerStatus)
+
+    /// Device remote command delegate.
+    /// - Parameters:
+    ///   - remoteCommand: Refer to SZAVPlayerRemoteCommand
     func avplayer(_ avplayer: SZAVPlayer, didReceived remoteCommand: SZAVPlayerRemoteCommand) -> Bool
 }
 
@@ -105,6 +122,11 @@ extension SZAVPlayer {
 
     // MARK: Public
 
+    /// Setup player with specific url, after successfully setting the player status will change to ready to play.
+    /// - Parameters:
+    ///   - urlStr: The URL value for playing.
+    ///   - uniqueID: The uniqueID to identify wether they are the same audio. If set to nil will use urlStr to create one.
+    ///   - isVideo: Is video or not.
     public func setupPlayer(urlStr: String?, uniqueID: String?, isVideo: Bool = false) {
         let finalURLStr = urlStr ?? "fakeURL.com"
         guard let url = URL(string: finalURLStr) else { return }
@@ -117,18 +139,21 @@ extension SZAVPlayer {
         }
     }
 
+    /// If player is ready to play, use this function to start playing.
     public func play() {
         guard let player = player, player.rate == 0 else { return }
 
         player.play()
     }
 
+    /// Pause the playing.
     public func pause() {
         guard let player = player, player.rate == 1.0 else { return }
 
         player.pause()
     }
 
+    /// Reset player to initial time.
     public func reset() {
         guard let player = player else { return }
 
@@ -143,6 +168,11 @@ extension SZAVPlayer {
         }
     }
 
+    /// Move the player cursor to specific time.
+    /// - Parameters:
+    ///   - time: Target time
+    ///   - autoPlay: Whether to play automatically when successfully seek to time.
+    ///   - completion: Completion block.
     public func seekPlayerToTime(time: Float64, autoPlay: Bool = true, completion: (() -> Void)?) {
         guard let player = player, let playerItem = playerItem else { return }
 
