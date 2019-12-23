@@ -219,6 +219,10 @@ extension AudioViewController {
 
     @objc private func handleCleanCacheBtnClick() {
         SZAVPlayerCache.shared.cleanCache()
+
+        let alert = UIAlertController(title: "Clean Succeed~", message: nil, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 
 }

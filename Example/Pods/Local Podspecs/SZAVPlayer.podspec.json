@@ -1,8 +1,8 @@
 {
   "name": "SZAVPlayer",
-  "version": "0.1.0",
-  "summary": "A short description of SZAVPlayer.",
-  "description": "TODO: Add long description of the pod here.",
+  "version": "1.0.0",
+  "summary": "Swift AVPlayer, based on AVAssetResourceLoaderDelegate, support cache.",
+  "description": "SZAVPlayer is a lightweight audio player library, based on AVPlayer, pure-Swift. Video playing will be supported later.",
   "homepage": "https://github.com/eroscai/SZAVPlayer",
   "license": {
     "type": "MIT",
@@ -13,7 +13,7 @@
   },
   "source": {
     "git": "https://github.com/eroscai/SZAVPlayer.git",
-    "tag": "0.1.0"
+    "tag": "1.0.0"
   },
   "platforms": {
     "ios": "10.0"

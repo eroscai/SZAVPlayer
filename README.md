@@ -11,7 +11,8 @@ SZAVPlayer is a lightweight audio player library, based on `AVPlayer`, pure-Swif
 
 - [x] Encapsulate the state changes of `AVPlayer` and `AVPlayerItem` and output them uniformly, greatly reducing the implementation cost of audio play.
 - [x] Achieved full control of `AVPlayer` data loading, based on `AVAssetResourceLoaderDelegate`. Through the Range request and corresponding cache, it can respond to player's requests ASAP. It also can play the cached audio normally in the weak network and no network enviroment.
-- [x] Support cache total size setting and munually cleaning method.
+- [x] Load AVAsset asynchronously to not blocking the main thread.
+- [x] Support setting cache size munually and also support cleaning.
 
 ## Example
 

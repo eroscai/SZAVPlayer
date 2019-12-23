@@ -58,13 +58,7 @@ public class SZAVPlayer: UIView {
 
     public var isMuted: Bool = false
     public weak var delegate: SZAVPlayerDelegate?
-
-    private(set) public var playerLayer: AVPlayerLayer?
-    private(set) public var player: AVPlayer?
-    private(set) public var playerItem: SZAVPlayerItem?
-    private(set) public var currentURLStr: String?
-
-    private var urlAsset: AVURLAsset?
+    public typealias SeekCompletion = (Bool) -> Void
 
     public var totalTime: Float64 {
         guard let player = player, let currentItem = player.currentItem else {
@@ -82,10 +76,20 @@ public class SZAVPlayer: UIView {
         return CMTimeGetSeconds(currentItem.currentTime())
     }
 
+    private(set) public var playerLayer: AVPlayerLayer?
+    private(set) public var player: AVPlayer?
+    private(set) public var playerItem: AVPlayerItem?
+    private(set) public var currentURLStr: String?
+
+    private var urlAsset: AVURLAsset?
+    private var assetLoader: SZAVPlayerAssetLoader?
+    private var isObserverAdded: Bool = false
+
     private var timeObserver: Any?
     private var isSeeking: Bool = false
     private var isReadyToPlay: Bool = false
     private var isBufferBegin: Bool = false
+    private var seekItem: SZAVPlayerSeekItem?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -131,12 +135,23 @@ extension SZAVPlayer {
         let finalURLStr = urlStr ?? "fakeURL.com"
         guard let url = URL(string: finalURLStr) else { return }
 
-        currentURLStr = finalURLStr
-        if let _ = player {
-            replacePalyerItem(url: url, uniqueID: uniqueID)
-        } else {
-            createPlayer(url: url, uniqueID: uniqueID, isVideo: isVideo)
+        if let _ = player, let oldAssetLoader = assetLoader {
+            oldAssetLoader.cleanup()
+            self.assetLoader = nil
         }
+
+        isReadyToPlay = false
+        currentURLStr = finalURLStr
+        let assetLoader = createAssetLoader(url: url, uniqueID: uniqueID)
+        assetLoader.loadAsset { (asset) in
+            if let _ = self.player {
+                self.replacePalyerItem(asset: asset)
+            } else {
+                self.createPlayer(asset: asset, isVideo: isVideo)
+            }
+        }
+
+        self.assetLoader = assetLoader
     }
 
     /// If player is ready to play, use this function to start playing.
@@ -158,8 +173,8 @@ extension SZAVPlayer {
         guard let player = player else { return }
 
         player.pause()
-        seekPlayerToTime(time: 0, autoPlay: false) { [weak self] in
-            guard let weakSelf = self else { return }
+        seekPlayerToTime(time: 0, autoPlay: false) { [weak self] (finished) in
+            guard let weakSelf = self, finished else { return }
 
             if let playerItem = weakSelf.player?.currentItem {
                 let total = CMTimeGetSeconds(playerItem.duration)
@@ -172,15 +187,25 @@ extension SZAVPlayer {
     /// - Parameters:
     ///   - time: Target time
     ///   - autoPlay: Whether to play automatically when successfully seek to time.
-    ///   - completion: Completion block.
-    public func seekPlayerToTime(time: Float64, autoPlay: Bool = true, completion: (() -> Void)?) {
+    ///   - completion: The completion handler for any prior seek request that is still
+    ///   in process will be invoked immediately with the finished parameter set to false.
+    ///   If the new request completes without being interrupted by another seek request
+    ///   or by any other operation the specified completion handler will be invoked with
+    ///   the finished parameter set to true.
+    public func seekPlayerToTime(time: Float64, autoPlay: Bool = true, completion: SeekCompletion?) {
         guard let player = player, let playerItem = playerItem else { return }
 
+        guard isReadyToPlay else {
+            seekItem = SZAVPlayerSeekItem(time: time, autoPlay: autoPlay, completion: completion)
+            return
+        }
+
+        seekItem = nil
         let total = CMTimeGetSeconds(playerItem.duration)
         let didReachEnd = time >= total || abs(time - total) <= 0.5
         if didReachEnd {
             if let completion = completion {
-                completion()
+                completion(true)
             }
 
             handlePlayerStatus(status: .playEnd)
@@ -194,42 +219,37 @@ extension SZAVPlayer {
         player.seek(to: toTime, toleranceBefore: .zero, toleranceAfter: .zero) { [weak self] (finished) in
             self?.isSeeking = false
 
-            if autoPlay {
+            if finished && autoPlay {
                 self?.play()
             }
 
             if let completion = completion {
-                completion()
+                completion(finished)
             }
         }
     }
 
     // MARK: Private
 
-    private func replacePalyerItem(url: URL, uniqueID: String?) {
+    private func replacePalyerItem(asset: AVURLAsset) {
         guard let player = player else { return }
 
-        isReadyToPlay = false
         pause()
 
         if let playerItem = playerItem {
-            if playerItem.isObserverAdded {
+            if isObserverAdded {
                 removePlayerItemObserver(playerItem: playerItem)
             }
-            playerItem.cleanup()
+
             self.playerItem = nil
         }
 
         handlePlayerStatus(status: .loading)
 
-        playerItem = createPlayerItem(url: url, uniqueID: uniqueID)
-        if let playerItem = playerItem,
-            let urlAsset = playerItem.urlAsset
-        {
-            urlAsset.loadValuesAsynchronously(forKeys: ["playable"]) {
-                player.replaceCurrentItem(with: playerItem)
-                self.addPlayerItemObserver(playerItem: playerItem)
-            }
+        playerItem = AVPlayerItem(asset: asset)
+        if let playerItem = playerItem {
+            player.replaceCurrentItem(with: playerItem)
+            self.addPlayerItemObserver(playerItem: playerItem)
         }
     }
 
@@ -240,10 +260,20 @@ extension SZAVPlayer {
 extension SZAVPlayer {
 
     private func handlePlayerItemStatus(playerItem: AVPlayerItem) {
+        guard playerItem == self.playerItem else {
+            return
+        }
+
         switch playerItem.status {
         case .readyToPlay:
-            isReadyToPlay = true
-            handlePlayerStatus(status: .readyToPlay)
+            if !isReadyToPlay, let seekItem = seekItem {
+                isReadyToPlay = true
+                seekPlayerToTime(time: seekItem.time, autoPlay: seekItem.autoPlay, completion: seekItem.completion)
+                self.seekItem = nil
+            } else {
+                isReadyToPlay = true
+                handlePlayerStatus(status: .readyToPlay)
+            }
         case .failed:
             handlePlayerStatus(status: .loadingFailed)
         case .unknown:
@@ -307,16 +337,16 @@ extension SZAVPlayer {
         player.removeTimeObserver(timeObserver)
     }
 
-    private func addPlayerItemObserver(playerItem: SZAVPlayerItem) {
-        playerItem.isObserverAdded = true
+    private func addPlayerItemObserver(playerItem: AVPlayerItem) {
+        isObserverAdded = true
         playerItem.addObserver(self, forKeyPath: SZPlayerItemStatus, options: .new, context: nil)
         playerItem.addObserver(self, forKeyPath: SZPlayerLoadedTimeRanges, options: .new, context: nil)
         playerItem.addObserver(self, forKeyPath: SZPlayerPlaybackBufferEmpty, options: .new, context: nil)
         playerItem.addObserver(self, forKeyPath: SZPlayerPlaybackLikelyToKeepUp, options: .new, context: nil)
     }
 
-    private func removePlayerItemObserver(playerItem: SZAVPlayerItem) {
-        playerItem.isObserverAdded = false
+    private func removePlayerItemObserver(playerItem: AVPlayerItem) {
+        isObserverAdded = false
         playerItem.removeObserver(self, forKeyPath: SZPlayerItemStatus)
         playerItem.removeObserver(self, forKeyPath: SZPlayerLoadedTimeRanges)
         playerItem.removeObserver(self, forKeyPath: SZPlayerPlaybackBufferEmpty)
@@ -458,17 +488,17 @@ extension SZAVPlayer {
 
 // MARK: - SZAVPlayerItemDelegate
 
-extension SZAVPlayer: SZAVPlayerItemDelegate {
+extension SZAVPlayer: SZAVPlayerAssetLoaderDelegate {
 
-    public func playerItemDidFinishDownloading(_ playerItem: SZAVPlayerItem) {
+    public func assetLoaderDidFinishDownloading(_ assetLoader: SZAVPlayerAssetLoader) {
         SZLogInfo("did finish downloading")
     }
 
-    public func playerItem(_ playerItem: SZAVPlayerItem, didDownload bytes: Int64) {
-//        SZLogInfo("did download \(bytes)/\(expectedToReceive)")
+    public func assetLoader(_ assetLoader: SZAVPlayerAssetLoader, didDownload bytes: Int64) {
+        //        SZLogInfo("did download \(bytes)/\(expectedToReceive)")
     }
 
-    public func playerItem(_ playerItem: SZAVPlayerItem, downloadingFailed error: Error) {
+    public func assetLoader(_ assetLoader: SZAVPlayerAssetLoader, downloadingFailed error: Error) {
         SZLogError(String(describing: error))
     }
 
@@ -478,10 +508,10 @@ extension SZAVPlayer: SZAVPlayerItemDelegate {
 
 extension SZAVPlayer {
 
-    private func createPlayer(url: URL, uniqueID: String?, isVideo: Bool = false) {
+    private func createPlayer(asset: AVURLAsset, isVideo: Bool = false) {
         handlePlayerStatus(status: .loading)
 
-        playerItem = createPlayerItem(url: url, uniqueID: uniqueID)
+        playerItem = AVPlayerItem(asset: asset)
         player = AVPlayer(playerItem: playerItem)
         player?.isMuted = isMuted
         player?.automaticallyWaitsToMinimizeStalling = false
@@ -494,19 +524,13 @@ extension SZAVPlayer {
         addNotificationsForPlayer()
     }
 
-    private func createPlayerItem(url: URL, uniqueID: String?) -> SZAVPlayerItem {
-        let item: SZAVPlayerItem = SZAVPlayerItem(url: url)
+    private func createAssetLoader(url: URL, uniqueID: String?) -> SZAVPlayerAssetLoader {
+        let loader = SZAVPlayerAssetLoader(url: url)
         let finalUniqueID = uniqueID ?? SZAVPlayerFileSystem.uniqueID(url: url)
-        item.uniqueID = finalUniqueID
-        item.delegate = self
+        loader.uniqueID = finalUniqueID
+        loader.delegate = self
 
-        return item
-    }
-
-    private func createAsset(url: URL) -> AVURLAsset {
-        let asset = AVURLAsset(url: url)
-
-        return asset
+        return loader
     }
 
     private func createPlayerLayer() {

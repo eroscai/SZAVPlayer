@@ -1,30 +1,30 @@
 //
-//  SZAVPlayerItem.swift
+//  SZAVPlayerAssetLoader.swift
+//  SZAVPlayer
 //
-//  Created by CaiSanze on 2019/11/27.
+//  Created by CaiSanze on 2019/12/23.
 //
 
 import UIKit
 import AVFoundation
 import CoreServices
 
+/// AVPlayerItem custom schema
 private let SZAVPlayerItemScheme = "SZAVPlayerItemScheme"
 
-public protocol SZAVPlayerItemDelegate: AnyObject {
-    func playerItemDidFinishDownloading(_ playerItem: SZAVPlayerItem)
-    func playerItem(_ playerItem: SZAVPlayerItem, didDownload bytes: Int64)
-    func playerItem(_ playerItem: SZAVPlayerItem, downloadingFailed error: Error)
+public protocol SZAVPlayerAssetLoaderDelegate: AnyObject {
+    func assetLoaderDidFinishDownloading(_ assetLoader: SZAVPlayerAssetLoader)
+    func assetLoader(_ assetLoader: SZAVPlayerAssetLoader, didDownload bytes: Int64)
+    func assetLoader(_ assetLoader: SZAVPlayerAssetLoader, downloadingFailed error: Error)
 }
 
-public class SZAVPlayerItem: AVPlayerItem {
+public class SZAVPlayerAssetLoader: NSObject {
 
-    public weak var delegate: SZAVPlayerItemDelegate?
+    public weak var delegate: SZAVPlayerAssetLoaderDelegate?
+    public var uniqueID: String = "defaultUniqueID"
     public let url: URL
     public var urlAsset: AVURLAsset?
-    public var uniqueID: String = "defaultUniqueID"
-    public var isObserverAdded: Bool = false
 
-    private let recursiveLock = NSRecursiveLock()
     private let loaderQueue = DispatchQueue(label: "com.SZAVPlayer.loaderQueue")
     private var currentRequest: SZAVPlayerRequest? {
         didSet {
@@ -36,6 +36,14 @@ public class SZAVPlayerItem: AVPlayerItem {
 
     init(url: URL) {
         self.url = url
+        super.init()
+    }
+
+    deinit {
+        SZLogInfo("deinit")
+    }
+
+    public func loadAsset(completion: @escaping (AVURLAsset) -> Void) {
         var asset: AVURLAsset
         if let urlWithSchema = url.withScheme(SZAVPlayerItemScheme) {
             asset = AVURLAsset(url: urlWithSchema)
@@ -44,32 +52,23 @@ public class SZAVPlayerItem: AVPlayerItem {
             asset = AVURLAsset(url: url)
         }
 
-        super.init(asset: asset, automaticallyLoadedAssetKeys: nil)
-
         asset.resourceLoader.setDelegate(self, queue: loaderQueue)
+        asset.loadValuesAsynchronously(forKeys: ["playable"]) {
+            DispatchQueue.main.async {
+                completion(asset)
+            }
+        }
+
         urlAsset = asset
-    }
-
-    override init(asset: AVAsset, automaticallyLoadedAssetKeys: [String]?) {
-        fatalError("init(asset:automaticallyLoadedAssetKeys:) has not been implemented")
-    }
-
-    deinit {
-        SZLogInfo("deinit")
     }
 
 }
 
 // MARK: - Actions
 
-extension SZAVPlayerItem {
+extension SZAVPlayerAssetLoader {
 
     public func cleanup() {
-        recursiveLock.lock()
-        defer {
-            recursiveLock.unlock()
-        }
-
         loadedLength = 0
         isCancelled = true
         currentRequest?.cancel()
@@ -131,7 +130,7 @@ extension SZAVPlayerItem {
 
             if let error = error {
                 let nsError = error as NSError
-                if SZAVPlayerItem.isNetworkError(code: nsError.code),
+                if SZAVPlayerAssetLoader.isNetworkError(code: nsError.code),
                     let contentInfo = SZAVPlayerDatabase.shared.contentInfo(uniqueID: self.uniqueID)
                 {
                     self.fillInWithLocalData(infoRequest, contentInfo: contentInfo)
@@ -228,14 +227,11 @@ extension SZAVPlayerItem {
 
 // MARK: - AVAssetResourceLoaderDelegate
 
-extension SZAVPlayerItem: AVAssetResourceLoaderDelegate {
+extension SZAVPlayerAssetLoader: AVAssetResourceLoaderDelegate {
 
-    public func resourceLoader(_ resourceLoader: AVAssetResourceLoader, shouldWaitForLoadingOfRequestedResource loadingRequest: AVAssetResourceLoadingRequest) -> Bool {
-        recursiveLock.lock()
-        defer {
-            recursiveLock.unlock()
-        }
-
+    public func resourceLoader(_ resourceLoader: AVAssetResourceLoader,
+                               shouldWaitForLoadingOfRequestedResource loadingRequest: AVAssetResourceLoadingRequest) -> Bool
+    {
         if let _ = loadingRequest.contentInformationRequest {
             return handleContentInfoRequest(loadingRequest: loadingRequest)
         } else if let _ = loadingRequest.dataRequest {
@@ -245,12 +241,9 @@ extension SZAVPlayerItem: AVAssetResourceLoaderDelegate {
         }
     }
 
-    public func resourceLoader(_ resourceLoader: AVAssetResourceLoader, didCancel loadingRequest: AVAssetResourceLoadingRequest) {
-        recursiveLock.lock()
-        defer {
-            recursiveLock.unlock()
-        }
-
+    public func resourceLoader(_ resourceLoader: AVAssetResourceLoader,
+                               didCancel loadingRequest: AVAssetResourceLoadingRequest)
+    {
         currentRequest?.cancel()
     }
 
@@ -258,7 +251,7 @@ extension SZAVPlayerItem: AVAssetResourceLoaderDelegate {
 
 // MARK: - SZAVPlayerDataLoaderDelegate
 
-extension SZAVPlayerItem: SZAVPlayerDataLoaderDelegate {
+extension SZAVPlayerAssetLoader: SZAVPlayerDataLoaderDelegate {
 
     func dataLoader(_ loader: SZAVPlayerDataLoader, didReceive data: Data) {
         if let dataRequest = currentRequest?.loadingRequest.dataRequest {
@@ -266,21 +259,21 @@ extension SZAVPlayerItem: SZAVPlayerDataLoaderDelegate {
         }
 
         loadedLength = loadedLength + Int64(data.count)
-        delegate?.playerItem(self, didDownload: loadedLength)
+        delegate?.assetLoader(self, didDownload: loadedLength)
     }
 
     func dataLoaderDidFinish(_ loader: SZAVPlayerDataLoader) {
         currentRequest?.loadingRequest.finishLoading()
         currentRequest = nil
 
-        delegate?.playerItemDidFinishDownloading(self)
+        delegate?.assetLoaderDidFinishDownloading(self)
     }
 
     func dataLoader(_ loader: SZAVPlayerDataLoader, didFailWithError error: Error) {
         currentRequest?.loadingRequest.finishLoading(with: error)
         currentRequest = nil
 
-        delegate?.playerItem(self, downloadingFailed: error)
+        delegate?.assetLoader(self, downloadingFailed: error)
     }
 
 }
@@ -335,16 +328,7 @@ fileprivate extension URLResponse {
 
 // MARK: - Getter
 
-extension SZAVPlayerItem {
-
-    private static func fakeURL(isAudio: Bool) -> URL {
-        let fakeFileExtension = isAudio ? "mp3" : "mp4"
-        guard let url = URL(string: SZAVPlayerItemScheme + "://fake/file.\(fakeFileExtension)") else {
-            fatalError("Failed to initialize fakeURL!")
-        }
-
-        return url
-    }
+extension SZAVPlayerAssetLoader {
 
     private static func isNetworkError(code: Int) -> Bool {
         let errorCodes = [
