@@ -26,7 +26,7 @@ public enum SZAVPlayerStatus: Int {
     case bufferEnd
 }
 
-/// AVPlayer remote command, for example, playback related operations from the lock screen. You can
+/// AVPlayer remote command, e.g. playback related operations from the lock screen. You can
 /// implement SZAVPlayerDelegate to receive state changes.
 public enum SZAVPlayerRemoteCommand {
     case play
@@ -40,8 +40,9 @@ public protocol SZAVPlayerDelegate: AnyObject {
     /// Playing time delegate.
     /// - Parameters:
     ///   - currentTime: Current item playing time.
+    ///   - loadedTime: Current item loaded time.
     ///   - totalTime: Current item total duration.
-    func avplayer(_ avplayer: SZAVPlayer, refreshed currentTime: Float64, totalTime: Float64)
+    func avplayer(_ avplayer: SZAVPlayer, refreshed currentTime: Float64, loadedTime: Float64, totalTime: Float64)
 
     /// Player status changing delegate.
     /// - Parameters:
@@ -80,6 +81,7 @@ public class SZAVPlayer: UIView {
     private(set) public var player: AVPlayer?
     private(set) public var playerItem: AVPlayerItem?
     private(set) public var currentURLStr: String?
+    private(set) public var loadedTime: Float64 = 0
 
     private var urlAsset: AVURLAsset?
     private var assetLoader: SZAVPlayerAssetLoader?
@@ -178,7 +180,7 @@ extension SZAVPlayer {
 
             if let playerItem = weakSelf.player?.currentItem {
                 let total = CMTimeGetSeconds(playerItem.duration)
-                weakSelf.delegate?.avplayer(weakSelf, refreshed: 0, totalTime: total)
+                weakSelf.delegate?.avplayer(weakSelf, refreshed: 0, loadedTime: 0, totalTime: total)
             }
         }
     }
@@ -288,7 +290,11 @@ extension SZAVPlayer {
     }
 
     private func handleLoadedTimeRanges(playerItem: AVPlayerItem) {
-        // TODO
+        guard let firstRange = playerItem.loadedTimeRanges.first else { return }
+
+        let start = CMTimeGetSeconds(firstRange.timeRangeValue.start)
+        let duration = CMTimeGetSeconds(firstRange.timeRangeValue.duration)
+        loadedTime = start + duration
     }
 
     @objc func handlePlayToEnd(_ notification: Notification) {
@@ -327,7 +333,7 @@ extension SZAVPlayer {
 
             let current = CMTimeGetSeconds(time)
             let total = CMTimeGetSeconds(playerItem.duration)
-            weakSelf.delegate?.avplayer(weakSelf, refreshed: current, totalTime: total)
+            weakSelf.delegate?.avplayer(weakSelf, refreshed: current, loadedTime: weakSelf.loadedTime, totalTime: total)
         })
     }
 
