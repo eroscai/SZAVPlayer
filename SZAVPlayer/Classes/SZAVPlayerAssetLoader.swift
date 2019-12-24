@@ -147,7 +147,8 @@ extension SZAVPlayerAssetLoader {
                 if let mimeType = response.mimeType {
                     let info = SZAVPlayerContentInfo(uniqueID: self.uniqueID,
                                                      mimeType: mimeType,
-                                                     contentLength: response.sz_expectedContentLength)
+                                                     contentLength: response.sz_expectedContentLength,
+                                                     isByteRangeAccessSupported: response.sz_isByteRangeAccessSupported)
                     SZAVPlayerDatabase.shared.update(contentInfo: info)
                 }
                 self.fillInWithRemoteResponse(infoRequest, response: response)
@@ -208,8 +209,7 @@ extension SZAVPlayerAssetLoader {
         }
 
         request.contentLength = contentInfo.contentLength
-        // TODO
-        request.isByteRangeAccessSupported = true
+        request.isByteRangeAccessSupported = contentInfo.isByteRangeAccessSupported
     }
 
     private func fillInWithRemoteResponse(_ request: AVAssetResourceLoadingContentInformationRequest, response: URLResponse) {
@@ -219,8 +219,7 @@ extension SZAVPlayerAssetLoader {
             request.contentType = contentType.takeRetainedValue() as String
         }
         request.contentLength = response.sz_expectedContentLength
-        // TODO
-        request.isByteRangeAccessSupported = true
+        request.isByteRangeAccessSupported = response.sz_isByteRangeAccessSupported
     }
 
 }
@@ -322,6 +321,29 @@ fileprivate extension URLResponse {
         } else {
             return expectedContentLength
         }
+    }
+
+    var sz_isByteRangeAccessSupported: Bool {
+        guard let response = self as? HTTPURLResponse else {
+            return false
+        }
+
+        let rangeAccessKeys: [String] = [
+            "Accept-Ranges",
+            "accept-ranges",
+            "Accept-ranges",
+            "accept-Ranges",
+        ]
+
+        for key in rangeAccessKeys {
+            if let value = response.allHeaderFields[key] as? String,
+                value == "bytes"
+            {
+                return true
+            }
+        }
+
+        return false
     }
 
 }

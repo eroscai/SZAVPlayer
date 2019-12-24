@@ -15,10 +15,12 @@ protocol SZBaseModel: Codable {
 extension SZBaseModel {
 
     static func deserialize(data: Any) -> Self? {
-        if let jsonData = try? JSONSerialization.data(withJSONObject: data, options: []),
-            let info = try? JSONDecoder().decode(Self.self, from: jsonData)
-        {
+        do {
+            let jsonData = try JSONSerialization.data(withJSONObject: data, options: [])
+            let info = try JSONDecoder().decode(Self.self, from: jsonData)
             return info
+        } catch {
+            SZLogError("\(error)")
         }
 
         return nil

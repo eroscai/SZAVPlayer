@@ -113,6 +113,19 @@ class SZDatabase: NSObject {
         return "Unkwon"
     }
 
+    func columnExist(columnName: String, tableName: String) -> Bool {
+        let schema = getTableSchema(tableName: tableName)
+        for value in schema {
+            if let column = value["name"] as? String,
+                column == columnName
+            {
+                return true
+            }
+        }
+
+        return false
+    }
+
 }
 
 // MARK:- Private
@@ -420,6 +433,11 @@ private extension SZDatabase {
         if let stmt = prepare(sql:sql) {
             _ = execute(stmt:stmt, sql:sql)
         }
+    }
+
+    func getTableSchema(tableName: String) -> [[String: Any]] {
+        let sql = "PRAGMA table_info(\(tableName))"
+        return query(sql: sql)
     }
 
 }

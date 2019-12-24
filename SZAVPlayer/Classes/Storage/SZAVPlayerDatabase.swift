@@ -19,7 +19,7 @@ public class SZAVPlayerDatabase: NSObject {
 
         guard dbQueue.open(dbPath: dbFileName) else { return }
 
-        createMIMETypesTable()
+        createContentInfoTable()
         createLocalFileInfoTable()
     }
 
@@ -80,10 +80,10 @@ extension SZAVPlayerDatabase {
     public func update(contentInfo: SZAVPlayerContentInfo) {
         dbQueue.inQueue { (db) in
             let sql = "INSERT OR REPLACE INTO \(SZAVPlayerContentInfo.tableName) " +
-            "(uniqueID, mimeType, contentLength, updated) " +
-            "values(?, ?, ?, ?)"
+            "(uniqueID, mimeType, contentLength, updated, isByteRangeAccessSupported) " +
+            "values(?, ?, ?, ?, ?)"
             let updated = Int64(Date().timeIntervalSince1970)
-            let params: [Any] = [contentInfo.uniqueID, contentInfo.mimeType, contentInfo.contentLength, updated]
+            let params: [Any] = [contentInfo.uniqueID, contentInfo.mimeType, contentInfo.contentLength, updated, contentInfo.isByteRangeAccessSupported]
             db.execute(sql: sql, params: params)
         }
     }
@@ -113,7 +113,7 @@ extension SZAVPlayerDatabase {
         return expiredInfos
     }
 
-    private func createMIMETypesTable() {
+    private func createContentInfoTable() {
         let tableName = SZAVPlayerContentInfo.tableName
         let sqlQuerys = [
             "CREATE TABLE IF NOT EXISTS \(tableName) (" +
@@ -130,6 +130,11 @@ extension SZAVPlayerDatabase {
         ]
 
         createTable(sqlQuerys: sqlQuerys)
+
+        if !dbQueue.columnExist(columnName: "isByteRangeAccessSupported", tableName: SZAVPlayerContentInfo.tableName) {
+            let sql = "ALTER TABLE \(SZAVPlayerContentInfo.tableName) ADD COLUMN isByteRangeAccessSupported INTEGER DEFAULT 1"
+            dbQueue.execute(sql: sql)
+        }
     }
 
 }
