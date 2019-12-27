@@ -204,7 +204,7 @@ extension SZAVPlayer {
 
         seekItem = nil
         let total = CMTimeGetSeconds(playerItem.duration)
-        let didReachEnd = time >= total || abs(time - total) <= 0.5
+        let didReachEnd = total > 0 && (time >= total || abs(time - total) <= 0.5)
         if didReachEnd {
             if let completion = completion {
                 completion(true)
