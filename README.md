@@ -6,6 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/SZAVPlayer.svg?style=flat)](https://cocoapods.org/pods/SZAVPlayer)
 
 中文说明请看[这里](https://github.com/eroscai/SZAVPlayer/wiki/iOS%E5%9F%BA%E4%BA%8EAVPlayer%E5%AE%9E%E7%8E%B0%E9%9F%B3%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%92%8C%E7%BC%93%E5%AD%98)
+
 SZAVPlayer is a lightweight audio player library, based on `AVPlayer`, pure-Swift. Video playing will be supported later.
 
 ## Features
