@@ -42,6 +42,7 @@ class AudioViewController: UIViewController {
         view.backgroundColor = .white
 
         addSubviews()
+        SZAVPlayerCache.shared.setup(maxCacheSize: 100)
 
         currentAudio = audios.first
         updateView()
@@ -237,7 +238,7 @@ extension AudioViewController: AudioPlayerProgressViewDelegate {
 
 }
 
-// MARK: - SZAVPlayerDatabase
+// MARK: - SZAVPlayerDelegate
 
 extension AudioViewController: SZAVPlayerDelegate {
 
