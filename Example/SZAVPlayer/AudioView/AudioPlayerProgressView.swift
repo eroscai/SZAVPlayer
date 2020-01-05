@@ -19,15 +19,21 @@ class AudioPlayerProgressView: UIView {
     private lazy var minTimeLabel: UILabel = createTimeLabel()
     private lazy var maxTimeLabel: UILabel = createTimeLabel()
     private var progressSliderOriginalBounds: CGRect?
+    private var shouldIgnoreProgress: Bool = false
 
     override init(frame: CGRect) {
         super.init(frame: frame)
 
         addSubviews()
+        ListenerCenter.shared.addListener(listener: self, type: .playerStatusEvent)
     }
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    deinit {
+        ListenerCenter.shared.removeAllListener(listener: self)
     }
 
 }
@@ -39,7 +45,7 @@ extension AudioPlayerProgressView {
     public func update(currentTime: Float64, totalTime: Float64) {
         guard currentTime >= 0 && totalTime >= 0 && totalTime >= currentTime else { return }
 
-        if isDraggingSlider {
+        if isDraggingSlider || shouldIgnoreProgress {
             return
         }
 
@@ -110,6 +116,16 @@ extension AudioPlayerProgressView {
         let str = String(format: "%02ld:%02ld", Int64(second / 60), Int64(second.truncatingRemainder(dividingBy: 60)))
 
         return str
+    }
+
+}
+
+// MARK: - PlayerStatusListenerProtocol
+
+extension AudioPlayerProgressView: PlayerControllerEventListenerProtocol {
+
+    func onPlayerControllerEventDetected(event: PlayerControllerEventType) {
+        shouldIgnoreProgress = event != .playing
     }
 
 }

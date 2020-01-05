@@ -1,8 +1,8 @@
 //
-//  AudioViewController.swift
+//  VideoViewController.swift
 //  SZAVPlayer_Example
 //
-//  Created by CaiSanze on 2019/11/29.
+//  Created by CaiSanze on 2020/01/02.
 //  Copyright © 2019 CocoaPods. All rights reserved.
 //
 
@@ -10,28 +10,24 @@ import UIKit
 import SZAVPlayer
 import SnapKit
 
-class AudioViewController: UIViewController {
+class VideoViewController: UIViewController {
 
-    private lazy var audioTitleLabel: UILabel = createTitleLabel()
+    private lazy var videoTitleLabel: UILabel = createTitleLabel()
     private lazy var progressView: AudioPlayerProgressView = createProgressView()
     private lazy var playBtn: UIButton = createPlayBtn()
     private lazy var previousBtn: UIButton = createPreviousBtn()
     private lazy var nextBtn: UIButton = createNextBtn()
     private lazy var cleanCacheBbtn: UIButton = createCleanCacheBtn()
 
-    private lazy var audioPlayer: SZAVPlayer = createAudioPlayer()
-    private let audios: [FakeAudio] = [
-        FakeAudio.fake1(),
-        FakeAudio.fake2(),
-        FakeAudio.fake3(),
+    private lazy var videoPlayer: SZAVPlayer = createVideoPlayer()
+    private let videos: [FakeVideo] = [
+        FakeVideo.fake1(),
+        FakeVideo.fake2(),
+        FakeVideo.fake3(),
     ]
-    private var currentAudio: FakeAudio?
+    private var currentVideo: FakeVideo?
     private var isPaused: Bool = false
-    private var playerControllerEvent: PlayerControllerEventType = .none {
-        didSet {
-            ListenerCenter.shared.notifyPlayerControllerEventDetected(event: playerControllerEvent)
-        }
-    }
+    private var playerControllerEvent: PlayerControllerEventType = .none
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,7 +37,7 @@ class AudioViewController: UIViewController {
         addSubviews()
         SZAVPlayerCache.shared.setup(maxCacheSize: 100)
 
-        currentAudio = audios.first
+        currentVideo = videos.first
         updateView()
     }
 
@@ -49,22 +45,22 @@ class AudioViewController: UIViewController {
 
 // MARK: - Configure UI
 
-extension AudioViewController {
+extension VideoViewController {
 
     private func updateView() {
-        guard let audio = currentAudio else {
+        guard let video = currentVideo else {
             return
         }
 
-        audioTitleLabel.text = audio.title
+        videoTitleLabel.text = video.title
 
-        if let _ = findAudio(currentAudio: audio, findNext: true) {
+        if let _ = findVideo(currentVideo: video, findNext: true) {
             nextBtn.isEnabled = true
         } else {
             nextBtn.isEnabled = false
         }
 
-        if let _ = findAudio(currentAudio: audio, findNext: false) {
+        if let _ = findVideo(currentVideo: video, findNext: false) {
             previousBtn.isEnabled = true
         } else {
             previousBtn.isEnabled = false
@@ -79,12 +75,23 @@ extension AudioViewController {
     }
 
     private func addSubviews() {
-        view.addSubview(audioTitleLabel)
-        audioTitleLabel.snp.makeConstraints { (make) in
+        view.addSubview(videoPlayer)
+        videoPlayer.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview().inset(15)
+            make.height.equalTo(200)
+            make.centerX.equalToSuperview()
+
+            var offsetTop: CGFloat = (navigationController?.navigationBar.frame.maxY ?? 0) + 15
+            offsetTop = max(64, offsetTop)
+            make.top.equalTo(offsetTop)
+        }
+
+        view.addSubview(videoTitleLabel)
+        videoTitleLabel.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview().inset(15)
             make.height.equalTo(30)
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-120)
+            make.top.equalTo(videoPlayer.snp.bottom).offset(30)
         }
 
         view.addSubview(progressView)
@@ -92,27 +99,28 @@ extension AudioViewController {
             make.left.right.equalToSuperview().inset(15)
             make.height.equalTo(20)
             make.centerX.equalToSuperview()
-            make.centerY.equalToSuperview().offset(-70)
+            make.top.equalTo(videoTitleLabel.snp.bottom).offset(20)
         }
 
         view.addSubview(playBtn)
         playBtn.snp.makeConstraints { (make) in
             make.width.height.equalTo(40)
-            make.center.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.top.equalTo(progressView.snp.bottom).offset(30)
         }
 
         view.addSubview(nextBtn)
         nextBtn.snp.makeConstraints { (make) in
             make.width.height.equalTo(30)
             make.centerX.equalToSuperview().offset(100)
-            make.centerY.equalToSuperview()
+            make.top.equalTo(progressView.snp.bottom).offset(30)
         }
 
         view.addSubview(previousBtn)
         previousBtn.snp.makeConstraints { (make) in
             make.width.height.equalTo(30)
             make.centerX.equalToSuperview().offset(-100)
-            make.centerY.equalToSuperview()
+            make.top.equalTo(progressView.snp.bottom).offset(30)
         }
 
         view.addSubview(cleanCacheBbtn)
@@ -128,26 +136,26 @@ extension AudioViewController {
 
 // MARK: - Actions
 
-extension AudioViewController {
+extension VideoViewController {
 
     @objc func handlePlayBtnClick() {
         if playerControllerEvent == .playing {
-            pauseAudio()
+            pauseVideo()
         } else {
-            playAudio()
+            playVideo()
         }
     }
 
     @objc func handleNextBtnClick() {
         isPaused = false
-        if let currentAudio = currentAudio,
-            let audio = findAudio(currentAudio: currentAudio, findNext: true)
+        if let currentVideo = currentVideo,
+            let video = findVideo(currentVideo: currentVideo, findNext: true)
         {
-            self.currentAudio = audio
+            self.currentVideo = video
             progressView.reset()
-            playAudio()
+            playVideo()
         } else {
-            SZLogError("No audio!")
+            SZLogError("No video!")
         }
 
         updateView()
@@ -155,63 +163,63 @@ extension AudioViewController {
 
     @objc func handlePreviousBtnClick() {
         isPaused = false
-        if let currentAudio = currentAudio,
-            let audio = findAudio(currentAudio: currentAudio, findNext: false)
+        if let currentVideo = currentVideo,
+            let video = findVideo(currentVideo: currentVideo, findNext: false)
         {
-            self.currentAudio = audio
+            self.currentVideo = video
             progressView.reset()
-            playAudio()
+            playVideo()
         } else {
-            SZLogError("No audio!")
+            SZLogError("No video!")
         }
 
         updateView()
     }
 
     private func handlePlayEnd() {
-        if let currentAudio = currentAudio,
-            let _ = findAudio(currentAudio: currentAudio, findNext: true)
+        if let currentVideo = currentVideo,
+            let _ = findVideo(currentVideo: currentVideo, findNext: true)
         {
             handleNextBtnClick()
         } else {
             playerControllerEvent = .none
-            audioPlayer.reset()
+            videoPlayer.reset()
             updateView()
         }
     }
 
-    private func playAudio() {
-        guard let audio = currentAudio else {
+    private func playVideo() {
+        guard let video = currentVideo else {
             return
         }
 
         if isPaused {
             isPaused = false
-            audioPlayer.play()
+            videoPlayer.play()
         } else {
-            audioPlayer.pause()
-            audioPlayer.setupPlayer(urlStr: audio.url, uniqueID: nil)
+            videoPlayer.pause()
+            videoPlayer.setupPlayer(urlStr: video.url, uniqueID: nil, isVideo: true)
         }
         playerControllerEvent = .playing
         updateView()
     }
 
-    private func pauseAudio() {
+    private func pauseVideo() {
         isPaused = true
-        audioPlayer.pause()
+        videoPlayer.pause()
         playerControllerEvent = .paused
         updateView()
     }
 
-    private func findAudio(currentAudio: FakeAudio, findNext: Bool) -> FakeAudio? {
-        let playlist = audios
-        let audios = findNext ? playlist : playlist.reversed()
-        var currentAudioDetected: Bool = false
-        for audio in audios {
-            if currentAudioDetected {
-                return audio
-            } else if audio == currentAudio {
-                currentAudioDetected = true
+    private func findVideo(currentVideo: FakeVideo, findNext: Bool) -> FakeVideo? {
+        let playlist = videos
+        let videos = findNext ? playlist : playlist.reversed()
+        var currentVideoDetected: Bool = false
+        for video in videos {
+            if currentVideoDetected {
+                return video
+            } else if video == currentVideo {
+                currentVideoDetected = true
             }
         }
 
@@ -230,17 +238,17 @@ extension AudioViewController {
 
 // MARK: - AudioPlayerProgressViewDelegate
 
-extension AudioViewController: AudioPlayerProgressViewDelegate {
+extension VideoViewController: AudioPlayerProgressViewDelegate {
 
     func progressView(_ progressView: AudioPlayerProgressView, didChanged currentTime: Float64) {
-        audioPlayer.seekPlayerToTime(time: currentTime, completion: nil)
+        videoPlayer.seekPlayerToTime(time: currentTime, completion: nil)
     }
 
 }
 
 // MARK: - SZAVPlayerDelegate
 
-extension AudioViewController: SZAVPlayerDelegate {
+extension VideoViewController: SZAVPlayerDelegate {
 
     func avplayer(_ avplayer: SZAVPlayer, refreshed currentTime: Float64, loadedTime: Float64, totalTime: Float64) {
         progressView.update(currentTime: currentTime, totalTime: totalTime)
@@ -251,7 +259,7 @@ extension AudioViewController: SZAVPlayerDelegate {
         case .readyToPlay:
             SZLogInfo("ready to play")
             if playerControllerEvent == .playing {
-                audioPlayer.play()
+                videoPlayer.play()
             }
         case .playEnd:
             SZLogInfo("play end")
@@ -265,7 +273,7 @@ extension AudioViewController: SZAVPlayerDelegate {
         case .bufferEnd:
             SZLogInfo("buffer end")
             if playerControllerEvent == .stalled {
-                audioPlayer.play()
+                videoPlayer.play()
             }
         case .playbackStalled:
             SZLogInfo("playback stalled")
@@ -281,7 +289,7 @@ extension AudioViewController: SZAVPlayerDelegate {
 
 // MARK: - Getter
 
-extension AudioViewController {
+extension VideoViewController {
 
     private func createTitleLabel() -> UILabel {
         let label = UILabel()
@@ -299,8 +307,9 @@ extension AudioViewController {
         return view
     }
 
-    private func createAudioPlayer() -> SZAVPlayer {
+    private func createVideoPlayer() -> SZAVPlayer {
         let player = SZAVPlayer()
+        player.backgroundColor = .black
         player.delegate = self
 
         return player

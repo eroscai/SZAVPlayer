@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1735978523BDFCF800D3E232 /* FakeVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1735978323BDFCF800D3E232 /* FakeVideo.swift */; };
+		1735978623BDFCF800D3E232 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1735978423BDFCF800D3E232 /* VideoViewController.swift */; };
+		1735978B23C1F0FA00D3E232 /* ListenerNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1735978823C1F0FA00D3E232 /* ListenerNode.swift */; };
+		1735978C23C1F0FA00D3E232 /* ListenerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1735978923C1F0FA00D3E232 /* ListenerProtocol.swift */; };
+		1735978D23C1F0FA00D3E232 /* ListenerCenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1735978A23C1F0FA00D3E232 /* ListenerCenter.swift */; };
 		17F731D823AC613A000E5367 /* AudioViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F731D423AC613A000E5367 /* AudioViewController.swift */; };
 		17F731D923AC613A000E5367 /* FakeAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F731D523AC613A000E5367 /* FakeAudio.swift */; };
 		17F731DD23AC6188000E5367 /* AudioPlayerSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17F731DB23AC6188000E5367 /* AudioPlayerSlider.swift */; };
@@ -33,6 +38,11 @@
 
 /* Begin PBXFileReference section */
 		034F419971C2847E98BC6A94 /* Pods-SZAVPlayer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SZAVPlayer_Tests.debug.xcconfig"; path = "Target Support Files/Pods-SZAVPlayer_Tests/Pods-SZAVPlayer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		1735978323BDFCF800D3E232 /* FakeVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeVideo.swift; sourceTree = "<group>"; };
+		1735978423BDFCF800D3E232 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VideoViewController.swift; sourceTree = "<group>"; };
+		1735978823C1F0FA00D3E232 /* ListenerNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenerNode.swift; sourceTree = "<group>"; };
+		1735978923C1F0FA00D3E232 /* ListenerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenerProtocol.swift; sourceTree = "<group>"; };
+		1735978A23C1F0FA00D3E232 /* ListenerCenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListenerCenter.swift; sourceTree = "<group>"; };
 		17F731D423AC613A000E5367 /* AudioViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioViewController.swift; sourceTree = "<group>"; };
 		17F731D523AC613A000E5367 /* FakeAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FakeAudio.swift; sourceTree = "<group>"; };
 		17F731DB23AC6188000E5367 /* AudioPlayerSlider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayerSlider.swift; sourceTree = "<group>"; };
@@ -77,6 +87,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		1735978223BDFCF800D3E232 /* VideoView */ = {
+			isa = PBXGroup;
+			children = (
+				1735978423BDFCF800D3E232 /* VideoViewController.swift */,
+				1735978323BDFCF800D3E232 /* FakeVideo.swift */,
+			);
+			path = VideoView;
+			sourceTree = "<group>";
+		};
+		1735978723C1F0FA00D3E232 /* ListenerCenter */ = {
+			isa = PBXGroup;
+			children = (
+				1735978823C1F0FA00D3E232 /* ListenerNode.swift */,
+				1735978923C1F0FA00D3E232 /* ListenerProtocol.swift */,
+				1735978A23C1F0FA00D3E232 /* ListenerCenter.swift */,
+			);
+			path = ListenerCenter;
+			sourceTree = "<group>";
+		};
 		17F731D223AC613A000E5367 /* AudioView */ = {
 			isa = PBXGroup;
 			children = (
@@ -123,7 +152,9 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
+				1735978723C1F0FA00D3E232 /* ListenerCenter */,
 				17F731D223AC613A000E5367 /* AudioView */,
+				1735978223BDFCF800D3E232 /* VideoView */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -353,10 +384,15 @@
 			files = (
 				17F731DD23AC6188000E5367 /* AudioPlayerSlider.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				1735978623BDFCF800D3E232 /* VideoViewController.swift in Sources */,
 				17F731D923AC613A000E5367 /* FakeAudio.swift in Sources */,
 				17F731DE23AC6188000E5367 /* AudioPlayerProgressView.swift in Sources */,
+				1735978523BDFCF800D3E232 /* FakeVideo.swift in Sources */,
 				17F731D823AC613A000E5367 /* AudioViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
+				1735978D23C1F0FA00D3E232 /* ListenerCenter.swift in Sources */,
+				1735978B23C1F0FA00D3E232 /* ListenerNode.swift in Sources */,
+				1735978C23C1F0FA00D3E232 /* ListenerProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

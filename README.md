@@ -7,7 +7,7 @@
 
 中文说明请看[这里](https://github.com/eroscai/SZAVPlayer/wiki/iOS%E5%9F%BA%E4%BA%8EAVPlayer%E5%AE%9E%E7%8E%B0%E9%9F%B3%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%92%8C%E7%BC%93%E5%AD%98)
 
-SZAVPlayer is a lightweight audio player library, based on `AVPlayer`, pure-Swift. Video playing will be supported later.
+SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pure-Swift and support cache.
 
 ## Features
 
@@ -32,6 +32,9 @@ SZAVPlayer is a lightweight audio player library, based on `AVPlayer`, pure-Swif
     ```swift
     // uniqueID is to identify wether they are the same audio. If set to nil will use urlStr to create one.
     audioPlayer.setupPlayer(urlStr: audio.url, uniqueID: nil)
+    
+    // if you want play video, pass an additional parameter `isVideo`.
+    videoPlayer.setupPlayer(urlStr: video.url, uniqueID: nil, isVideo: true)
     ```
 
 3. Implement `SZAVPlayerDelegate`.
@@ -109,6 +112,8 @@ SZAVPlayer is a lightweight audio player library, based on `AVPlayer`, pure-Swif
 The Example project has implemented a complete play example, including play/pause/previous/next/seekToTime/cleanCache, etc. 
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
+
+> If play failed in simulator, try exit simulator completely and restart again.
 
 ## Requirements
 
