@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'SZAVPlayer'
-  s.version          = '1.0.1'
+  s.version          = '1.1.0'
   s.summary          = 'Swift AVPlayer, based on AVAssetResourceLoaderDelegate, support cache.'
 
 # This description is used to generate tags and improve search results.
