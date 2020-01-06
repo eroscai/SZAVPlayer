@@ -8,6 +8,7 @@ import UIKit
 import AVFoundation
 import CoreAudio
 import MediaPlayer
+import CoreGraphics
 
 /// AVPlayer observer keys
 private let SZPlayerItemStatus = "status"
@@ -53,6 +54,15 @@ public protocol SZAVPlayerDelegate: AnyObject {
     /// - Parameters:
     ///   - remoteCommand: Refer to SZAVPlayerRemoteCommand
     func avplayer(_ avplayer: SZAVPlayer, didReceived remoteCommand: SZAVPlayerRemoteCommand) -> Bool
+
+    /// If you enabled video output, you can use this delegate to get real-time image object.
+    /// - Parameters:
+    ///   - videoImage: Real-time video image.
+    func avplayer(_ avplayer: SZAVPlayer, didOutput videoImage: CGImage)
+}
+
+extension SZAVPlayerDelegate {
+    public func avplayer(_ avplayer: SZAVPlayer, didOutput videoImage: CGImage) {}
 }
 
 public class SZAVPlayer: UIView {
@@ -83,6 +93,11 @@ public class SZAVPlayer: UIView {
     private(set) public var currentURLStr: String?
     private(set) public var loadedTime: Float64 = 0
 
+    private lazy var videoOutput: AVPlayerItemVideoOutput = createVideoOutput()
+    private let videoOutputQueue: DispatchQueue = DispatchQueue(label: "com.SZAVPlayer.videoOutput")
+    private var displayLink: CADisplayLink?
+    private var config: SZAVPlayerConfig = SZAVPlayerConfig.default
+
     private var urlAsset: AVURLAsset?
     private var assetLoader: SZAVPlayerAssetLoader?
     private var isObserverAdded: Bool = false
@@ -108,6 +123,7 @@ public class SZAVPlayer: UIView {
     deinit {
         removeNotifications()
         removePlayerObserver()
+        removeVideoOutput()
         if let player = player {
             if let currentItem = playerItem {
                 removePlayerItemObserver(playerItem: currentItem)
@@ -128,38 +144,49 @@ extension SZAVPlayer {
 
     // MARK: Public
 
-    /// Setup player with specific url, after successfully setting the player status will change to ready to play.
+    /// Setup player with specific url, after successfully loading, the player status will change to ready to play.
     /// - Parameters:
-    ///   - urlStr: The URL value for playing.
-    ///   - uniqueID: The uniqueID to identify wether they are the same audio. If set to nil will use urlStr to create one.
-    ///   - isVideo: Is video or not.
-    public func setupPlayer(urlStr: String?, uniqueID: String?, isVideo: Bool = false) {
-        let finalURLStr = urlStr ?? "fakeURL.com"
-        guard let url = URL(string: finalURLStr) else { return }
+    ///   - config: The config to setup player properly.
+    public func setupPlayer(config: SZAVPlayerConfig) {
+        guard let url = URL(string: config.urlStr) else { return }
 
         if let _ = player, let oldAssetLoader = assetLoader {
             oldAssetLoader.cleanup()
             self.assetLoader = nil
         }
 
+        self.config = config
         isReadyToPlay = false
-        currentURLStr = finalURLStr
-        let assetLoader = createAssetLoader(url: url, uniqueID: uniqueID)
+        currentURLStr = config.urlStr
+        let assetLoader = createAssetLoader(url: url, uniqueID: config.uniqueID)
         assetLoader.loadAsset { (asset) in
             if let _ = self.player {
                 self.replacePalyerItem(asset: asset)
             } else {
-                self.createPlayer(asset: asset, isVideo: isVideo)
+                self.createPlayer(asset: asset)
             }
         }
 
         self.assetLoader = assetLoader
     }
 
+    /// Replace playerItem with new urlStr and uniqueID.
+    /// - Parameters:
+    ///   - urlStr: The URL value for playing.
+    ///   - uniqueID: The uniqueID to identify wether they are the same audio. If set to nil will use urlStr to create one.
+    public func replace(urlStr: String, uniqueID: String?) {
+        config.urlStr = urlStr
+        config.uniqueID = uniqueID
+        setupPlayer(config: config)
+    }
+
     /// If player is ready to play, use this function to start playing.
     public func play() {
         guard let player = player, player.rate == 0 else { return }
 
+        if config.isVideoOutputEnabled {
+            videoOutput.requestNotificationOfMediaDataChange(withAdvanceInterval: 0.03)
+        }
         player.play()
     }
 
@@ -231,14 +258,22 @@ extension SZAVPlayer {
         }
     }
 
+    /// If you set `isVideoOutputEnabled` to `true` when initialize the config, call this func when you are ready to release the player, otherwise it will cause memory leak.
+    public func removeVideoOutput() {
+        playerItem?.remove(videoOutput)
+        removeDisplayLink()
+    }
+
     // MARK: Private
 
     private func replacePalyerItem(asset: AVURLAsset) {
         guard let player = player else { return }
 
         pause()
+        removeVideoOutput()
 
         if let playerItem = playerItem {
+
             if isObserverAdded {
                 removePlayerItemObserver(playerItem: playerItem)
             }
@@ -250,9 +285,19 @@ extension SZAVPlayer {
 
         playerItem = AVPlayerItem(asset: asset)
         if let playerItem = playerItem {
+            addVideoOutput()
             player.replaceCurrentItem(with: playerItem)
-            self.addPlayerItemObserver(playerItem: playerItem)
+            addPlayerItemObserver(playerItem: playerItem)
         }
+    }
+
+    private func addVideoOutput() {
+        guard config.isVideoOutputEnabled, let playerItem = playerItem else { return }
+
+        removeVideoOutput()
+
+        displayLink = createDisplayLink()
+        playerItem.add(videoOutput)
     }
 
 }
@@ -268,13 +313,14 @@ extension SZAVPlayer {
 
         switch playerItem.status {
         case .readyToPlay:
-            if !isReadyToPlay, let seekItem = seekItem {
+            if !isReadyToPlay {
                 isReadyToPlay = true
-                seekPlayerToTime(time: seekItem.time, autoPlay: seekItem.autoPlay, completion: seekItem.completion)
-                self.seekItem = nil
-            } else {
-                isReadyToPlay = true
-                handlePlayerStatus(status: .readyToPlay)
+                if let seekItem = seekItem {
+                    seekPlayerToTime(time: seekItem.time, autoPlay: seekItem.autoPlay, completion: seekItem.completion)
+                    self.seekItem = nil
+                } else {
+                    handlePlayerStatus(status: .readyToPlay)
+                }
             }
         case .failed:
             handlePlayerStatus(status: .loadingFailed)
@@ -312,6 +358,31 @@ extension SZAVPlayer {
             playerItem == item
         {
             handlePlayerStatus(status: .playbackStalled)
+        }
+    }
+
+    @objc private func handleDisplayLinkCallback(sender: CADisplayLink) {
+        let nextVSync = sender.timestamp + sender.duration
+        let outputItemTime = videoOutput.itemTime(forHostTime: nextVSync)
+        guard videoOutput.hasNewPixelBuffer(forItemTime: outputItemTime) else { return }
+
+        if let pixelBuffer = videoOutput.copyPixelBuffer(forItemTime: outputItemTime, itemTimeForDisplay: nil) {
+            CVPixelBufferLockBaseAddress(pixelBuffer, .readOnly)
+            let bitmapInfo = CGBitmapInfo(rawValue: CGBitmapInfo.byteOrder32Little.rawValue | CGImageAlphaInfo.noneSkipFirst.rawValue)
+            let cgContext = CGContext(data: CVPixelBufferGetBaseAddress(pixelBuffer),
+                                      width: CVPixelBufferGetWidth(pixelBuffer),
+                                      height: CVPixelBufferGetHeight(pixelBuffer),
+                                      bitsPerComponent: 8,
+                                      bytesPerRow: CVPixelBufferGetBytesPerRow(pixelBuffer),
+                                      space: CGColorSpaceCreateDeviceRGB(),
+                                      bitmapInfo: bitmapInfo.rawValue)
+            if let cgContext = cgContext,
+                let cgImage = cgContext.makeImage()
+            {
+                delegate?.avplayer(self, didOutput: cgImage)
+            }
+
+            CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
         }
     }
 
@@ -510,19 +581,30 @@ extension SZAVPlayer: SZAVPlayerAssetLoaderDelegate {
 
 }
 
+// MARK: - AVPlayerItemOutputPullDelegate
+
+extension SZAVPlayer: AVPlayerItemOutputPullDelegate {
+
+    public func outputMediaDataWillChange(_ sender: AVPlayerItemOutput) {
+        displayLink?.isPaused = false
+    }
+
+}
+
 // MARK: - Getter
 
 extension SZAVPlayer {
 
-    private func createPlayer(asset: AVURLAsset, isVideo: Bool = false) {
+    private func createPlayer(asset: AVURLAsset) {
         handlePlayerStatus(status: .loading)
 
         playerItem = AVPlayerItem(asset: asset)
+        addVideoOutput()
         player = AVPlayer(playerItem: playerItem)
         player?.isMuted = isMuted
         player?.automaticallyWaitsToMinimizeStalling = false
 
-        if isVideo {
+        if config.isVideo {
             createPlayerLayer()
         }
         addPlayerObserver()
@@ -546,6 +628,27 @@ extension SZAVPlayer {
 
         self.layer.addSublayer(layer)
         playerLayer = layer
+    }
+
+    private func createVideoOutput() -> AVPlayerItemVideoOutput {
+        let settings: [String: Any] = [String(kCVPixelBufferPixelFormatTypeKey): NSNumber(value: kCVPixelFormatType_32BGRA)]
+        let videoOutput = AVPlayerItemVideoOutput(outputSettings: settings)
+        videoOutput.setDelegate(self, queue: videoOutputQueue)
+
+        return videoOutput
+    }
+
+    private func createDisplayLink() -> CADisplayLink {
+        let link = CADisplayLink(target: self, selector: #selector(handleDisplayLinkCallback))
+        link.add(to: RunLoop.current, forMode: .default)
+        link.isPaused = true
+
+        return link
+    }
+
+    private func removeDisplayLink() {
+        displayLink?.invalidate()
+        displayLink = nil
     }
 
 }

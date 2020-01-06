@@ -31,17 +31,30 @@ class ViewController: UIViewController {
             make.centerY.equalTo(view).offset(-100)
         }
 
-        let videoVCBtn = UIButton()
-        videoVCBtn.backgroundColor = .black
-        videoVCBtn.setTitle("Video Example", for: .normal)
-        videoVCBtn.setTitleColor(.white, for: .normal)
-        videoVCBtn.addTarget(self, action: #selector(handleVideoVCBtnClick), for: .touchUpInside)
-        view.addSubview(videoVCBtn)
-        videoVCBtn.snp.makeConstraints { (make) in
+        let videoVCBtn1 = UIButton()
+        videoVCBtn1.backgroundColor = .black
+        videoVCBtn1.setTitle("Video Example", for: .normal)
+        videoVCBtn1.setTitleColor(.white, for: .normal)
+        videoVCBtn1.addTarget(self, action: #selector(handleVideoVCBtnClick), for: .touchUpInside)
+        view.addSubview(videoVCBtn1)
+        videoVCBtn1.snp.makeConstraints { (make) in
             make.width.equalTo(200)
             make.height.equalTo(50)
             make.centerX.equalTo(view)
-            make.centerY.equalTo(view).offset(100)
+            make.centerY.equalTo(view).offset(40)
+        }
+
+        let videoVCBtn2 = UIButton()
+        videoVCBtn2.backgroundColor = .black
+        videoVCBtn2.setTitle("Video Example With Output", for: .normal)
+        videoVCBtn2.setTitleColor(.white, for: .normal)
+        videoVCBtn2.addTarget(self, action: #selector(handleVideoOutputVCBtnClick), for: .touchUpInside)
+        view.addSubview(videoVCBtn2)
+        videoVCBtn2.snp.makeConstraints { (make) in
+            make.width.equalTo(300)
+            make.height.equalTo(50)
+            make.centerX.equalTo(view)
+            make.centerY.equalTo(view).offset(110)
         }
 
     }
@@ -53,6 +66,11 @@ class ViewController: UIViewController {
 
     @objc func handleVideoVCBtnClick() {
         let vc = VideoViewController()
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
+    @objc func handleVideoOutputVCBtnClick() {
+        let vc = VideoViewController(enableVideoOutput: true)
         navigationController?.pushViewController(vc, animated: true)
     }
 

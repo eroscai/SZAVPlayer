@@ -190,7 +190,8 @@ extension AudioViewController {
             audioPlayer.play()
         } else {
             audioPlayer.pause()
-            audioPlayer.setupPlayer(urlStr: audio.url, uniqueID: nil)
+            let config = SZAVPlayerConfig(urlStr: audio.url, uniqueID: nil)
+            audioPlayer.setupPlayer(config: config)
         }
         playerControllerEvent = .playing
         updateView()

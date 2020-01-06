@@ -20,6 +20,9 @@ class VideoViewController: UIViewController {
     private lazy var cleanCacheBbtn: UIButton = createCleanCacheBtn()
 
     private lazy var videoPlayer: SZAVPlayer = createVideoPlayer()
+    private let enableVideoOutput: Bool
+    private lazy var videoOutputView1: UIImageView = createVideoOutputView()
+    private lazy var videoOutputView2: UIImageView = createVideoOutputView()
     private let videos: [FakeVideo] = [
         FakeVideo.fake1(),
         FakeVideo.fake2(),
@@ -28,6 +31,15 @@ class VideoViewController: UIViewController {
     private var currentVideo: FakeVideo?
     private var isPaused: Bool = false
     private var playerControllerEvent: PlayerControllerEventType = .none
+
+    init(enableVideoOutput: Bool = false) {
+        self.enableVideoOutput = enableVideoOutput
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +51,12 @@ class VideoViewController: UIViewController {
 
         currentVideo = videos.first
         updateView()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        videoPlayer.removeVideoOutput()
     }
 
 }
@@ -123,10 +141,29 @@ extension VideoViewController {
             make.top.equalTo(progressView.snp.bottom).offset(30)
         }
 
+        if enableVideoOutput {
+            let outputViewWidth = (view.frame.width - 50) / 2
+            view.addSubview(videoOutputView1)
+            videoOutputView1.snp.makeConstraints { (make) in
+                make.width.equalTo(outputViewWidth)
+                make.height.equalTo(100)
+                make.left.equalTo(15)
+                make.top.equalTo(previousBtn.snp.bottom).offset(50)
+            }
+
+            view.addSubview(videoOutputView2)
+            videoOutputView2.snp.makeConstraints { (make) in
+                make.width.equalTo(outputViewWidth)
+                make.height.equalTo(100)
+                make.right.equalToSuperview().inset(15)
+                make.top.equalTo(previousBtn.snp.bottom).offset(50)
+            }
+        }
+
         view.addSubview(cleanCacheBbtn)
         cleanCacheBbtn.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.bottom.equalToSuperview().offset(-100)
+            make.bottom.equalToSuperview().offset(-10)
             make.width.equalTo(200)
             make.height.equalTo(50)
         }
@@ -198,7 +235,8 @@ extension VideoViewController {
             videoPlayer.play()
         } else {
             videoPlayer.pause()
-            videoPlayer.setupPlayer(urlStr: video.url, uniqueID: nil, isVideo: true)
+            let config = SZAVPlayerConfig(urlStr: video.url, uniqueID: nil, isVideo: true, isVideoOutputEnabled: enableVideoOutput)
+            videoPlayer.setupPlayer(config: config)
         }
         playerControllerEvent = .playing
         updateView()
@@ -259,6 +297,7 @@ extension VideoViewController: SZAVPlayerDelegate {
         case .readyToPlay:
             SZLogInfo("ready to play")
             if playerControllerEvent == .playing {
+//                videoPlayer.enableVideoOutput()
                 videoPlayer.play()
             }
         case .playEnd:
@@ -283,6 +322,11 @@ extension VideoViewController: SZAVPlayerDelegate {
 
     func avplayer(_ avplayer: SZAVPlayer, didReceived remoteCommand: SZAVPlayerRemoteCommand) -> Bool {
         return false
+    }
+
+    func avplayer(_ avplayer: SZAVPlayer, didOutput videoImage: CGImage) {
+        videoOutputView1.layer.contents = videoImage
+        videoOutputView2.layer.contents = videoImage
     }
 
 }
@@ -347,6 +391,13 @@ extension VideoViewController {
         btn.addTarget(self, action: #selector(handleCleanCacheBtnClick), for: .touchUpInside)
 
         return btn
+    }
+
+    private func createVideoOutputView() -> UIImageView {
+        let view = UIImageView()
+        view.backgroundColor = .black
+
+        return view
     }
 
 }
