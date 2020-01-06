@@ -33,7 +33,7 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
     ```swift
     // uniqueID is to identify wether they are the same audio. If set to nil will use urlStr to create one.
     let config = SZAVPlayerConfig(urlStr: audio.url, uniqueID: nil)
-audioPlayer.setupPlayer(config: config)
+    audioPlayer.setupPlayer(config: config)
     
     // If you want play video, pass an additional parameter `isVideo`.
     let config = SZAVPlayerConfig(urlStr: video.url, uniqueID: nil, isVideo: true, isVideoOutputEnabled: true/false)
