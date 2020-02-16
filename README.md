@@ -89,12 +89,16 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
     // The setupPlayer function will automatically determine if it has been setup before. 
     // If it is, it will directly call the replacePalyerItem function to replace the new audio.
     audioPlayer.setupPlayer(config: config)
+    ```
     
+    or
+    
+    ```swift
     // or just use this function.
     audioPlayer.replace(urlStr: audio.url, uniqueID: nil)
-    
-    // these two functions have the same effect.
     ```
+    
+these two functions have the same effect.
     
 5. Enable video image output.
 
