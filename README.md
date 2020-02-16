@@ -98,7 +98,7 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
     audioPlayer.replace(urlStr: audio.url, uniqueID: nil)
     ```
     
-these two functions have the same effect.
+    these two functions have the same effect.
     
 5. Enable video image output.
 
