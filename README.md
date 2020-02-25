@@ -18,6 +18,10 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
 - [x] Load AVAsset asynchronously to not blocking the main thread.
 - [x] Support setting cache size munually and also support cleaning.
 
+## Hint
+
+> If you find that always play failed in the simulator, try exit simulator completely and restart again. This is kind of simulator's bug.
+
 ## Usage
 
 1. Create player and set delegate.
@@ -148,8 +152,6 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
 The Example project has implemented a complete play example, including play/pause/previous/next/seekToTime/cleanCache, etc. 
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
-
-> If play failed in simulator, try exit simulator completely and restart again.
 
 ## Requirements
 
