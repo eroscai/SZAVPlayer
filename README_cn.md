@@ -1,30 +1,24 @@
 # SZAVPlayer
 
-[![CI Status](https://img.shields.io/travis/eroscai/SZAVPlayer.svg?style=flat)](https://travis-ci.org/eroscai/SZAVPlayer)
-[![Version](https://img.shields.io/cocoapods/v/SZAVPlayer.svg?style=flat)](https://cocoapods.org/pods/SZAVPlayer)
-[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
-[![License](https://img.shields.io/cocoapods/l/SZAVPlayer.svg?style=flat)](https://cocoapods.org/pods/SZAVPlayer)
-[![Platform](https://img.shields.io/cocoapods/p/SZAVPlayer.svg?style=flat)](https://cocoapods.org/pods/SZAVPlayer)
+SZAVPlayer是一个轻量级的音视频播放库，基于`AVPlayer`和`AVAssetResourceLoaderDelegate`来实现播放过程和缓存过程。纯Swift实现，同时支持缓存播放和视频画面同步输出（比如可以拿来实现同时绘制到不同View上）。
 
-[中文说明](./README_cn.md)
+基于AVPlayer实现音视频播放过程和问题整理在[这里](https://github.com/eroscai/SZAVPlayer/wiki/iOS%E5%9F%BA%E4%BA%8EAVPlayer%E5%AE%9E%E7%8E%B0%E9%9F%B3%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%92%8C%E7%BC%93%E5%AD%98)
 
-SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pure-Swift. Support cache and video image output.
+## 功能
 
-## Features
+- [x] 对`AVPlayer`和`AVPlayerItem`进行良好的封装，对外输出使用便捷的几个接口，极大缩减实现音视频播放所要耗费的时间。
+- [x] 基于`AVAssetResourceLoaderDelegate`实现了对`AVPlayer`数据加载的完整控制。通过请求过来的Range，有效的使用本地已缓存部分数据，拼接出本地请求和远程请求在最快的时间内进行回应，因此在弱网或者无网情况下也能正常播放已缓存部分数据。
+- [x] 支持视频画面的同步输出，可直接绘制在各个不同的视图上。
+- [x] 异步加载`AVAsset`，保证加载和切换音视频不会发生卡顿。
+- [x] 提供手动清理缓存，同时内部也会根据设定的容量自动进行清理。
 
-- [x] Encapsulate the state changes of `AVPlayer` and `AVPlayerItem` and output them uniformly, greatly reducing the implementation cost of audio play.
-- [x] Achieved full control of `AVPlayer` data loading, based on `AVAssetResourceLoaderDelegate`. Through the Range request and corresponding cache, it can respond to player's requests ASAP. It also can play the cached audio normally in the weak network and no network enviroment.
-- [x] Support video image output, can be drawn to multiple views at the same time.
-- [x] Load AVAsset asynchronously to not blocking the main thread.
-- [x] Support setting cache size munually and also support cleaning.
+## 提示
 
-## Hint
+> 如果你发现在模拟器上一直播放不正常，可以尝试完全退出模拟器，然后重新开始测试，这个是模拟器自身的BUG。
 
-> If you find that always play failed in the simulator, try exit simulator completely and restart again. This is kind of simulator's bug.
+## 使用
 
-## Usage
-
-1. Create player and set delegate.
+1. 创建播放器并设置代理
 
     ```swift
     let player = SZAVPlayer()
@@ -33,7 +27,7 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
     audioPlayer = player
     ```
 
-2. Setup player with url.
+2. 使用url进行配置
 
     ```swift
     // uniqueID is to identify wether they are the same audio. If set to nil will use urlStr to create one.
@@ -45,7 +39,7 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
     videoPlayer.setupPlayer(config: config)
     ```
 
-3. Implement `SZAVPlayerDelegate`.
+3. 实现 `SZAVPlayerDelegate`。
 
     ```swift
     extension AudioViewController: SZAVPlayerDelegate {
@@ -88,7 +82,7 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
     }
     ```
     
-4. Replace new audio.
+4. 切换音视频。
 
     ```swift
     // The setupPlayer function will automatically determine if it has been setup before. 
@@ -105,7 +99,7 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
     
     these two functions have the same effect.
     
-5. Enable video image output.
+5. 开启视频画面输出。
 
     - Set `isVideoOutputEnabled ` to `true`.
     
@@ -128,37 +122,37 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
     videoPlayer.removeVideoOutput()
     ```
     
-6. Seek player to time.
+6. 跳跃到某个特定时间。
 
     ```swift
     audioPlayer.seekPlayerToTime(time: currentTime, completion: nil)
     ```
     
-7. Set max cache size.
+7. 设定最大缓存容量。
 
     ```swift
     // Unit: MB, if reached the max size, it will automatically trim the cache.
     SZAVPlayerCache.shared.setup(maxCacheSize: 100)
     ```
     
-8. Clean all cache.
+8. 清理所有缓存。
 
     ```swift
     SZAVPlayerCache.shared.cleanCache()
     ```
 
-## Example
+## 示例
 
 The Example project has implemented a complete play example, including play/pause/previous/next/seekToTime/cleanCache, etc. 
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
 
-## Requirements
+## 要求
 
 - iOS 10.0+
 - Swift 5.0+
 
-## Installation
+## 安装
 
 ### CocoaPods
 
