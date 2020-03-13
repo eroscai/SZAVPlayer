@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = '10.0'
   s.swift_version         = '5.0'
 
-  s.source_files = 'SZAVPlayer/Classes/**/*'
+  s.source_files = 'Sources/Classes/**/*'
   
   # s.resource_bundles = {
   #   'SZAVPlayer' => ['SZAVPlayer/Assets/*.png']
