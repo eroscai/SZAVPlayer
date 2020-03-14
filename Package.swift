@@ -23,5 +23,6 @@ let package = Package(
             name: "SZAVPlayer",
             path: "Sources"
         ),
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )

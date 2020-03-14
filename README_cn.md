@@ -1,5 +1,12 @@
 # SZAVPlayer
 
+[![CI Status](https://img.shields.io/travis/eroscai/SZAVPlayer.svg?style=flat)](https://travis-ci.org/eroscai/SZAVPlayer)
+[![Version](https://img.shields.io/cocoapods/v/SZAVPlayer.svg?style=flat)](https://cocoapods.org/pods/SZAVPlayer)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![SPM supported](https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat)](https://swift.org/package-manager/)
+[![License](https://img.shields.io/cocoapods/l/SZAVPlayer.svg?style=flat)](https://cocoapods.org/pods/SZAVPlayer)
+[![Platform](https://img.shields.io/cocoapods/p/SZAVPlayer.svg?style=flat)](https://cocoapods.org/pods/SZAVPlayer)
+
 SZAVPlayer是一个轻量级的音视频播放库，基于`AVPlayer`和`AVAssetResourceLoaderDelegate`来实现播放过程和缓存过程。纯Swift实现，同时支持缓存播放和视频画面同步输出（比如可以拿来实现同时绘制到不同View上）。
 
 基于AVPlayer实现音视频播放过程和问题整理在[这里](https://github.com/eroscai/SZAVPlayer/wiki/iOS%E5%9F%BA%E4%BA%8EAVPlayer%E5%AE%9E%E7%8E%B0%E9%9F%B3%E8%A7%86%E9%A2%91%E6%92%AD%E6%94%BE%E5%92%8C%E7%BC%93%E5%AD%98)
@@ -170,6 +177,13 @@ pod 'SZAVPlayer'
 ```ogdl
 github "eroscai/SZAVPlayer" ~> 1.1.1
 ```
+
+### Swift Package Manager
+
+From Xcode 11, you can use [Swift Package Manager](https://swift.org/package-manager/) to add SZAVPlayer to your project.
+
+- Select File > Swift Packages > Add Package Dependency. Enter https://github.com/eroscai/SZAVPlayer.git in the "Choose Package Repository" dialog.
+- Add `CoreServices.framework` and `AVFoundation.framework` to your project if not added before. (If anyone knows how to do this automatically, please tell me).
 
 ## Author
 
