@@ -138,34 +138,44 @@ extension AudioViewController {
         }
     }
 
-    @objc func handleNextBtnClick() {
+    @discardableResult
+    @objc func handleNextBtnClick() -> Bool {
         isPaused = false
+        var handleResult: Bool = false
         if let currentAudio = currentAudio,
             let audio = findAudio(currentAudio: currentAudio, findNext: true)
         {
             self.currentAudio = audio
             progressView.reset()
             playAudio()
+            handleResult = true
         } else {
             SZLogError("No audio!")
         }
 
         updateView()
+
+        return handleResult
     }
 
-    @objc func handlePreviousBtnClick() {
+    @discardableResult
+    @objc func handlePreviousBtnClick() -> Bool {
         isPaused = false
+        var handleResult: Bool = false
         if let currentAudio = currentAudio,
             let audio = findAudio(currentAudio: currentAudio, findNext: false)
         {
             self.currentAudio = audio
             progressView.reset()
             playAudio()
+            handleResult = true
         } else {
             SZLogError("No audio!")
         }
 
         updateView()
+
+        return handleResult
     }
 
     private func handlePlayEnd() {
@@ -195,6 +205,8 @@ extension AudioViewController {
         }
         playerControllerEvent = .playing
         updateView()
+
+        SZAVPlayer.activeAudioSession()
     }
 
     private func pauseAudio() {
@@ -275,7 +287,18 @@ extension AudioViewController: SZAVPlayerDelegate {
     }
 
     func avplayer(_ avplayer: SZAVPlayer, didReceived remoteCommand: SZAVPlayerRemoteCommand) -> Bool {
-        return false
+        switch remoteCommand {
+        case .next:
+            return handleNextBtnClick()
+        case .previous:
+            return handlePreviousBtnClick()
+        case .play:
+            playAudio()
+        case .pause:
+            pauseAudio()
+        }
+
+        return true
     }
 
 }

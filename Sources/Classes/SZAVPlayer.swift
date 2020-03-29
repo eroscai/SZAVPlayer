@@ -549,7 +549,7 @@ extension SZAVPlayer {
                 return .commandFailed
             }
 
-            return weakSelf.handleRemoteCommand(remoteCommand: .next)
+            return weakSelf.handleRemoteCommand(remoteCommand: .previous)
         }
     }
 
