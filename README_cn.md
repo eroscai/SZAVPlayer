@@ -1,6 +1,5 @@
 # SZAVPlayer
 
-[![CI Status](https://img.shields.io/travis/eroscai/SZAVPlayer.svg?style=flat)](https://travis-ci.org/eroscai/SZAVPlayer)
 [![Version](https://img.shields.io/cocoapods/v/SZAVPlayer.svg?style=flat)](https://cocoapods.org/pods/SZAVPlayer)
 [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
 [![SPM supported](https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat)](https://swift.org/package-manager/)
@@ -40,7 +39,11 @@ SZAVPlayer是一个轻量级的音视频播放库，基于`AVPlayer`和`AVAssetR
     // uniqueID is to identify wether they are the same audio. If set to nil will use urlStr to create one.
     let config = SZAVPlayerConfig(urlStr: audio.url, uniqueID: nil)
     audioPlayer.setupPlayer(config: config)
+    ```
     
+    或
+    
+    ```swift
     // If you want play video, pass an additional parameter `isVideo`.
     let config = SZAVPlayerConfig(urlStr: video.url, uniqueID: nil, isVideo: true, isVideoOutputEnabled: true/false)
     videoPlayer.setupPlayer(config: config)
@@ -97,7 +100,7 @@ SZAVPlayer是一个轻量级的音视频播放库，基于`AVPlayer`和`AVAssetR
     audioPlayer.setupPlayer(config: config)
     ```
     
-    or
+    或
     
     ```swift
     // or just use this function.
