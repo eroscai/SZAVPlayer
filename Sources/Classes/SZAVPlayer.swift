@@ -260,6 +260,8 @@ extension SZAVPlayer {
 
     /// If you set `isVideoOutputEnabled` to `true` when initialize the config, call this func when you are ready to release the player, otherwise it will cause memory leak.
     public func removeVideoOutput() {
+        guard config.isVideoOutputEnabled else { return }
+
         playerItem?.remove(videoOutput)
         removeDisplayLink()
     }
@@ -479,21 +481,25 @@ extension SZAVPlayer {
 
 extension SZAVPlayer {
 
-    public static func activeAudioSession() {
+    public static func activeAudioSession(category: AVAudioSession.Category = .playback,
+                                          options: AVAudioSession.SetActiveOptions = [])
+    {
         do {
             let session = AVAudioSession.sharedInstance()
-            try session.setCategory(.playback)
-            try session.setActive(true, options: [])
+            try session.setCategory(category)
+            try session.setActive(true, options: options)
         } catch {
             SZLogError("ActiveAudioSession failed.")
         }
     }
 
-    public static func deactiveAudioSession() {
+    public static func deactiveAudioSession(category: AVAudioSession.Category = .ambient,
+                                            options: AVAudioSession.SetActiveOptions = [.notifyOthersOnDeactivation])
+    {
         do {
             let session = AVAudioSession.sharedInstance()
             try session.setCategory(.ambient)
-            try session.setActive(false, options: [.notifyOthersOnDeactivation])
+            try session.setActive(false, options: options)
         } catch {
             SZLogError("DeactiveAudioSession failed.")
         }
