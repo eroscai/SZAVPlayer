@@ -397,7 +397,8 @@ extension SZAVPlayer {
     private func addPlayerObserver() {
         guard let player = player else { return }
 
-        timeObserver = player.addPeriodicTimeObserver(forInterval: CMTime(value: CMTimeValue(1.0), timescale: CMTimeScale(1.0)), queue: DispatchQueue.main, using: { [weak self] (time) in
+        let interval = CMTimeMakeWithSeconds(config.timeObserverInterval, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+        timeObserver = player.addPeriodicTimeObserver(forInterval: interval, queue: DispatchQueue.main, using: { [weak self] (time) in
             guard let weakSelf = self, let playerItem = weakSelf.player?.currentItem else { return }
 
             if weakSelf.isSeeking {
