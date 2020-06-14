@@ -67,7 +67,11 @@ extension SZAVPlayerDelegate {
 
 public class SZAVPlayer: UIView {
 
-    public var isMuted: Bool = false
+    public var isMuted: Bool = false {
+        didSet {
+            player?.isMuted = isMuted
+        }
+    }
     public weak var delegate: SZAVPlayerDelegate?
     public typealias SeekCompletion = (Bool) -> Void
 
@@ -75,8 +79,12 @@ public class SZAVPlayer: UIView {
         guard let player = player, let currentItem = player.currentItem else {
             return 0
         }
-
-        return CMTimeGetSeconds(currentItem.duration)
+        
+        var times = CMTimeGetSeconds(currentItem.duration)
+        if times <= 0 {
+            times = CMTimeGetSeconds(currentItem.asset.duration)
+        }
+        return times
     }
 
     public var currentTime: Float64 {
@@ -159,7 +167,7 @@ extension SZAVPlayer {
         isReadyToPlay = false
         currentURLStr = config.urlStr
         let assetLoader = createAssetLoader(url: url, uniqueID: config.uniqueID)
-        assetLoader.loadAsset { (asset) in
+        assetLoader.loadAsset(isLocalURL: config.isLocalURL) { (asset) in
             if let _ = self.player {
                 self.replacePalyerItem(asset: asset)
             } else {
@@ -612,7 +620,7 @@ extension SZAVPlayer {
         player?.automaticallyWaitsToMinimizeStalling = false
 
         if config.isVideo {
-            createPlayerLayer()
+            createPlayerLayer(videoGravity: config.videoGravity)
         }
         addPlayerObserver()
         addPlayerItemObserver(playerItem: playerItem!)
@@ -628,10 +636,10 @@ extension SZAVPlayer {
         return loader
     }
 
-    private func createPlayerLayer() {
+    private func createPlayerLayer(videoGravity: AVLayerVideoGravity = .resizeAspect) {
         let layer = AVPlayerLayer(player: player)
         layer.frame = bounds
-        layer.videoGravity = .resizeAspect
+        layer.videoGravity = videoGravity
 
         self.layer.addSublayer(layer)
         playerLayer = layer
@@ -647,6 +655,7 @@ extension SZAVPlayer {
 
     private func createDisplayLink() -> CADisplayLink {
         let link = CADisplayLink(target: self, selector: #selector(handleDisplayLinkCallback))
+        link.preferredFramesPerSecond = 25
         link.add(to: RunLoop.current, forMode: .default)
         link.isPaused = true
 

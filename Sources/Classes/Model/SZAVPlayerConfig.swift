@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AVKit
 
 public struct SZAVPlayerConfig {
 
@@ -14,6 +15,8 @@ public struct SZAVPlayerConfig {
     public var isVideo: Bool            // Is video or not.
     public var isVideoOutputEnabled: Bool           // Output video image function enabled or not.
     public var timeObserverInterval: Float64 = 1    // TimeObserver interval, default value is 1s.
+    public var isLocalURL: Bool = false
+    public var videoGravity: AVLayerVideoGravity = .resizeAspect
 
     public init(urlStr: String, uniqueID: String?, isVideo: Bool = false, isVideoOutputEnabled: Bool = false) {
         self.urlStr = urlStr
