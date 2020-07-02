@@ -205,17 +205,31 @@ extension SZAVPlayer {
         player.pause()
     }
 
-    /// Reset player to initial time.
-    public func reset() {
+    /// Reset player to initial time or clean asset completely.
+    public func reset(cleanAsset: Bool = false) {
         guard let player = player else { return }
 
         player.pause()
-        seekPlayerToTime(time: 0, autoPlay: false) { [weak self] (finished) in
-            guard let weakSelf = self, finished else { return }
+        if cleanAsset {
+            removeVideoOutput()
 
-            if let playerItem = weakSelf.player?.currentItem {
-                let total = CMTimeGetSeconds(playerItem.duration)
-                weakSelf.delegate?.avplayer(weakSelf, refreshed: 0, loadedTime: 0, totalTime: total)
+            if let playerItem = playerItem {
+                if isObserverAdded {
+                    removePlayerItemObserver(playerItem: playerItem)
+                }
+
+                self.playerItem = nil
+            }
+
+            player.replaceCurrentItem(with: nil)
+        } else {
+            seekPlayerToTime(time: 0, autoPlay: false) { [weak self] (finished) in
+                guard let weakSelf = self, finished else { return }
+
+                if let playerItem = weakSelf.player?.currentItem {
+                    let total = CMTimeGetSeconds(playerItem.duration)
+                    weakSelf.delegate?.avplayer(weakSelf, refreshed: 0, loadedTime: 0, totalTime: total)
+                }
             }
         }
     }
@@ -239,8 +253,9 @@ extension SZAVPlayer {
 
         seekItem = nil
         let total = CMTimeGetSeconds(playerItem.duration)
-        let didReachEnd = total > 0 && (time >= total || abs(time - total) <= 0.5)
-        if didReachEnd {
+        let isColserToEnd = total > 0 && time > 0 && abs(time - total) <= 0.1
+        let didReachEnd = total > 0 && time >= total
+        if didReachEnd || isColserToEnd {
             if let completion = completion {
                 completion(true)
             }
@@ -283,7 +298,6 @@ extension SZAVPlayer {
         removeVideoOutput()
 
         if let playerItem = playerItem {
-
             if isObserverAdded {
                 removePlayerItemObserver(playerItem: playerItem)
             }
