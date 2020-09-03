@@ -52,7 +52,7 @@ class SZAVPlayerDataLoader: NSObject {
 
         let localFileInfos = SZAVPlayerDatabase.shared.localFileInfos(uniqueID: uniqueID)
         guard localFileInfos.count > 0 else {
-            addRemoteRequest(range: requestedRange)
+            operationQueue.addOperation(remoteRequestOperation(range: requestedRange))
             return
         }
 
@@ -121,7 +121,7 @@ extension SZAVPlayerDataLoader {
         }
     }
 
-    private func remoteRequestOperation(range: SZAVPlayerRange) -> SZAVPlayerRequestOperation {
+    private func remoteRequestOperation(range: SZAVPlayerRange) -> Operation {
         let operation = SZAVPlayerRequestOperation(url: url, range: range)
         operation.delegate = self
 
@@ -184,12 +184,7 @@ private extension SZAVPlayerDataLoader {
         guard startOffset < endOffset else { return }
 
         let range = startOffset..<endOffset
-        addRemoteRequest(range: range)
-    }
-
-    func addRemoteRequest(range: SZAVPlayerRange) {
-        let operation = remoteRequestOperation(range: range)
-        operationQueue.addOperation(operation)
+        operationQueue.addOperation(remoteRequestOperation(range: range))
     }
 
 }

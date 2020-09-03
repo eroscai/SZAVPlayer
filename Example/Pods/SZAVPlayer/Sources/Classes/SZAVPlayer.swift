@@ -80,12 +80,11 @@ public class SZAVPlayer: UIView {
             return 0
         }
         
-        var time = CMTimeGetSeconds(currentItem.duration)
-        if time <= 0 {
-            time = CMTimeGetSeconds(currentItem.asset.duration)
+        var times = CMTimeGetSeconds(currentItem.duration)
+        if times <= 0 {
+            times = CMTimeGetSeconds(currentItem.asset.duration)
         }
-
-        return time.isSafe() ? time : 0
+        return times
     }
 
     public var currentTime: Float64 {
@@ -93,8 +92,7 @@ public class SZAVPlayer: UIView {
             return 0
         }
 
-        let time = CMTimeGetSeconds(currentItem.currentTime())
-        return time.isSafe() ? time : 0
+        return CMTimeGetSeconds(currentItem.currentTime())
     }
 
     private(set) public var playerLayer: AVPlayerLayer?
@@ -230,9 +228,7 @@ extension SZAVPlayer {
 
                 if let playerItem = weakSelf.player?.currentItem {
                     let total = CMTimeGetSeconds(playerItem.duration)
-                    if total.isSafe() {
-                        weakSelf.delegate?.avplayer(weakSelf, refreshed: 0, loadedTime: 0, totalTime: total)
-                    }
+                    weakSelf.delegate?.avplayer(weakSelf, refreshed: 0, loadedTime: 0, totalTime: total)
                 }
             }
         }
@@ -256,8 +252,7 @@ extension SZAVPlayer {
         }
 
         seekItem = nil
-        var total = CMTimeGetSeconds(playerItem.duration)
-        total = total.isSafe() ? total : 0
+        let total = CMTimeGetSeconds(playerItem.duration)
         let isColserToEnd = total > 0 && time > 0 && abs(time - total) <= 0.1
         let didReachEnd = total > 0 && time >= total
         if didReachEnd || isColserToEnd {
@@ -369,9 +364,7 @@ extension SZAVPlayer {
 
         let start = CMTimeGetSeconds(firstRange.timeRangeValue.start)
         let duration = CMTimeGetSeconds(firstRange.timeRangeValue.duration)
-        if start.isSafe() && duration.isSafe() {
-            loadedTime = start + duration
-        }
+        loadedTime = start + duration
     }
 
     @objc func handlePlayToEnd(_ notification: Notification) {
@@ -436,9 +429,7 @@ extension SZAVPlayer {
 
             let current = CMTimeGetSeconds(time)
             let total = CMTimeGetSeconds(playerItem.duration)
-            if current.isSafe() && total.isSafe() {
-                weakSelf.delegate?.avplayer(weakSelf, refreshed: current, loadedTime: weakSelf.loadedTime, totalTime: total)
-            }
+            weakSelf.delegate?.avplayer(weakSelf, refreshed: current, loadedTime: weakSelf.loadedTime, totalTime: total)
         })
     }
 
@@ -688,18 +679,6 @@ extension SZAVPlayer {
     private func removeDisplayLink() {
         displayLink?.invalidate()
         displayLink = nil
-    }
-
-}
-
-private extension Float64 {
-
-    func isSafe() -> Bool {
-        if isNaN || isInfinite {
-            return false
-        }
-
-        return true
     }
 
 }

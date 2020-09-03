@@ -27,11 +27,7 @@ public class SZAVPlayerRequestOperation: Operation {
 
     private var _finished: Bool = false
     private var _executing: Bool = false
-
-    deinit {
-        SZLogInfo("deinit")
-    }
-
+    
     public init(url: URL, range: SZAVPlayerRange?) {
         self.performQueue = DispatchQueue(label: "com.SZAVPlayer.RequestOperation", qos: .background)
         super.init()
@@ -51,10 +47,7 @@ public class SZAVPlayerRequestOperation: Operation {
         guard !isCancelled else {return}
         markAsRunning()
         performQueue.async {
-            self.work { [weak self] in
-                guard let self = self else { return }
-
-                self.session.finishTasksAndInvalidate()
+            self.work {
                 DispatchQueue.main.async {
                     guard !self.isCancelled else {return}
                     self.markAsFinished()
