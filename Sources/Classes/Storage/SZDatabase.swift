@@ -13,22 +13,22 @@ private let SQLITE_TRANSIENT = unsafeBitCast(-1, to:sqlite3_destructor_type.self
 
 class SZDatabase: NSObject {
 
-	private var queue = DispatchQueue(label: "com.SZDatabase.queue")
-	private var db: OpaquePointer? = nil
+    private var queue = DispatchQueue(label: "com.SZDatabase.queue")
+    private var db: OpaquePointer? = nil
     private lazy var fmt: DateFormatter = createDateFormatter()
 
-	override init() {
-		super.init()
-	}
-	
-	deinit {
-		closeDB()
-	}
+    override init() {
+        super.init()
+    }
 
-	func open(dbPath: String) -> Bool {
-		if db != nil {
-			closeDB()
-		}
+    deinit {
+        closeDB()
+    }
+
+    func open(dbPath: String) -> Bool {
+        if db != nil {
+            closeDB()
+        }
 
         if let path = dbPath.cString(using:String.Encoding.utf8) {
             let result = sqlite3_open(path, &db)
@@ -40,44 +40,44 @@ class SZDatabase: NSObject {
             }
         }
 
-		return true
-	}
-	
-	func closeDB() {
-		if db != nil {
-			sqlite3_close(db)
-			db = nil
-		}
-	}
-	
+        return true
+    }
+
+    func closeDB() {
+        if db != nil {
+            sqlite3_close(db)
+            db = nil
+        }
+    }
+
     @discardableResult
-	func execute(sql: String, params: [Any]? = nil) -> Int {
+    func execute(sql: String, params: [Any]? = nil) -> Int {
         guard let _ = db else {
             SZLogError("Database has not been opened!")
             return SQLITE_RESULT_FAILED
         }
 
-		var result = SQLITE_RESULT_FAILED
+        var result = SQLITE_RESULT_FAILED
         if let stmt = prepare(sql:sql, params:params) {
             result = execute(stmt:stmt, sql:sql)
         }
 
-		return result
-	}
+        return result
+    }
 
-	func query(sql: String, params: [Any]? = nil) -> [[String: Any]] {
+    func query(sql: String, params: [Any]? = nil) -> [[String: Any]] {
         guard let _ = db else {
             SZLogError("Database has not been opened!")
             return []
         }
 
-		var rows = [[String:Any]]()
+        var rows = [[String:Any]]()
         if let stmt = prepare(sql:sql, params:params) {
             rows = query(stmt:stmt, sql:sql)
         }
 
-		return rows
-	}
+        return rows
+    }
 
     func inQueue(_ block: (SZDatabase) -> Void) {
         queue.sync {
@@ -117,7 +117,7 @@ class SZDatabase: NSObject {
         let schema = getTableSchema(tableName: tableName)
         for value in schema {
             if let column = value["name"] as? String,
-                column == columnName
+               column == columnName
             {
                 return true
             }
