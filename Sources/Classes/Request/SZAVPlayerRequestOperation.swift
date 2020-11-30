@@ -36,6 +36,7 @@ public class SZAVPlayerRequestOperation: Operation {
         self.performQueue = DispatchQueue(label: "com.SZAVPlayer.RequestOperation", qos: .background)
         super.init()
 
+        requestCompletion = defaultCompletion()
         task = dataRequest(url: url, range: range)
     }
 
@@ -156,6 +157,12 @@ extension SZAVPlayerRequestOperation {
         let session = URLSession(configuration: configuration, delegate: self, delegateQueue: nil)
 
         return session
+    }
+
+    private func defaultCompletion() -> CompletionHandler {
+        return { [weak self] in
+            self?.markAsFinished()
+        }
     }
 
 }
