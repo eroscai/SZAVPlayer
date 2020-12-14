@@ -13,7 +13,7 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
 ## Features
 
 - [x] Encapsulate the state changes of `AVPlayer` and `AVPlayerItem` and output them uniformly, greatly reducing the implementation cost of audio/video play.
-- [x] Achieved full control of `AVPlayer` data loading, based on `AVAssetResourceLoaderDelegate`. Through the Range request and corresponding cache, it can respond to player's requests ASAP. It also can play the cached audio normally in the weak network and no network enviroment.
+- [x] Achieved full control of `AVPlayer` data loading, based on `AVAssetResourceLoaderDelegate`. Through the Range request and corresponding cache, it can respond to player's requests ASAP. It also can play the cached audio/video normally in the weak network and no network enviroment.
 - [x] Support video image output, can be drawn to multiple views at the same time.
 - [x] Load AVAsset asynchronously to not blocking the main thread.
 - [x] Support setting cache size munually and also support cleaning.
