@@ -20,4 +20,11 @@ class AudioPlayerSlider: UISlider {
         return CGRect(origin: bounds.origin, size: CGSize(width: bounds.width, height: 6))
     }
 
+    override func point(inside point: CGPoint, with event: UIEvent?) -> Bool {
+        var bounds: CGRect = self.bounds
+        bounds = bounds.insetBy(dx: -20, dy: -20)
+
+        return bounds.contains(point)
+    }
+
 }

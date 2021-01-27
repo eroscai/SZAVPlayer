@@ -8,126 +8,125 @@
 
 /* Begin PBXBuildFile section */
 		01C550A53C9E2047C83F8E85BBB558E6 /* ConstraintLayoutSupportDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = C4A46A8054577838D49C60142EB88B13 /* ConstraintLayoutSupportDSL.swift */; };
+		0333F31E1992493A80BE0135259A367D /* SZAVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DE1CDD5CCFA53562D360545A01A7FB9 /* SZAVPlayer.swift */; };
 		039EAFE7935113805F3FC21BF1B7C9D5 /* LayoutConstraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44C5B72775F6AF0891BF331F32FE10D /* LayoutConstraint.swift */; };
 		04543980C4A7CE442330B0F1BC4A9A54 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEEA38848048F96E1FDEA2ED76F6C3D /* Foundation.framework */; };
-		13EB569D4A3329519A109694310370C5 /* SZLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 546034ECC502D8EA2DB8BBCD99A9BDBE /* SZLog.swift */; };
+		07F29FCC7BA0310994DBB8523B8B8156 /* SZDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48FEC7DC3A6DAEC43A8D4F7B07740C9 /* SZDatabase.swift */; };
 		1761C9A3D6A95630C9E31B1B5333A9CC /* Pods-SZAVPlayer_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CB7652F395BB927CA0B81D656A5C7008 /* Pods-SZAVPlayer_Tests-dummy.m */; };
 		1956E392D500F3CD899D39A5F805736D /* Typealiases.swift in Sources */ = {isa = PBXBuildFile; fileRef = D4E066869A95E00B949CBA4D2284C35F /* Typealiases.swift */; };
 		1AFB1E9136716C0B61D6C700FF1E60FD /* ConstraintLayoutGuide+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09BF299D2EEB87E7DD02630E87B96224 /* ConstraintLayoutGuide+Extensions.swift */; };
 		21AB1101BBE4D28D74ED4EDF0D59025A /* ConstraintInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 549471CD1FE3A1E1865DD172864918D3 /* ConstraintInsets.swift */; };
 		232B2F922E972D9F43D2EE15ACECE734 /* ConstraintPriority.swift in Sources */ = {isa = PBXBuildFile; fileRef = F0BD95F32F2E57D6B9100B77B93F013C /* ConstraintPriority.swift */; };
-		239FB41DA68BC8BF2D21FBB1B339748C /* SZAVPlayerRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D8EC52AB5B6B502B9A50E423B9EDA2F /* SZAVPlayerRequestOperation.swift */; };
+		23FA55E43E8154049B5F1BBE5D391C94 /* SZAVPlayerItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436BB2D6974D432D5F18F611E17BB0FD /* SZAVPlayerItemRequest.swift */; };
 		2A1BBBC87AC2367BD14610A9D10D285E /* ConstraintAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 13F460233F2A555D41511B6CCA66A124 /* ConstraintAttributes.swift */; };
-		2AB90A0F8C12AFF54E337B0122B036EA /* SZAVPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F10BB6659C11094E38E1CD94CF2A595 /* SZAVPlayer.swift */; };
 		2C06F2E972444D359754D21AC46BFFE2 /* ConstraintInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2EC377264B25FB0E67D150E37E87CD /* ConstraintInsetTarget.swift */; };
-		3551B886610F59438FDEB571E471F963 /* SZBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D812319116B7D1BC4B1AAF8E5E364C4A /* SZBaseModel.swift */; };
 		3BFC243AB9BD579969F0D5756560BCAA /* Constraint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50380F281EC3EE769C85035CCEA77226 /* Constraint.swift */; };
 		3E5285F4F36EAD77ECABBFB7F36BB1BB /* ConstraintView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = EE9055CEA7890517265589BD23D73A49 /* ConstraintView+Extensions.swift */; };
 		4184AC9B7E3C88D4F24CE0D4517FA5EF /* Pods-SZAVPlayer_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B356CAA07D5D4E6BBEA43DEB9F0FC8 /* Pods-SZAVPlayer_Example-dummy.m */; };
 		436C02DC13CA74681726C682C5C89C1A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEEA38848048F96E1FDEA2ED76F6C3D /* Foundation.framework */; };
 		4C7A676DAE95EEAC3787A75349F0862D /* SnapKit-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E13B89FFD81AACB7530769CA05EEA26B /* SnapKit-dummy.m */; };
-		4D1B4181B4DFFE3E09B2ECA6429318DC /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6404B843502B8738BAC2C40CB5F955 /* CoreServices.framework */; };
-		4F811654F69B4F4F5C141CA16AA07ABD /* SZAVPlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3441EE8FE3874DA32361C7310C4F490 /* SZAVPlayerConfig.swift */; };
 		51CD5887014967E77E58F5A163996454 /* ConstraintMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 141BC33167429B9926FB24A17F01568C /* ConstraintMaker.swift */; };
-		53A49ECA47D6E8098B3D38F40E4CC620 /* SZAVPlayerAssetLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 567E2EA22F09D496D789F3855AEA5C9C /* SZAVPlayerAssetLoader.swift */; };
 		57B1876F2BE4168E5BFDB63D8CC849A0 /* ConstraintLayoutSupport.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D705690D879064ED84970813189D8D4 /* ConstraintLayoutSupport.swift */; };
 		5854DF509E8A016B6235793D04083035 /* ConstraintConstantTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D990E0FED5B41C1F13AC6B08208A99B /* ConstraintConstantTarget.swift */; };
-		5E2416AE3D1AEFAD5CDEC9A50E52BA9D /* SZAVPlayerFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BD3921189BCACE96D4E854EFE93B3C6 /* SZAVPlayerFileSystem.swift */; };
+		682594E5A550A4079721FA055B17F81E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732D4A59E34B856809B03C96F18EA38F /* UIKit.framework */; };
+		698D83BF7A3A4B39E8895D6AFC882280 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEEA38848048F96E1FDEA2ED76F6C3D /* Foundation.framework */; };
 		69CCBEEDFCA6D743D80026568D961919 /* ConstraintMakerExtendable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43F10DE451FED17810D9B5C237324A5 /* ConstraintMakerExtendable.swift */; };
 		69E3A06BBDFDC7D06A9D4BDC4E895E73 /* ConstraintRelatableTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2975CA5A0D26BC84F3EE9912FEBDA795 /* ConstraintRelatableTarget.swift */; };
+		6C396675E0ECA71E7167789C35F507B1 /* SZAVPlayerDataLoaderOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30117D64A298DEB9550BE6A6F2C4AB70 /* SZAVPlayerDataLoaderOperation.swift */; };
 		6E0EB9E7FAAEDBB7A73ECF3095F69C4A /* UILayoutSupport+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A9341666EAC154422A032092A7DC2D7 /* UILayoutSupport+Extensions.swift */; };
 		71DE9DC2FA583526AB4D1FD7F00C099C /* ConstraintDirectionalInsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D358AA1606C7B2CDC8555485807E9E /* ConstraintDirectionalInsetTarget.swift */; };
-		7460950216ECACEB81FE75D796D1FB7A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD23F48F86AAA6B90089B705DFB27AF /* AVFoundation.framework */; };
 		75E146C12D1287228A0B493E87CDE31F /* ConstraintMakerRelatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 724FB64349F5678CE1709979CF0DD952 /* ConstraintMakerRelatable.swift */; };
 		77C9889055A3B32EA13A9616824DB0ED /* ConstraintLayoutGuideDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = BE0BE9F3D55FDB29EF516F6D6B1B6BCA /* ConstraintLayoutGuideDSL.swift */; };
 		7C1702076F3A31D8D2D45A4A9F09B266 /* ConstraintMakerEditable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2C3B0B200350EAC8F42EF635FF31BD1 /* ConstraintMakerEditable.swift */; };
-		81474264EC69F66152D7E2CA1015766D /* SZAVPlayerDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB392122C09D05E3B78C7981DFDD0857 /* SZAVPlayerDataLoader.swift */; };
+		82141690E0830906161BA56FAA3F0BF5 /* SZAVPlayerFileSystem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D54FA7ADF5E08F0B88DACD96C127686 /* SZAVPlayerFileSystem.swift */; };
 		8277256ADEC3C4DCF79957D1CA681A9A /* ConstraintDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7AE00ECC24C5CC6DC938204FF42AD0E5 /* ConstraintDSL.swift */; };
 		8705BBF0D428BF0AE1B554A377ECC540 /* ConstraintOffsetTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47B200BD964F52F6693D4168248B8645 /* ConstraintOffsetTarget.swift */; };
-		91DA489D4B7A97B5A26BD98891C8C771 /* SZAVPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 271124EC1EC702240FE8E009134487A6 /* SZAVPlayer-dummy.m */; };
-		974E09B443A3ABC2540A670A80618F11 /* SZAVPlayerItemRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34309E940756E64C00B8A440939C7E86 /* SZAVPlayerItemRequest.swift */; };
+		88FAE590FD708C977CCA45731580A4B6 /* SZAVPlayerLocalFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = E73F736F9999D2B6C8BEF288BE846B23 /* SZAVPlayerLocalFileInfo.swift */; };
+		912E7140A42026AE40B36E6DE6CCB3C9 /* CoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6404B843502B8738BAC2C40CB5F955 /* CoreServices.framework */; };
+		928A6A7C4387C3C2E0A518379DFAD45C /* SZBaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 842292783295FC4C7CC56B3559EB1C13 /* SZBaseModel.swift */; };
+		93CEBF72AA7FBF1D7263B5B15FAA0F26 /* SZAVPlayerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 894F6A7D898F6B5F7D9D884A8CD86705 /* SZAVPlayerError.swift */; };
+		945AB081992BC7D42FF5DFBA070D4ED3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CDD23F48F86AAA6B90089B705DFB27AF /* AVFoundation.framework */; };
+		961252B4B00E78A6CF79C1808F742C12 /* SZAVPlayerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = ADC49D708B075FD01C453FC04ED25F20 /* SZAVPlayerCache.swift */; };
+		963DAEB33433156DC325C4E7A224EF23 /* SZLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49454B26295F96D2E293E63CF6822DC /* SZLog.swift */; };
 		99B5296A5EDECE0557B9DA53D9E19CA1 /* ConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 474AFC560A8B414B467174737DBC891A /* ConstraintItem.swift */; };
 		9B09968922C73D50040C6EEF57890D6E /* ConstraintConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 250E41DBB680A3A2ECDDD2210311B230 /* ConstraintConfig.swift */; };
 		A270CD9EC3C541FE86E65AEDCEF500CF /* ConstraintLayoutGuide.swift in Sources */ = {isa = PBXBuildFile; fileRef = 66C5188AE61F0E667CD9E7ED28CDD61C /* ConstraintLayoutGuide.swift */; };
 		A32FC34DE4E7330E868A4F5C4BCB31AB /* Pods-SZAVPlayer_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2C8BF3C2CE423463C00A2648FB4B73A2 /* Pods-SZAVPlayer_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		A66ED57B365A35434C5BAF4B990819B7 /* SnapKit-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0116B84A6773B75FCBFCB479E740F0F3 /* SnapKit-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		A940F7CEA40CBCA31EEFFD2B40A0FEB7 /* SZAVPlayerDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0697701A992148D10A0F4D899852C23D /* SZAVPlayerDatabase.swift */; };
+		A8A788612D3D0FDCC1EA0ED57B766D23 /* SZAVPlayer-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 256311031F4D792B3A18243CC2161F8D /* SZAVPlayer-dummy.m */; };
 		AC35C9341C4BB156BB26FDD237EE3721 /* ConstraintDirectionalInsets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91164BE769DA144776663FBF46785561 /* ConstraintDirectionalInsets.swift */; };
-		AC5480B25A005F3E1B88DD34331D5D7D /* SZAVPlayerCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD9A9CA6214D4A0D0705D67CDE58631C /* SZAVPlayerCache.swift */; };
+		AC61D5F54FBEA4C771CAAC72F925641D /* SZAVPlayerRequestOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5485DD0A6E888B5857964D9188EB9043 /* SZAVPlayerRequestOperation.swift */; };
+		AE58DB2B51D85222BF4F4B556725CBAD /* SZAVPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = BA92EC02B8825C80482625B215D5E1DF /* SZAVPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B599696DFEF6B2A5ECF528F4E5BB1846 /* ConstraintDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB1D9F6F4E2364DFAF158E04AF5D5EAA /* ConstraintDescription.swift */; };
+		B7577785FAFBFA100A3B028BA2438EFB /* SZAVPlayerConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DC22256F89714C607EE02997ED70756 /* SZAVPlayerConfig.swift */; };
 		B780B272106411CBE258BB60FFC45410 /* Debugging.swift in Sources */ = {isa = PBXBuildFile; fileRef = D038D2FAA2F6B073D1B64B8635F4E3E6 /* Debugging.swift */; };
 		B9165635407E124D97840DE740C76131 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEEA38848048F96E1FDEA2ED76F6C3D /* Foundation.framework */; };
-		BC88F47C3AF399D2433128016F300AD9 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 732D4A59E34B856809B03C96F18EA38F /* UIKit.framework */; };
 		BECA67DFB5E0984DFAEFCB775C31972E /* ConstraintView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A51E99894F75F00A281BE6A32FBDE495 /* ConstraintView.swift */; };
-		BED9911A4A6029E342C63D6FA32A41A3 /* SZAVPlayer-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 23C1BF91594EB9FDCB1C966704B4630C /* SZAVPlayer-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		C412F27D75AFC0DF0F0289DBB270931C /* ConstraintMakerFinalizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11D02329E74D733C03BF6BAE1F564481 /* ConstraintMakerFinalizable.swift */; };
-		C72AD7C55E2B6361F13E9FA27AF83994 /* SZAVPlayerLocalFileInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 70B4AE4EC3BD662F826D9DBF36DA1EC8 /* SZAVPlayerLocalFileInfo.swift */; };
-		CB0C04B0CAD04573E7F7E91E79F1DCCE /* SZAVPlayerSeekItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF74A4BD146087393700446519438A8 /* SZAVPlayerSeekItem.swift */; };
 		CE62FEABA57B2B53EABF8C7DCCC6B2C4 /* ConstraintRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 25479F58B67AA43E092C7B156C1B5C1B /* ConstraintRelation.swift */; };
+		D1A41F1A8F4AD88AAEB2E9D0EE0AEA69 /* SZAVPlayerDataLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86986CB3DFE35C634FC3132E8614AE2D /* SZAVPlayerDataLoader.swift */; };
 		D2179B9EFE74589C28B21C457464E038 /* Pods-SZAVPlayer_Example-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 33523CD50AB0879FF2514218D2116097 /* Pods-SZAVPlayer_Example-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		D2A575544348B8A63E1A258637FCB056 /* SZAVPlayerDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5BE5305DED3BF330CAAE02845B502533 /* SZAVPlayerDatabase.swift */; };
 		D4697DC40F3B059E4A0867838CA1814E /* ConstraintMultiplierTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = F7AB9BB47A2175181386A432C07253AE /* ConstraintMultiplierTarget.swift */; };
-		E06755143EC861C5E1EFE6273F9FE216 /* SZDatabase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7ABEDBA08C68CF2B75112DDE2CD7F5EC /* SZDatabase.swift */; };
-		E29EE77FA7BF385D78F79F656E96A972 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3EEEA38848048F96E1FDEA2ED76F6C3D /* Foundation.framework */; };
-		E8834F9AAE9A70C958586053551BCAF5 /* SZAVPlayerContentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A5BB2432EBAB8179180B9DF447A3BEF5 /* SZAVPlayerContentInfo.swift */; };
+		E0C29A79DFD41C2948F66B7EA13A25F0 /* SZAVPlayerSeekItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97F3D8CEF1DE6B9A1568A2A161E7E2A7 /* SZAVPlayerSeekItem.swift */; };
 		E8F2429683B3015CBD39CE883770BCA7 /* ConstraintPriorityTarget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9716AD15FADF38A93170E034F2BCE457 /* ConstraintPriorityTarget.swift */; };
 		E9A970BC24EA15832F248EA020072746 /* LayoutConstraintItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464C01543F3BCEDEE51ABAA696513D0B /* LayoutConstraintItem.swift */; };
+		E9EC8A89B1C8652F7F92F69865A25244 /* SZAVPlayerAssetLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC6FC71C492DF5C26CBF1BBDEB7A54AA /* SZAVPlayerAssetLoader.swift */; };
 		EB1726F5E0D0EEBA20E4528B1E37A8FA /* ConstraintViewDSL.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56006AA49A060CA2830F32CD6F394823 /* ConstraintViewDSL.swift */; };
+		EBB09C1BB83AEB8FD3132CE706FBB44C /* SZAVPlayerContentInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = BD30B22A8D7548C5A21046AEE574A99D /* SZAVPlayerContentInfo.swift */; };
 		EE909C7C786140109051BC9562EEC7C8 /* ConstraintMakerPriortizable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91A53CAF547D71AEFABE49D91B4E6816 /* ConstraintMakerPriortizable.swift */; };
-		FD07719C65666AB264ECAE4DDEB725A8 /* SZAVPlayerError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9050560C88EDF56EBE3DDB58CAC0876D /* SZAVPlayerError.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		55CEC37D2D968F7CFABFA12E1EABC57E /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = A5C5D460E3C23BEBE1092F9F91FD9B89;
-			remoteInfo = SZAVPlayer;
-		};
-		D1801A7C231F48D8EAC7845C22543F83 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7DE3260C1ABEEECE2BB0D52E470D97A6;
-			remoteInfo = "Pods-SZAVPlayer_Example";
-		};
-		FDECAA9D8D7DBB7B7895182A6E95EEB0 /* PBXContainerItemProxy */ = {
+		4531AB14EED055FC637F6485BBA7D19C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 19622742EBA51E823D6DAE3F8CDBFAD4;
 			remoteInfo = SnapKit;
 		};
+		485EAD74C53325EDB5DB10BE4880FB5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7DE3260C1ABEEECE2BB0D52E470D97A6;
+			remoteInfo = "Pods-SZAVPlayer_Example";
+		};
+		9B9A3FE426564A366B63C61FC9162011 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5C5D460E3C23BEBE1092F9F91FD9B89;
+			remoteInfo = SZAVPlayer;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		0116B84A6773B75FCBFCB479E740F0F3 /* SnapKit-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-umbrella.h"; sourceTree = "<group>"; };
-		01F0F3C51D235F8AFF50DEF1634554A8 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		02F4EA058D617853E22AFE1E8C0CFB86 /* Pods-SZAVPlayer_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SZAVPlayer_Tests-Info.plist"; sourceTree = "<group>"; };
-		04AD994BADAD1A823029D071A025CE58 /* SZAVPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SZAVPlayer.modulemap; sourceTree = "<group>"; };
 		04B356CAA07D5D4E6BBEA43DEB9F0FC8 /* Pods-SZAVPlayer_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SZAVPlayer_Example-dummy.m"; sourceTree = "<group>"; };
-		0697701A992148D10A0F4D899852C23D /* SZAVPlayerDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerDatabase.swift; sourceTree = "<group>"; };
 		06F1F0927499B90B101184891747CD54 /* Pods-SZAVPlayer_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SZAVPlayer_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		096A412AFDF13E45F69119F021DC65B5 /* Pods-SZAVPlayer_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-SZAVPlayer_Example-frameworks.sh"; sourceTree = "<group>"; };
 		09BF299D2EEB87E7DD02630E87B96224 /* ConstraintLayoutGuide+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintLayoutGuide+Extensions.swift"; path = "Source/ConstraintLayoutGuide+Extensions.swift"; sourceTree = "<group>"; };
+		0EC2DA63D28F8455FC4817A85412E302 /* SZAVPlayer.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SZAVPlayer.modulemap; sourceTree = "<group>"; };
 		11D02329E74D733C03BF6BAE1F564481 /* ConstraintMakerFinalizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerFinalizable.swift; path = Source/ConstraintMakerFinalizable.swift; sourceTree = "<group>"; };
 		13F460233F2A555D41511B6CCA66A124 /* ConstraintAttributes.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintAttributes.swift; path = Source/ConstraintAttributes.swift; sourceTree = "<group>"; };
 		141BC33167429B9926FB24A17F01568C /* ConstraintMaker.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMaker.swift; path = Source/ConstraintMaker.swift; sourceTree = "<group>"; };
 		1D80C647B5E41B9E307BE3A5498E501A /* Pods_SZAVPlayer_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SZAVPlayer_Tests.framework; path = "Pods-SZAVPlayer_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		1DE1CDD5CCFA53562D360545A01A7FB9 /* SZAVPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayer.swift; path = Sources/Classes/SZAVPlayer.swift; sourceTree = "<group>"; };
 		1F00B5E3B78C71A3FF4AB5719D056B44 /* Pods-SZAVPlayer_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SZAVPlayer_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		1F8F4254E003C3D80845794A5686F1BB /* Pods-SZAVPlayer_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SZAVPlayer_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		23C1BF91594EB9FDCB1C966704B4630C /* SZAVPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZAVPlayer-umbrella.h"; sourceTree = "<group>"; };
 		250E41DBB680A3A2ECDDD2210311B230 /* ConstraintConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConfig.swift; path = Source/ConstraintConfig.swift; sourceTree = "<group>"; };
 		25479F58B67AA43E092C7B156C1B5C1B /* ConstraintRelation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelation.swift; path = Source/ConstraintRelation.swift; sourceTree = "<group>"; };
-		271124EC1EC702240FE8E009134487A6 /* SZAVPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SZAVPlayer-dummy.m"; sourceTree = "<group>"; };
+		256311031F4D792B3A18243CC2161F8D /* SZAVPlayer-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SZAVPlayer-dummy.m"; sourceTree = "<group>"; };
 		2975CA5A0D26BC84F3EE9912FEBDA795 /* ConstraintRelatableTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintRelatableTarget.swift; path = Source/ConstraintRelatableTarget.swift; sourceTree = "<group>"; };
 		2C8BF3C2CE423463C00A2648FB4B73A2 /* Pods-SZAVPlayer_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SZAVPlayer_Tests-umbrella.h"; sourceTree = "<group>"; };
+		30117D64A298DEB9550BE6A6F2C4AB70 /* SZAVPlayerDataLoaderOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerDataLoaderOperation.swift; sourceTree = "<group>"; };
 		33523CD50AB0879FF2514218D2116097 /* Pods-SZAVPlayer_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-SZAVPlayer_Example-umbrella.h"; sourceTree = "<group>"; };
-		34309E940756E64C00B8A440939C7E86 /* SZAVPlayerItemRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerItemRequest.swift; sourceTree = "<group>"; };
-		358375646606164F2C8CE0E17669A764 /* SZAVPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZAVPlayer-prefix.pch"; sourceTree = "<group>"; };
 		391A6F8B42D2CD885F8F3C4CE6859439 /* SnapKit-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SnapKit-Info.plist"; sourceTree = "<group>"; };
 		3D705690D879064ED84970813189D8D4 /* ConstraintLayoutSupport.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupport.swift; path = Source/ConstraintLayoutSupport.swift; sourceTree = "<group>"; };
 		3EEEA38848048F96E1FDEA2ED76F6C3D /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		436BB2D6974D432D5F18F611E17BB0FD /* SZAVPlayerItemRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerItemRequest.swift; sourceTree = "<group>"; };
 		4477D6E99823B3E2AB8254A46A437BA3 /* Pods-SZAVPlayer_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-SZAVPlayer_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4539FDDE527005691093269975DB6551 /* Pods-SZAVPlayer_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SZAVPlayer_Example.release.xcconfig"; sourceTree = "<group>"; };
 		464C01543F3BCEDEE51ABAA696513D0B /* LayoutConstraintItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraintItem.swift; path = Source/LayoutConstraintItem.swift; sourceTree = "<group>"; };
@@ -135,67 +134,70 @@
 		47B200BD964F52F6693D4168248B8645 /* ConstraintOffsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintOffsetTarget.swift; path = Source/ConstraintOffsetTarget.swift; sourceTree = "<group>"; };
 		4DA2DAD6575DC30C3A60478A1C0A21DC /* Pods-SZAVPlayer_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SZAVPlayer_Tests.modulemap"; sourceTree = "<group>"; };
 		50380F281EC3EE769C85035CCEA77226 /* Constraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Constraint.swift; path = Source/Constraint.swift; sourceTree = "<group>"; };
-		546034ECC502D8EA2DB8BBCD99A9BDBE /* SZLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZLog.swift; sourceTree = "<group>"; };
+		5485DD0A6E888B5857964D9188EB9043 /* SZAVPlayerRequestOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerRequestOperation.swift; sourceTree = "<group>"; };
 		549471CD1FE3A1E1865DD172864918D3 /* ConstraintInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsets.swift; path = Source/ConstraintInsets.swift; sourceTree = "<group>"; };
 		56006AA49A060CA2830F32CD6F394823 /* ConstraintViewDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintViewDSL.swift; path = Source/ConstraintViewDSL.swift; sourceTree = "<group>"; };
-		567E2EA22F09D496D789F3855AEA5C9C /* SZAVPlayerAssetLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayerAssetLoader.swift; path = Sources/Classes/SZAVPlayerAssetLoader.swift; sourceTree = "<group>"; };
-		57D01EB0E1CE2C7758777B0A63CED5C0 /* SZAVPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SZAVPlayer.release.xcconfig; sourceTree = "<group>"; };
-		5BD3921189BCACE96D4E854EFE93B3C6 /* SZAVPlayerFileSystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerFileSystem.swift; sourceTree = "<group>"; };
+		5BE5305DED3BF330CAAE02845B502533 /* SZAVPlayerDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerDatabase.swift; sourceTree = "<group>"; };
 		5F6404B843502B8738BAC2C40CB5F955 /* CoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreServices.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/CoreServices.framework; sourceTree = DEVELOPER_DIR; };
+		64A11D1DE76BEE8570F3298683E43C47 /* SZAVPlayer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SZAVPlayer-Info.plist"; sourceTree = "<group>"; };
 		66C5188AE61F0E667CD9E7ED28CDD61C /* ConstraintLayoutGuide.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuide.swift; path = Source/ConstraintLayoutGuide.swift; sourceTree = "<group>"; };
 		6A9341666EAC154422A032092A7DC2D7 /* UILayoutSupport+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "UILayoutSupport+Extensions.swift"; path = "Source/UILayoutSupport+Extensions.swift"; sourceTree = "<group>"; };
 		6D990E0FED5B41C1F13AC6B08208A99B /* ConstraintConstantTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintConstantTarget.swift; path = Source/ConstraintConstantTarget.swift; sourceTree = "<group>"; };
-		6F0D623D5301A6C6E90208CD5B9E4BAD /* SZAVPlayer-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "SZAVPlayer-Info.plist"; sourceTree = "<group>"; };
 		7064E863E79D228732C3FA17FB79264E /* Pods-SZAVPlayer_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-SZAVPlayer_Example-Info.plist"; sourceTree = "<group>"; };
-		70B4AE4EC3BD662F826D9DBF36DA1EC8 /* SZAVPlayerLocalFileInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerLocalFileInfo.swift; sourceTree = "<group>"; };
 		724FB64349F5678CE1709979CF0DD952 /* ConstraintMakerRelatable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerRelatable.swift; path = Source/ConstraintMakerRelatable.swift; sourceTree = "<group>"; };
 		732D4A59E34B856809B03C96F18EA38F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/UIKit.framework; sourceTree = DEVELOPER_DIR; };
 		735A80400BB7DAAFA678B1F59888B462 /* Pods-SZAVPlayer_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SZAVPlayer_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		765EE512BFDA3721770840E2451DA03B /* Pods_SZAVPlayer_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_SZAVPlayer_Example.framework; path = "Pods-SZAVPlayer_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		76AEF0F6C2404E1DEC34B30FA2CF9507 /* SZAVPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SZAVPlayer.debug.xcconfig; sourceTree = "<group>"; };
 		7889131C1139F96BBDA94CEE2E694763 /* SnapKit.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = SnapKit.modulemap; sourceTree = "<group>"; };
-		7ABEDBA08C68CF2B75112DDE2CD7F5EC /* SZDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZDatabase.swift; sourceTree = "<group>"; };
 		7AE00ECC24C5CC6DC938204FF42AD0E5 /* ConstraintDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDSL.swift; path = Source/ConstraintDSL.swift; sourceTree = "<group>"; };
-		7BA19EAA016E2672C95B54DE48EF66A6 /* SZAVPlayer.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SZAVPlayer.debug.xcconfig; sourceTree = "<group>"; };
 		7C21E0C93A1141A1E2EB51575500E27D /* SnapKit.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.debug.xcconfig; sourceTree = "<group>"; };
 		7C2EC377264B25FB0E67D150E37E87CD /* ConstraintInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintInsetTarget.swift; path = Source/ConstraintInsetTarget.swift; sourceTree = "<group>"; };
-		7F10BB6659C11094E38E1CD94CF2A595 /* SZAVPlayer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayer.swift; path = Sources/Classes/SZAVPlayer.swift; sourceTree = "<group>"; };
-		8D8EC52AB5B6B502B9A50E423B9EDA2F /* SZAVPlayerRequestOperation.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerRequestOperation.swift; sourceTree = "<group>"; };
-		9050560C88EDF56EBE3DDB58CAC0876D /* SZAVPlayerError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerError.swift; sourceTree = "<group>"; };
+		842292783295FC4C7CC56B3559EB1C13 /* SZBaseModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZBaseModel.swift; sourceTree = "<group>"; };
+		86986CB3DFE35C634FC3132E8614AE2D /* SZAVPlayerDataLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerDataLoader.swift; sourceTree = "<group>"; };
+		894F6A7D898F6B5F7D9D884A8CD86705 /* SZAVPlayerError.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerError.swift; sourceTree = "<group>"; };
+		8D54FA7ADF5E08F0B88DACD96C127686 /* SZAVPlayerFileSystem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerFileSystem.swift; sourceTree = "<group>"; };
 		91164BE769DA144776663FBF46785561 /* ConstraintDirectionalInsets.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsets.swift; path = Source/ConstraintDirectionalInsets.swift; sourceTree = "<group>"; };
 		9154E7119AA0D27DB2F81260C317DF56 /* SZAVPlayer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SZAVPlayer.framework; path = SZAVPlayer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		91A53CAF547D71AEFABE49D91B4E6816 /* ConstraintMakerPriortizable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerPriortizable.swift; path = Source/ConstraintMakerPriortizable.swift; sourceTree = "<group>"; };
 		92846D00390970CCC819E1D267320820 /* Pods-SZAVPlayer_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SZAVPlayer_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		9716AD15FADF38A93170E034F2BCE457 /* ConstraintPriorityTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriorityTarget.swift; path = Source/ConstraintPriorityTarget.swift; sourceTree = "<group>"; };
 		979486118B3E90C08386079D57962701 /* SnapKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = SnapKit.framework; path = SnapKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		97F3D8CEF1DE6B9A1568A2A161E7E2A7 /* SZAVPlayerSeekItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerSeekItem.swift; sourceTree = "<group>"; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9DC22256F89714C607EE02997ED70756 /* SZAVPlayerConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerConfig.swift; sourceTree = "<group>"; };
 		A1CD432F32277BB93DEAADA626ECEC5B /* SnapKit.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SnapKit.release.xcconfig; sourceTree = "<group>"; };
 		A51E99894F75F00A281BE6A32FBDE495 /* ConstraintView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintView.swift; path = Source/ConstraintView.swift; sourceTree = "<group>"; };
-		A5BB2432EBAB8179180B9DF447A3BEF5 /* SZAVPlayerContentInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerContentInfo.swift; sourceTree = "<group>"; };
 		A7D358AA1606C7B2CDC8555485807E9E /* ConstraintDirectionalInsetTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDirectionalInsetTarget.swift; path = Source/ConstraintDirectionalInsetTarget.swift; sourceTree = "<group>"; };
-		AA74B71522A23B163B8347C1A0501BC8 /* SZAVPlayer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = SZAVPlayer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		ACF74A4BD146087393700446519438A8 /* SZAVPlayerSeekItem.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerSeekItem.swift; sourceTree = "<group>"; };
-		AD9A9CA6214D4A0D0705D67CDE58631C /* SZAVPlayerCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerCache.swift; sourceTree = "<group>"; };
+		AC6FC71C492DF5C26CBF1BBDEB7A54AA /* SZAVPlayerAssetLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = SZAVPlayerAssetLoader.swift; path = Sources/Classes/SZAVPlayerAssetLoader.swift; sourceTree = "<group>"; };
+		ADC49D708B075FD01C453FC04ED25F20 /* SZAVPlayerCache.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerCache.swift; sourceTree = "<group>"; };
+		ADFE9BB34244AEF69B93569D1A4AEF12 /* SZAVPlayer-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZAVPlayer-prefix.pch"; sourceTree = "<group>"; };
+		B48FEC7DC3A6DAEC43A8D4F7B07740C9 /* SZDatabase.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZDatabase.swift; sourceTree = "<group>"; };
+		BA92EC02B8825C80482625B215D5E1DF /* SZAVPlayer-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SZAVPlayer-umbrella.h"; sourceTree = "<group>"; };
+		BD30B22A8D7548C5A21046AEE574A99D /* SZAVPlayerContentInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerContentInfo.swift; sourceTree = "<group>"; };
 		BE0BE9F3D55FDB29EF516F6D6B1B6BCA /* ConstraintLayoutGuideDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutGuideDSL.swift; path = Source/ConstraintLayoutGuideDSL.swift; sourceTree = "<group>"; };
 		C4A46A8054577838D49C60142EB88B13 /* ConstraintLayoutSupportDSL.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintLayoutSupportDSL.swift; path = Source/ConstraintLayoutSupportDSL.swift; sourceTree = "<group>"; };
 		CB1D9F6F4E2364DFAF158E04AF5D5EAA /* ConstraintDescription.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintDescription.swift; path = Source/ConstraintDescription.swift; sourceTree = "<group>"; };
-		CB392122C09D05E3B78C7981DFDD0857 /* SZAVPlayerDataLoader.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerDataLoader.swift; sourceTree = "<group>"; };
 		CB7652F395BB927CA0B81D656A5C7008 /* Pods-SZAVPlayer_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-SZAVPlayer_Tests-dummy.m"; sourceTree = "<group>"; };
 		CDD23F48F86AAA6B90089B705DFB27AF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
 		D038D2FAA2F6B073D1B64B8635F4E3E6 /* Debugging.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Debugging.swift; path = Source/Debugging.swift; sourceTree = "<group>"; };
-		D3441EE8FE3874DA32361C7310C4F490 /* SZAVPlayerConfig.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerConfig.swift; sourceTree = "<group>"; };
 		D4E066869A95E00B949CBA4D2284C35F /* Typealiases.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Typealiases.swift; path = Source/Typealiases.swift; sourceTree = "<group>"; };
-		D812319116B7D1BC4B1AAF8E5E364C4A /* SZBaseModel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZBaseModel.swift; sourceTree = "<group>"; };
+		D65811A927FCE7ECCE6DB768EBF05494 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		D9A74461B2CFCCD65B7E525C7A52144C /* Pods-SZAVPlayer_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-SZAVPlayer_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E13B89FFD81AACB7530769CA05EEA26B /* SnapKit-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "SnapKit-dummy.m"; sourceTree = "<group>"; };
 		E14A09DC3AD8CA84464FEC37F0FC99D1 /* SnapKit-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "SnapKit-prefix.pch"; sourceTree = "<group>"; };
 		E2C3B0B200350EAC8F42EF635FF31BD1 /* ConstraintMakerEditable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerEditable.swift; path = Source/ConstraintMakerEditable.swift; sourceTree = "<group>"; };
 		E43F10DE451FED17810D9B5C237324A5 /* ConstraintMakerExtendable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMakerExtendable.swift; path = Source/ConstraintMakerExtendable.swift; sourceTree = "<group>"; };
 		E44A1B771C5C0465E91E2585D9FAF025 /* Pods-SZAVPlayer_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-SZAVPlayer_Example.modulemap"; sourceTree = "<group>"; };
+		E44C9000B9BD7B7CC3930FBEA7715FA5 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		E73F736F9999D2B6C8BEF288BE846B23 /* SZAVPlayerLocalFileInfo.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZAVPlayerLocalFileInfo.swift; sourceTree = "<group>"; };
 		EE9055CEA7890517265589BD23D73A49 /* ConstraintView+Extensions.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = "ConstraintView+Extensions.swift"; path = "Source/ConstraintView+Extensions.swift"; sourceTree = "<group>"; };
+		F01632F5CD1EE9D26897C0ADEE5A9FEA /* SZAVPlayer.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = SZAVPlayer.release.xcconfig; sourceTree = "<group>"; };
 		F0BD95F32F2E57D6B9100B77B93F013C /* ConstraintPriority.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintPriority.swift; path = Source/ConstraintPriority.swift; sourceTree = "<group>"; };
 		F44C5B72775F6AF0891BF331F32FE10D /* LayoutConstraint.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LayoutConstraint.swift; path = Source/LayoutConstraint.swift; sourceTree = "<group>"; };
+		F49454B26295F96D2E293E63CF6822DC /* SZLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = SZLog.swift; sourceTree = "<group>"; };
 		F7AB9BB47A2175181386A432C07253AE /* ConstraintMultiplierTarget.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ConstraintMultiplierTarget.swift; path = Source/ConstraintMultiplierTarget.swift; sourceTree = "<group>"; };
-		FD8EE9AAA221060CA1AF62F04846B7BA /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		F9210B33A6BE730542C257FD73CCAA0E /* SZAVPlayer.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = SZAVPlayer.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -207,22 +209,22 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		1FF4D173EE887B50888C8D4BD83AC579 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				7460950216ECACEB81FE75D796D1FB7A /* AVFoundation.framework in Frameworks */,
-				4D1B4181B4DFFE3E09B2ECA6429318DC /* CoreServices.framework in Frameworks */,
-				E29EE77FA7BF385D78F79F656E96A972 /* Foundation.framework in Frameworks */,
-				BC88F47C3AF399D2433128016F300AD9 /* UIKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		3C8B1704CC97EF12D3409771318C6433 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				04543980C4A7CE442330B0F1BC4A9A54 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D310934E994CEA44F39207097B4229A2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				945AB081992BC7D42FF5DFBA070D4ED3 /* AVFoundation.framework in Frameworks */,
+				912E7140A42026AE40B36E6DE6CCB3C9 /* CoreServices.framework in Frameworks */,
+				698D83BF7A3A4B39E8895D6AFC882280 /* Foundation.framework in Frameworks */,
+				682594E5A550A4079721FA055B17F81E /* UIKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,6 +239,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04279AAF9E7A3116F0A12A4C827C2659 /* Request */ = {
+			isa = PBXGroup;
+			children = (
+				86986CB3DFE35C634FC3132E8614AE2D /* SZAVPlayerDataLoader.swift */,
+				30117D64A298DEB9550BE6A6F2C4AB70 /* SZAVPlayerDataLoaderOperation.swift */,
+				436BB2D6974D432D5F18F611E17BB0FD /* SZAVPlayerItemRequest.swift */,
+				5485DD0A6E888B5857964D9188EB9043 /* SZAVPlayerRequestOperation.swift */,
+			);
+			name = Request;
+			path = Sources/Classes/Request;
+			sourceTree = "<group>";
+		};
 		08CA3F915612A4E2F37C288D4E677F5F /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -246,6 +260,25 @@
 				9154E7119AA0D27DB2F81260C317DF56 /* SZAVPlayer.framework */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		2F09BC0A6A776E7306527EB0CE917B4F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				F49454B26295F96D2E293E63CF6822DC /* SZLog.swift */,
+			);
+			name = Utils;
+			path = Sources/Classes/Utils;
+			sourceTree = "<group>";
+		};
+		3ABDAC43307A7AA197A9BA282CFED07C /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				D65811A927FCE7ECCE6DB768EBF05494 /* LICENSE */,
+				E44C9000B9BD7B7CC3930FBEA7715FA5 /* README.md */,
+				F9210B33A6BE730542C257FD73CCAA0E /* SZAVPlayer.podspec */,
+			);
+			name = Pod;
 			sourceTree = "<group>";
 		};
 		4697119E1C587FBD8ED4E5BFF46D9ADF /* Pods-SZAVPlayer_Tests */ = {
@@ -264,15 +297,32 @@
 			path = "Target Support Files/Pods-SZAVPlayer_Tests";
 			sourceTree = "<group>";
 		};
-		5BA671F0F509B30560C673317019FE33 /* Request */ = {
+		497B341167DF38B2AC284A2D10D34304 /* SZAVPlayer */ = {
 			isa = PBXGroup;
 			children = (
-				CB392122C09D05E3B78C7981DFDD0857 /* SZAVPlayerDataLoader.swift */,
-				34309E940756E64C00B8A440939C7E86 /* SZAVPlayerItemRequest.swift */,
-				8D8EC52AB5B6B502B9A50E423B9EDA2F /* SZAVPlayerRequestOperation.swift */,
+				1DE1CDD5CCFA53562D360545A01A7FB9 /* SZAVPlayer.swift */,
+				AC6FC71C492DF5C26CBF1BBDEB7A54AA /* SZAVPlayerAssetLoader.swift */,
+				E991C456582E79E2EE475252E973D2C5 /* Model */,
+				3ABDAC43307A7AA197A9BA282CFED07C /* Pod */,
+				04279AAF9E7A3116F0A12A4C827C2659 /* Request */,
+				716483AE30BDE5921218D8CE2D3D3136 /* Storage */,
+				98BA1754BF7513D0982687FBD2A932D8 /* Support Files */,
+				2F09BC0A6A776E7306527EB0CE917B4F /* Utils */,
 			);
-			name = Request;
-			path = Sources/Classes/Request;
+			name = SZAVPlayer;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		716483AE30BDE5921218D8CE2D3D3136 /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				ADC49D708B075FD01C453FC04ED25F20 /* SZAVPlayerCache.swift */,
+				5BE5305DED3BF330CAAE02845B502533 /* SZAVPlayerDatabase.swift */,
+				8D54FA7ADF5E08F0B88DACD96C127686 /* SZAVPlayerFileSystem.swift */,
+				B48FEC7DC3A6DAEC43A8D4F7B07740C9 /* SZDatabase.swift */,
+			);
+			name = Storage;
+			path = Sources/Classes/Storage;
 			sourceTree = "<group>";
 		};
 		7F02E3862C6E84203E8324D9D0088797 /* SnapKit */ = {
@@ -344,52 +394,27 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		A3F41BEC4304FC97877868DA688A9D5E /* Development Pods */ = {
+		98BA1754BF7513D0982687FBD2A932D8 /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				AC46A07E9B06AC061887E6F44E6254A9 /* SZAVPlayer */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		A7BC0D945CE077CA87567D93C1716D13 /* Utils */ = {
-			isa = PBXGroup;
-			children = (
-				546034ECC502D8EA2DB8BBCD99A9BDBE /* SZLog.swift */,
-			);
-			name = Utils;
-			path = Sources/Classes/Utils;
-			sourceTree = "<group>";
-		};
-		AC46A07E9B06AC061887E6F44E6254A9 /* SZAVPlayer */ = {
-			isa = PBXGroup;
-			children = (
-				7F10BB6659C11094E38E1CD94CF2A595 /* SZAVPlayer.swift */,
-				567E2EA22F09D496D789F3855AEA5C9C /* SZAVPlayerAssetLoader.swift */,
-				D87A717C38B3931D4F39756ABFC503FE /* Model */,
-				F97ECD2D08134B1FB1B8DC08D7DA3A98 /* Pod */,
-				5BA671F0F509B30560C673317019FE33 /* Request */,
-				F0699381E70AB2B684750902FDF668B9 /* Storage */,
-				AF1FBDA1E22A4330BD6E3780EA01FA44 /* Support Files */,
-				A7BC0D945CE077CA87567D93C1716D13 /* Utils */,
-			);
-			name = SZAVPlayer;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		AF1FBDA1E22A4330BD6E3780EA01FA44 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				04AD994BADAD1A823029D071A025CE58 /* SZAVPlayer.modulemap */,
-				271124EC1EC702240FE8E009134487A6 /* SZAVPlayer-dummy.m */,
-				6F0D623D5301A6C6E90208CD5B9E4BAD /* SZAVPlayer-Info.plist */,
-				358375646606164F2C8CE0E17669A764 /* SZAVPlayer-prefix.pch */,
-				23C1BF91594EB9FDCB1C966704B4630C /* SZAVPlayer-umbrella.h */,
-				7BA19EAA016E2672C95B54DE48EF66A6 /* SZAVPlayer.debug.xcconfig */,
-				57D01EB0E1CE2C7758777B0A63CED5C0 /* SZAVPlayer.release.xcconfig */,
+				0EC2DA63D28F8455FC4817A85412E302 /* SZAVPlayer.modulemap */,
+				256311031F4D792B3A18243CC2161F8D /* SZAVPlayer-dummy.m */,
+				64A11D1DE76BEE8570F3298683E43C47 /* SZAVPlayer-Info.plist */,
+				ADFE9BB34244AEF69B93569D1A4AEF12 /* SZAVPlayer-prefix.pch */,
+				BA92EC02B8825C80482625B215D5E1DF /* SZAVPlayer-umbrella.h */,
+				76AEF0F6C2404E1DEC34B30FA2CF9507 /* SZAVPlayer.debug.xcconfig */,
+				F01632F5CD1EE9D26897C0ADEE5A9FEA /* SZAVPlayer.release.xcconfig */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/SZAVPlayer";
+			sourceTree = "<group>";
+		};
+		A3F41BEC4304FC97877868DA688A9D5E /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				497B341167DF38B2AC284A2D10D34304 /* SZAVPlayer */,
+			);
+			name = "Development Pods";
 			sourceTree = "<group>";
 		};
 		BA22F08D059965C9A09F78196176CEDB /* Pods */ = {
@@ -420,40 +445,18 @@
 			);
 			sourceTree = "<group>";
 		};
-		D87A717C38B3931D4F39756ABFC503FE /* Model */ = {
+		E991C456582E79E2EE475252E973D2C5 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				D3441EE8FE3874DA32361C7310C4F490 /* SZAVPlayerConfig.swift */,
-				A5BB2432EBAB8179180B9DF447A3BEF5 /* SZAVPlayerContentInfo.swift */,
-				9050560C88EDF56EBE3DDB58CAC0876D /* SZAVPlayerError.swift */,
-				70B4AE4EC3BD662F826D9DBF36DA1EC8 /* SZAVPlayerLocalFileInfo.swift */,
-				ACF74A4BD146087393700446519438A8 /* SZAVPlayerSeekItem.swift */,
-				D812319116B7D1BC4B1AAF8E5E364C4A /* SZBaseModel.swift */,
+				9DC22256F89714C607EE02997ED70756 /* SZAVPlayerConfig.swift */,
+				BD30B22A8D7548C5A21046AEE574A99D /* SZAVPlayerContentInfo.swift */,
+				894F6A7D898F6B5F7D9D884A8CD86705 /* SZAVPlayerError.swift */,
+				E73F736F9999D2B6C8BEF288BE846B23 /* SZAVPlayerLocalFileInfo.swift */,
+				97F3D8CEF1DE6B9A1568A2A161E7E2A7 /* SZAVPlayerSeekItem.swift */,
+				842292783295FC4C7CC56B3559EB1C13 /* SZBaseModel.swift */,
 			);
 			name = Model;
 			path = Sources/Classes/Model;
-			sourceTree = "<group>";
-		};
-		F0699381E70AB2B684750902FDF668B9 /* Storage */ = {
-			isa = PBXGroup;
-			children = (
-				AD9A9CA6214D4A0D0705D67CDE58631C /* SZAVPlayerCache.swift */,
-				0697701A992148D10A0F4D899852C23D /* SZAVPlayerDatabase.swift */,
-				5BD3921189BCACE96D4E854EFE93B3C6 /* SZAVPlayerFileSystem.swift */,
-				7ABEDBA08C68CF2B75112DDE2CD7F5EC /* SZDatabase.swift */,
-			);
-			name = Storage;
-			path = Sources/Classes/Storage;
-			sourceTree = "<group>";
-		};
-		F97ECD2D08134B1FB1B8DC08D7DA3A98 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				01F0F3C51D235F8AFF50DEF1634554A8 /* LICENSE */,
-				FD8EE9AAA221060CA1AF62F04846B7BA /* README.md */,
-				AA74B71522A23B163B8347C1A0501BC8 /* SZAVPlayer.podspec */,
-			);
-			name = Pod;
 			sourceTree = "<group>";
 		};
 		FB6380E534E0B687D1046D74F0117837 /* iOS */ = {
@@ -503,11 +506,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		92CA1BA4DCC16B6903BB71B9B93E26F2 /* Headers */ = {
+		9D2428456D0F5635B28DB8EFB6BF9657 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BED9911A4A6029E342C63D6FA32A41A3 /* SZAVPlayer-umbrella.h in Headers */,
+				AE58DB2B51D85222BF4F4B556725CBAD /* SZAVPlayer-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -552,8 +555,8 @@
 			buildRules = (
 			);
 			dependencies = (
-				67FD168C1C7621D2D90F48805A3573E8 /* PBXTargetDependency */,
-				C75B4AA3464EE63A57DBDAFA869657B4 /* PBXTargetDependency */,
+				951D9F21E1B656136D3A1EB5FB3EA975 /* PBXTargetDependency */,
+				48CC4A23998DF2A20A2A9B77C90A01B4 /* PBXTargetDependency */,
 			);
 			name = "Pods-SZAVPlayer_Example";
 			productName = "Pods-SZAVPlayer_Example";
@@ -572,7 +575,7 @@
 			buildRules = (
 			);
 			dependencies = (
-				F2E726E00F692F5DF494CCCF1E9BEDCD /* PBXTargetDependency */,
+				7545E5FFBB7CCEF37C76A159BBEA5852 /* PBXTargetDependency */,
 			);
 			name = "Pods-SZAVPlayer_Tests";
 			productName = "Pods-SZAVPlayer_Tests";
@@ -581,12 +584,12 @@
 		};
 		A5C5D460E3C23BEBE1092F9F91FD9B89 /* SZAVPlayer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = F32261FAC92DF6FF91AA795A35430A0A /* Build configuration list for PBXNativeTarget "SZAVPlayer" */;
+			buildConfigurationList = E35CE33AB531150AE7D1F274B535FCF9 /* Build configuration list for PBXNativeTarget "SZAVPlayer" */;
 			buildPhases = (
-				92CA1BA4DCC16B6903BB71B9B93E26F2 /* Headers */,
-				3493E6D1C084EF119926A7E4E1D89455 /* Sources */,
-				1FF4D173EE887B50888C8D4BD83AC579 /* Frameworks */,
-				8BFF206B2E2DA8D5F394787E35B9EF16 /* Resources */,
+				9D2428456D0F5635B28DB8EFB6BF9657 /* Headers */,
+				27062FE683F5232F9E55A85BE5B3834C /* Sources */,
+				D310934E994CEA44F39207097B4229A2 /* Frameworks */,
+				BE4E6E71A25E1CB6EC13CF2C3C2A2B90 /* Resources */,
 			);
 			buildRules = (
 			);
@@ -628,14 +631,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		8BFF206B2E2DA8D5F394787E35B9EF16 /* Resources */ = {
+		9C691CAA90D9565F2EFF5EF823D8A80C /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9C691CAA90D9565F2EFF5EF823D8A80C /* Resources */ = {
+		BE4E6E71A25E1CB6EC13CF2C3C2A2B90 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -659,27 +662,28 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		3493E6D1C084EF119926A7E4E1D89455 /* Sources */ = {
+		27062FE683F5232F9E55A85BE5B3834C /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				91DA489D4B7A97B5A26BD98891C8C771 /* SZAVPlayer-dummy.m in Sources */,
-				2AB90A0F8C12AFF54E337B0122B036EA /* SZAVPlayer.swift in Sources */,
-				53A49ECA47D6E8098B3D38F40E4CC620 /* SZAVPlayerAssetLoader.swift in Sources */,
-				AC5480B25A005F3E1B88DD34331D5D7D /* SZAVPlayerCache.swift in Sources */,
-				4F811654F69B4F4F5C141CA16AA07ABD /* SZAVPlayerConfig.swift in Sources */,
-				E8834F9AAE9A70C958586053551BCAF5 /* SZAVPlayerContentInfo.swift in Sources */,
-				A940F7CEA40CBCA31EEFFD2B40A0FEB7 /* SZAVPlayerDatabase.swift in Sources */,
-				81474264EC69F66152D7E2CA1015766D /* SZAVPlayerDataLoader.swift in Sources */,
-				FD07719C65666AB264ECAE4DDEB725A8 /* SZAVPlayerError.swift in Sources */,
-				5E2416AE3D1AEFAD5CDEC9A50E52BA9D /* SZAVPlayerFileSystem.swift in Sources */,
-				974E09B443A3ABC2540A670A80618F11 /* SZAVPlayerItemRequest.swift in Sources */,
-				C72AD7C55E2B6361F13E9FA27AF83994 /* SZAVPlayerLocalFileInfo.swift in Sources */,
-				239FB41DA68BC8BF2D21FBB1B339748C /* SZAVPlayerRequestOperation.swift in Sources */,
-				CB0C04B0CAD04573E7F7E91E79F1DCCE /* SZAVPlayerSeekItem.swift in Sources */,
-				3551B886610F59438FDEB571E471F963 /* SZBaseModel.swift in Sources */,
-				E06755143EC861C5E1EFE6273F9FE216 /* SZDatabase.swift in Sources */,
-				13EB569D4A3329519A109694310370C5 /* SZLog.swift in Sources */,
+				A8A788612D3D0FDCC1EA0ED57B766D23 /* SZAVPlayer-dummy.m in Sources */,
+				0333F31E1992493A80BE0135259A367D /* SZAVPlayer.swift in Sources */,
+				E9EC8A89B1C8652F7F92F69865A25244 /* SZAVPlayerAssetLoader.swift in Sources */,
+				961252B4B00E78A6CF79C1808F742C12 /* SZAVPlayerCache.swift in Sources */,
+				B7577785FAFBFA100A3B028BA2438EFB /* SZAVPlayerConfig.swift in Sources */,
+				EBB09C1BB83AEB8FD3132CE706FBB44C /* SZAVPlayerContentInfo.swift in Sources */,
+				D2A575544348B8A63E1A258637FCB056 /* SZAVPlayerDatabase.swift in Sources */,
+				D1A41F1A8F4AD88AAEB2E9D0EE0AEA69 /* SZAVPlayerDataLoader.swift in Sources */,
+				6C396675E0ECA71E7167789C35F507B1 /* SZAVPlayerDataLoaderOperation.swift in Sources */,
+				93CEBF72AA7FBF1D7263B5B15FAA0F26 /* SZAVPlayerError.swift in Sources */,
+				82141690E0830906161BA56FAA3F0BF5 /* SZAVPlayerFileSystem.swift in Sources */,
+				23FA55E43E8154049B5F1BBE5D391C94 /* SZAVPlayerItemRequest.swift in Sources */,
+				88FAE590FD708C977CCA45731580A4B6 /* SZAVPlayerLocalFileInfo.swift in Sources */,
+				AC61D5F54FBEA4C771CAAC72F925641D /* SZAVPlayerRequestOperation.swift in Sources */,
+				E0C29A79DFD41C2948F66B7EA13A25F0 /* SZAVPlayerSeekItem.swift in Sources */,
+				928A6A7C4387C3C2E0A518379DFAD45C /* SZBaseModel.swift in Sources */,
+				07F29FCC7BA0310994DBB8523B8B8156 /* SZDatabase.swift in Sources */,
+				963DAEB33433156DC325C4E7A224EF23 /* SZLog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -746,23 +750,23 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		67FD168C1C7621D2D90F48805A3573E8 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = SZAVPlayer;
-			target = A5C5D460E3C23BEBE1092F9F91FD9B89 /* SZAVPlayer */;
-			targetProxy = 55CEC37D2D968F7CFABFA12E1EABC57E /* PBXContainerItemProxy */;
-		};
-		C75B4AA3464EE63A57DBDAFA869657B4 /* PBXTargetDependency */ = {
+		48CC4A23998DF2A20A2A9B77C90A01B4 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = SnapKit;
 			target = 19622742EBA51E823D6DAE3F8CDBFAD4 /* SnapKit */;
-			targetProxy = FDECAA9D8D7DBB7B7895182A6E95EEB0 /* PBXContainerItemProxy */;
+			targetProxy = 4531AB14EED055FC637F6485BBA7D19C /* PBXContainerItemProxy */;
 		};
-		F2E726E00F692F5DF494CCCF1E9BEDCD /* PBXTargetDependency */ = {
+		7545E5FFBB7CCEF37C76A159BBEA5852 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-SZAVPlayer_Example";
 			target = 7DE3260C1ABEEECE2BB0D52E470D97A6 /* Pods-SZAVPlayer_Example */;
-			targetProxy = D1801A7C231F48D8EAC7845C22543F83 /* PBXContainerItemProxy */;
+			targetProxy = 485EAD74C53325EDB5DB10BE4880FB5B /* PBXContainerItemProxy */;
+		};
+		951D9F21E1B656136D3A1EB5FB3EA975 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = SZAVPlayer;
+			target = A5C5D460E3C23BEBE1092F9F91FD9B89 /* SZAVPlayer */;
+			targetProxy = 9B9A3FE426564A366B63C61FC9162011 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -859,6 +863,39 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		2FE3F416A33075F7D5AAA971421191C1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F01632F5CD1EE9D26897C0ADEE5A9FEA /* SZAVPlayer.release.xcconfig */;
+			buildSettings = {
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/SZAVPlayer/SZAVPlayer-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer.modulemap";
+				PRODUCT_MODULE_NAME = SZAVPlayer;
+				PRODUCT_NAME = SZAVPlayer;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1062,9 +1099,9 @@
 			};
 			name = Release;
 		};
-		BE30580E98FEB693BA7EF4E430F2EFB2 /* Debug */ = {
+		E93F2E1ED0AF005E60BB9D8B8F1F5D27 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7BA19EAA016E2672C95B54DE48EF66A6 /* SZAVPlayer.debug.xcconfig */;
+			baseConfigurationReference = 76AEF0F6C2404E1DEC34B30FA2CF9507 /* SZAVPlayer.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_OBJC_WEAK = NO;
 				CODE_SIGN_IDENTITY = "";
@@ -1093,39 +1130,6 @@
 				VERSION_INFO_PREFIX = "";
 			};
 			name = Debug;
-		};
-		D67C0CCCD67D17C83FF606B0F772835B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 57D01EB0E1CE2C7758777B0A63CED5C0 /* SZAVPlayer.release.xcconfig */;
-			buildSettings = {
-				CLANG_ENABLE_OBJC_WEAK = NO;
-				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				GCC_PREFIX_HEADER = "Target Support Files/SZAVPlayer/SZAVPlayer-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer-Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/SZAVPlayer/SZAVPlayer.modulemap";
-				PRODUCT_MODULE_NAME = SZAVPlayer;
-				PRODUCT_NAME = SZAVPlayer;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
 		};
 		F93AF49C1CAF2486F9DC6AE9F85C0739 /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -1189,20 +1193,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
+		E35CE33AB531150AE7D1F274B535FCF9 /* Build configuration list for PBXNativeTarget "SZAVPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E93F2E1ED0AF005E60BB9D8B8F1F5D27 /* Debug */,
+				2FE3F416A33075F7D5AAA971421191C1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		EAB883BD19E6B1150D06893BAA06D810 /* Build configuration list for PBXNativeTarget "Pods-SZAVPlayer_Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4758901285BB0F75AE0144FD8CD73B7C /* Debug */,
 				845986B5E8233CD3FD92001445705F5D /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		F32261FAC92DF6FF91AA795A35430A0A /* Build configuration list for PBXNativeTarget "SZAVPlayer" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				BE30580E98FEB693BA7EF4E430F2EFB2 /* Debug */,
-				D67C0CCCD67D17C83FF606B0F772835B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

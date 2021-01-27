@@ -168,8 +168,8 @@ extension SZAVPlayer {
         self.config = config
         isReadyToPlay = false
         currentURLStr = config.urlStr
-        let assetLoader = createAssetLoader(url: url, uniqueID: config.uniqueID)
-        assetLoader.loadAsset(isLocalURL: config.isLocalURL) { (asset) in
+        let assetLoader = createAssetLoader(url: url, uniqueID: config.uniqueID, config: config)
+        assetLoader.loadAsset(disableCustomLoading: config.disableCustomLoading) { (asset) in
             if let _ = self.player {
                 self.replacePalyerItem(asset: asset)
             } else {
@@ -224,6 +224,7 @@ extension SZAVPlayer {
             }
 
             player.replaceCurrentItem(with: nil)
+            assetLoader?.cleanup()
         } else {
             seekPlayerToTime(time: 0, autoPlay: false) { [weak self] (finished) in
                 guard let weakSelf = self, finished else { return }
@@ -650,8 +651,8 @@ extension SZAVPlayer {
         addNotificationsForPlayer()
     }
 
-    private func createAssetLoader(url: URL, uniqueID: String?) -> SZAVPlayerAssetLoader {
-        let loader = SZAVPlayerAssetLoader(url: url)
+    private func createAssetLoader(url: URL, uniqueID: String?, config: SZAVPlayerConfig) -> SZAVPlayerAssetLoader {
+        let loader = SZAVPlayerAssetLoader(url: url, config: config)
         let finalUniqueID = uniqueID ?? SZAVPlayerFileSystem.uniqueID(url: url)
         loader.uniqueID = finalUniqueID
         loader.delegate = self

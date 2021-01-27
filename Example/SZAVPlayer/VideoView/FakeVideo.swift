@@ -51,5 +51,14 @@ class FakeVideo: NSObject {
         return video
     }
 
+    static func fake4() -> FakeVideo {
+        let video = FakeVideo()
+        video.cover = ""
+        video.title = "Test Long Video"
+        video.url = "https://seed128.bitchute.com/vBEqxcyTQvca/ucXUjHNSZo9G.mp4"
+
+        return video
+    }
+
 }
 

@@ -15,8 +15,11 @@ public struct SZAVPlayerConfig {
     public var isVideo: Bool            // Is video or not.
     public var isVideoOutputEnabled: Bool           // Output video image function enabled or not.
     public var timeObserverInterval: Float64 = 1    // TimeObserver interval, default value is 1s.
-    public var isLocalURL: Bool = false
     public var videoGravity: AVLayerVideoGravity = .resizeAspect
+
+    /// If set to ture, the asset will be loaded with the system's own way. It is suitable for situations like
+    /// local files or you don't needed custom loading.
+    public var disableCustomLoading: Bool = false
 
     public init(urlStr: String, uniqueID: String?, isVideo: Bool = false, isVideoOutputEnabled: Bool = false) {
         self.urlStr = urlStr

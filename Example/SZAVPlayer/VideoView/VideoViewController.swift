@@ -24,6 +24,7 @@ class VideoViewController: UIViewController {
     private lazy var videoOutputView1: UIImageView = createVideoOutputView()
     private lazy var videoOutputView2: UIImageView = createVideoOutputView()
     private let videos: [FakeVideo] = [
+        FakeVideo.fake4(),
         FakeVideo.fake1(),
         FakeVideo.fake2(),
         FakeVideo.fake3(),
@@ -47,7 +48,7 @@ class VideoViewController: UIViewController {
         view.backgroundColor = .white
 
         addSubviews()
-        SZAVPlayerCache.shared.setup(maxCacheSize: 100)
+        SZAVPlayerCache.shared.setup(maxCacheSize: 1000)
 
         currentVideo = videos.first
         updateView()
@@ -56,7 +57,7 @@ class VideoViewController: UIViewController {
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
-        videoPlayer.removeVideoOutput()
+        videoPlayer.reset(cleanAsset: true)
     }
 
 }
@@ -240,6 +241,8 @@ extension VideoViewController {
         }
         playerControllerEvent = .playing
         updateView()
+
+        SZAVPlayer.activeAudioSession()
     }
 
     private func pauseVideo() {

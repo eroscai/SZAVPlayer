@@ -1,6 +1,6 @@
 PODS:
   - SnapKit (5.0.1)
-  - SZAVPlayer (1.1.8)
+  - SZAVPlayer (1.2.0)
 
 DEPENDENCIES:
   - SnapKit
@@ -16,7 +16,7 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
-  SZAVPlayer: 549b624db15ec70f5fa52849a4b04a132dd9eb6d
+  SZAVPlayer: 22509e3f379401eaeb1ffcd9d2a8c0063470df03
 
 PODFILE CHECKSUM: 474ca31b1fd0446e12cf70da2d54e0b4622e3259
 
