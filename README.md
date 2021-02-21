@@ -18,6 +18,10 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
 - [x] Load AVAsset asynchronously to not blocking the main thread.
 - [x] Support setting cache size munually and also support cleaning.
 
+## Main Flow
+
+![Main Flow](./MainFlow.jpg)
+
 ## Hint
 
 > If you find that always play failed in the simulator, try exit simulator completely and restart again. This is kind of simulator's bug.
