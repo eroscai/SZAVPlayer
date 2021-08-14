@@ -367,12 +367,19 @@ extension SZAVPlayerAssetLoader {
             request.setValue(rangeHeader, forHTTPHeaderField: "Range")
         }
 
+        if let headers = config.headersForContentInfoRequest {
+            for (key, value) in headers {
+                request.setValue(value, forHTTPHeaderField: key)
+            }
+        }
+
         return request
     }
 
     private func createDataLoader() -> SZAVPlayerDataLoader {
         let loader = SZAVPlayerDataLoader(uniqueID: uniqueID,
                                           url: url,
+                                          config: config,
                                           callbackQueue: loaderQueue)
         loader.delegate = self
 

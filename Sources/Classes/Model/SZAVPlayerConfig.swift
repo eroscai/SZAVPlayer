@@ -21,6 +21,9 @@ public struct SZAVPlayerConfig {
     /// local files or you don't needed custom loading.
     public var disableCustomLoading: Bool = false
 
+    public var headersForContentInfoRequest: [String: String]?
+    public var headersForDataRequest: [String: String]?
+
     public init(urlStr: String, uniqueID: String?, isVideo: Bool = false, isVideoOutputEnabled: Bool = false) {
         self.urlStr = urlStr
         self.uniqueID = uniqueID

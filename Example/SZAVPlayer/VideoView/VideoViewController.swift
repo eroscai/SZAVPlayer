@@ -236,7 +236,15 @@ extension VideoViewController {
             videoPlayer.play()
         } else {
             videoPlayer.pause()
-            let config = SZAVPlayerConfig(urlStr: video.url, uniqueID: nil, isVideo: true, isVideoOutputEnabled: enableVideoOutput)
+            var config = SZAVPlayerConfig(urlStr: video.url, uniqueID: nil, isVideo: true, isVideoOutputEnabled: enableVideoOutput)
+            config.headersForContentInfoRequest = [
+                "header1": "111",
+                "header2": "222"
+            ]
+            config.headersForDataRequest = [
+                "header3": "333",
+                "header4": "444"
+            ]
             videoPlayer.setupPlayer(config: config)
         }
         playerControllerEvent = .playing

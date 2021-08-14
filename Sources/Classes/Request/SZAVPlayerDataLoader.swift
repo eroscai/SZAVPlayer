@@ -25,11 +25,13 @@ class SZAVPlayerDataLoader: NSObject {
     private lazy var dataLoaderOperationQueue = createOperationQueue(name: "dataLoaderOperationQueue")
     private let uniqueID: String
     private let url: URL
+    private let config: SZAVPlayerConfig
     private var mediaData: Data?
 
-    init(uniqueID: String, url: URL, callbackQueue: DispatchQueue) {
+    init(uniqueID: String, url: URL, config: SZAVPlayerConfig, callbackQueue: DispatchQueue) {
         self.uniqueID = uniqueID
         self.url = url
+        self.config = config
         self.callbackQueue = callbackQueue
         super.init()
     }
@@ -41,6 +43,7 @@ class SZAVPlayerDataLoader: NSObject {
     public func append(requestedRange: SZAVPlayerRange, dataRequest: SZAVPlayerDataRequest) {
         let dataLoaderOperation = SZAVPlayerDataLoaderOperation(uniqueID: uniqueID,
                                                                 url: url,
+                                                                config: config,
                                                                 requestedRange: requestedRange,
                                                                 dataRequest: dataRequest)
         dataLoaderOperation.delegate = self

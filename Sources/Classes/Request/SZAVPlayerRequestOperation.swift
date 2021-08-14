@@ -24,6 +24,7 @@ public class SZAVPlayerRequestOperation: Operation {
     private var requestCompletion: CompletionHandler?
     private lazy var session: URLSession = createSession()
     private var task: URLSessionDataTask?
+    private let config: SZAVPlayerConfig
 
     private var _finished: Bool = false
     private var _executing: Bool = false
@@ -32,7 +33,8 @@ public class SZAVPlayerRequestOperation: Operation {
         SZLogInfo("deinit")
     }
 
-    public init(url: URL, range: SZAVPlayerRange?) {
+    public init(url: URL, range: SZAVPlayerRange?, config: SZAVPlayerConfig) {
+        self.config = config
         self.performQueue = DispatchQueue(label: "com.SZAVPlayer.RequestOperation", qos: .background)
         super.init()
 
@@ -146,6 +148,12 @@ extension SZAVPlayerRequestOperation {
             let rangeHeader = "bytes=\(range.lowerBound)-\(range.upperBound)"
             request.setValue(rangeHeader, forHTTPHeaderField: "Range")
             startOffset = range.lowerBound
+        }
+
+        if let headers = config.headersForDataRequest {
+            for (key, value) in headers {
+                request.setValue(value, forHTTPHeaderField: key)
+            }
         }
 
         return session.dataTask(with: request)

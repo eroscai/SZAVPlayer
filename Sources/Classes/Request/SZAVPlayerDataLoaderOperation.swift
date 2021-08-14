@@ -25,6 +25,7 @@ class SZAVPlayerDataLoaderOperation: Operation {
     private var operationCompletion: CompletionHandler?
     private let uniqueID: String
     private let url: URL
+    private let config: SZAVPlayerConfig
     private let requestedRange: SZAVPlayerRange
     private let dataRequest: SZAVPlayerDataRequest
     private var mediaData: Data?
@@ -39,12 +40,14 @@ class SZAVPlayerDataLoaderOperation: Operation {
 
     init(uniqueID: String,
          url: URL,
+         config: SZAVPlayerConfig,
          requestedRange: SZAVPlayerRange,
          dataRequest: SZAVPlayerDataRequest)
     {
         self.performQueue = DispatchQueue(label: "com.SZAVPlayer.DataLoaderOperation", qos: .background)
         self.uniqueID = uniqueID
         self.url = url
+        self.config = config
         self.requestedRange = requestedRange
         self.dataRequest = dataRequest
         super.init()
@@ -195,7 +198,9 @@ extension SZAVPlayerDataLoaderOperation {
     }
 
     private func remoteRequestOperation(range: SZAVPlayerRange) -> SZAVPlayerRequestOperation {
-        let operation = SZAVPlayerRequestOperation(url: url, range: range)
+        let operation = SZAVPlayerRequestOperation(url: url,
+                                                   range: range,
+                                                   config: config)
         operation.delegate = self
 
         return operation
