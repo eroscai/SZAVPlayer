@@ -40,6 +40,10 @@ public class SZAVPlayerCache: NSObject {
         trimCache()
     }
 
+    public func delete(uniqueID: String) {
+        SZAVPlayerDatabase.shared.trimData(uniqueID: uniqueID)
+    }
+
     public func cleanCache() {
         SZAVPlayerDatabase.shared.cleanData()
         SZAVPlayerFileSystem.cleanCachedFiles()
