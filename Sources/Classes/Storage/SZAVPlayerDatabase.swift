@@ -40,18 +40,15 @@ public class SZAVPlayerDatabase: NSObject {
         }
     }
 
-    public func trimData() {
+    public func trimData(uniqueID: String? = nil) {
         DispatchQueue.global(qos: .background).async {
-            let infos = self.expiredContentInfos()
-            for info in infos {
-                self.deleteMIMEType(uniqueID: info.uniqueID)
-
-                let fileInfos = self.localFileInfos(uniqueID: info.uniqueID)
-                for fileInfo in fileInfos {
-                    let fileURL = SZAVPlayerFileSystem.localFilePath(fileName: fileInfo.localFileName)
-                    SZAVPlayerFileSystem.delete(url: fileURL)
+            if let uniqueID = uniqueID, !uniqueID.isEmpty {
+                self.delete(uniqueID: uniqueID)
+            } else {
+                let infos = self.expiredContentInfos()
+                for info in infos {
+                    self.delete(uniqueID: info.uniqueID)
                 }
-                self.deleteLocalFileInfo(uniqueID: info.uniqueID)
             }
         }
     }
@@ -225,4 +222,15 @@ private extension SZAVPlayerDatabase {
         }
     }
 
+    func delete(uniqueID: String) {
+        self.deleteMIMEType(uniqueID: uniqueID)
+
+        let fileInfos = self.localFileInfos(uniqueID: uniqueID)
+        for fileInfo in fileInfos {
+            let fileURL = SZAVPlayerFileSystem.localFilePath(fileName: fileInfo.localFileName)
+            SZAVPlayerFileSystem.delete(url: fileURL)
+        }
+        self.deleteLocalFileInfo(uniqueID: uniqueID)
+    }
+    
 }
