@@ -154,6 +154,14 @@ SZAVPlayer is a lightweight audio/video player library, based on `AVPlayer`, pur
     ```swift
     SZAVPlayerCache.shared.cleanCache()
     ```
+    
+9. Play local files. Because there is no need to go through the custom loading process for local files, directly set `disableCustomLoading` to `true`.
+
+	```swift
+	let config = SZAVPlayerConfig(urlStr: audio.url, uniqueID: nil)
+	config.disableCustomLoading = true
+	audioPlayer.setupPlayer(config: config)
+	```
 
 ## Example
 

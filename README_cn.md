@@ -154,6 +154,14 @@ SZAVPlayer是一个轻量级的音视频播放库，基于`AVPlayer`和`AVAssetR
     ```swift
     SZAVPlayerCache.shared.cleanCache()
     ```
+    
+9. 播放纯本地文件。因为纯本地文件的话无需走自定义加载流程，所以直接设置 `disableCustomLoading` 为 `true` 即可。
+
+	```swift
+	let config = SZAVPlayerConfig(urlStr: audio.url, uniqueID: nil)
+	config.disableCustomLoading = true
+	audioPlayer.setupPlayer(config: config)
+	```
 
 ## 示例
 
