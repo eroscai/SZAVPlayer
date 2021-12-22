@@ -146,6 +146,12 @@ public class SZAVPlayer: UIView {
         playerItem = nil
     }
 
+    public override func layoutSubviews() {
+        super.layoutSubviews()
+
+        playerLayer?.frame = bounds
+    }
+
 }
 
 // MARK: - Actions
