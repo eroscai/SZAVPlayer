@@ -20,7 +20,6 @@ public class SZAVPlayerRequestOperation: Operation {
     public weak var delegate: SZAVPlayerRequestOperationDelegate?
     private(set) public var startOffset: Int64 = 0
     
-    private let performQueue: DispatchQueue
     private var requestCompletion: CompletionHandler?
     private lazy var session: URLSession = createSession()
     private var task: URLSessionDataTask?
@@ -35,7 +34,6 @@ public class SZAVPlayerRequestOperation: Operation {
 
     public init(url: URL, range: SZAVPlayerRange?, config: SZAVPlayerConfig) {
         self.config = config
-        self.performQueue = DispatchQueue(label: "com.SZAVPlayer.RequestOperation", qos: .background)
         super.init()
 
         requestCompletion = defaultCompletion()
@@ -53,7 +51,7 @@ public class SZAVPlayerRequestOperation: Operation {
     override public func start() {
         guard !isCancelled else {return}
         markAsRunning()
-        performQueue.async {
+        DispatchQueue.global(qos: .background).async {
             self.work { [weak self] in
                 guard let self = self else { return }
 
@@ -68,6 +66,10 @@ public class SZAVPlayerRequestOperation: Operation {
 
     override public func cancel() {
         task?.cancel()
+        
+        if isExecuting {
+            markAsFinished()
+        }
     }
 
     override open var isFinished: Bool {

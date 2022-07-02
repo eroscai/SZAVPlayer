@@ -20,7 +20,6 @@ class SZAVPlayerDataLoaderOperation: Operation {
     public typealias CompletionHandler = () -> Void
     public weak var delegate: SZAVPlayerDataLoaderOperationDelegate?
 
-    private let performQueue: DispatchQueue
     private lazy var operationQueue = createOperationQueue(name: "dataLoaderOperationQueue")
     private var operationCompletion: CompletionHandler?
     private let uniqueID: String
@@ -44,7 +43,6 @@ class SZAVPlayerDataLoaderOperation: Operation {
          requestedRange: SZAVPlayerRange,
          dataRequest: SZAVPlayerDataRequest)
     {
-        self.performQueue = DispatchQueue(label: "com.SZAVPlayer.DataLoaderOperation", qos: .background)
         self.uniqueID = uniqueID
         self.url = url
         self.config = config
@@ -60,7 +58,7 @@ class SZAVPlayerDataLoaderOperation: Operation {
     override public func start() {
         guard !isCancelled else {return}
         markAsRunning()
-        performQueue.async {
+        DispatchQueue.global(qos: .background).async {
             self.work { [weak self] in
                 guard let self = self else { return }
 
@@ -74,6 +72,10 @@ class SZAVPlayerDataLoaderOperation: Operation {
 
     override public func cancel() {
         super.cancel()
+        
+        if isExecuting {
+            markAsFinished()
+        }
     }
 
     override open var isFinished: Bool {
